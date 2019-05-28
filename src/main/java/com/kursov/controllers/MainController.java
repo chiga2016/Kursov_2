@@ -84,9 +84,14 @@ public class MainController {
         //return showAll();
     }
 
-    @RequestMapping("showPersons")
-    public String showPersons(){
-        return "showPersons";
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public ModelAndView main(){
+            return new ModelAndView("index");
+            // Запрос по точке входа "/" будет выводить нам index.jsp, а найдет он его благодаря нашему dispatcher-servlet
+        }
+    @RequestMapping("admin")
+    public String admin(){
+        return "admin";
     }
         
     @RequestMapping("init.do")

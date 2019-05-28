@@ -13,6 +13,12 @@
 <body>
 <h1>login</h1>
 
+<h1>Добро пожаловать в автокаршеринг</h1>
+
+<a href="http://localhost:8090/register.do" > Зарегистрируйтесь </a>
+<br>
+или  войдите
+<br>
 <form action="login.do" method="POST" title="Форма авторизации пользователя">
 
     <input type="text" placeholder="имя" name="login" value="admin" />

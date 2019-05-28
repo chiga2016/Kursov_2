@@ -24,7 +24,7 @@ public class LoginController {
         return ub.getUsername();
     }
 
-    @RequestMapping(value="login")
+    @RequestMapping(value="login1")
     public String login() {
         return "login";
     }

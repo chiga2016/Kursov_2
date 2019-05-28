@@ -12,7 +12,6 @@
 </head>
 <body>
 <h3>Register new user</h3>
-<br>
 <form action="http://localhost:8090/add/person" method="post">
     <h5>Username</h5><input title="username" type="text" name="username" value="admin"><br>
     <h5>Fam</h5><input title="fam" type="text" name="fam" value="Balagutdinov"><br>
