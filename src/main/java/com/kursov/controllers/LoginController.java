@@ -26,7 +26,7 @@ public class LoginController {
 
     @RequestMapping(value="login1")
     public String login() {
-        return "login";
+        return "login1";
     }
 
 

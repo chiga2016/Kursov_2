@@ -7,30 +7,17 @@
 		http://www.springframework.org/schema/security
 		http://www.springframework.org/schema/security/spring-security.xsd">
 
-    <http auto-config="true"  >
-        <intercept-url pattern="/login*" access="isAnonymous()" />
-        <intercept-url pattern="/admin" access="isAuthenticated()"/>
-        <!--
-        <form-login login-page="/login" login-processing-url="/login-user" authentication-failure-url="/login?error=true" />-->
-        <csrf disabled="true" />
-        <logout logout-success-url="/login?logout"  />
-    </http>
-    <!--
     <http auto-config="true">
-
-        <intercept-url pattern="/**" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')"/>
-        <intercept-url pattern="/add/person" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')"/>
-        <intercept-url pattern="/index" access="hasAnyRole('ROLE_USER')"/>
-
+        <intercept-url pattern="/" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>
+        <intercept-url pattern="/welcome" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>
         <intercept-url pattern="/admin" access="hasRole('ROLE_ADMIN')"/>
 
         <form-login login-page="/login" default-target-url="/welcome" authentication-failure-url="/login?error"
                     username-parameter="username" password-parameter="password"/>
-
+        <csrf disabled="true" />
         <logout logout-success-url="/login?logout"/>
-    </http>-->
+    </http>
 
-    <!--
     <authentication-manager alias="authenticationManager">
         <authentication-provider user-service-ref="userDetailsServiceImpl">
             <password-encoder ref="encoder"></password-encoder>
@@ -38,17 +25,7 @@
     </authentication-manager>
 
     <beans:bean id="userDetailsServiceImpl"
-                class="net.proselyte.springsecurityapp.service.UserDetailsServiceImpl"></beans:bean>
-    -->
-
-    <authentication-manager>
-        <authentication-provider>
-            <user-service>
-
-                <user name="admin" password="admin" authorities="ROLE_ADMIN"/> <!-- Добавляем пользователя который будет иметь права админа -->
-            </user-service>
-        </authentication-provider>
-    </authentication-manager>
+                class="com.kursov.service.UserDetailsServiceImpl"></beans:bean>
 
     <beans:bean id="encoder"
                 class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
