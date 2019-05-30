@@ -1,5 +1,6 @@
 package com.kursov.service;
 
+import com.kursov.dao.HiberDAO;
 import com.kursov.dao.RoleDao;
 import com.kursov.dao.UserDao;
 import com.kursov.model.Role;
@@ -15,6 +16,10 @@ import java.util.Set;
 public class UserServiceImpl implements UserService {
 
     private static final org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(UserServiceImpl.class);
+
+    @Autowired
+    HiberDAO dao;
+
     @Autowired
     private UserDao userDao;
 
@@ -47,5 +52,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findByUsername(String username) {
         return userDao.findByUsername(username);
+    }
+
+    @Override
+    public User findUserByUsername(String username) {
+        return dao.findUserByUsername(username);
     }
 }

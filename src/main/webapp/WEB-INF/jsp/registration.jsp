@@ -33,14 +33,28 @@
         <spring:bind path="username">
             <div class="form-group ${status.error ? 'has-error' : ''}">
                 <form:input type="text" path="username" class="form-control" placeholder="Username"
-                            autofocus="true"></form:input>
+                            autofocus="true" value="BalagutdinovIF" ></form:input>
                 <form:errors path="username"></form:errors>
+            </div>
+        </spring:bind>
+
+        <spring:bind path="fam">
+            <div class="form-group ${status.error ? 'has-error' : ''}">
+                <form:input type="text" path="fam" class="form-control" placeholder="fam"  value="Balagutdinov" ></form:input>
+                <form:errors path="fam"></form:errors>
+            </div>
+        </spring:bind>
+
+        <spring:bind path="name">
+            <div class="form-group ${status.error ? 'has-error' : ''}">
+                <form:input type="text" path="name" class="form-control" placeholder="name"  value="Ilgiz" ></form:input>
+                <form:errors path="name"></form:errors>
             </div>
         </spring:bind>
 
         <spring:bind path="password">
             <div class="form-group ${status.error ? 'has-error' : ''}">
-                <form:input type="password" path="password" class="form-control" placeholder="Password"></form:input>
+                <form:input type="password" path="password" class="form-control" placeholder="Password"  value="Balagutdinov" ></form:input>
                 <form:errors path="password"></form:errors>
             </div>
         </spring:bind>
@@ -48,10 +62,17 @@
         <spring:bind path="confirmPassword">
             <div class="form-group ${status.error ? 'has-error' : ''}">
                 <form:input type="password" path="confirmPassword" class="form-control"
-                            placeholder="Confirm your password"></form:input>
+                            placeholder="Confirm your password"   value="Balagutdinov" ></form:input>
                 <form:errors path="confirmPassword"></form:errors>
             </div>
         </spring:bind>
+
+        <h5>Ot</h5><input title="ot" type="text" name="ot" value="Faritovich"><br>
+        <h5>DR</h5><input title="dr" type="date" name="dr" value="25.12.1986"><br>
+        <h5>vuNumber</h5><input title="vuNumber" type="text" name="vuNumber" value="0207727737"><br>
+        <h5>Phone</h5><input title="phone" type="tel" name="phone" value="899899520151"><br>
+
+
 
         <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
     </form:form>

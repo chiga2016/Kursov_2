@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Random;
 import javax.persistence.*;
 
+import com.kursov.model.Role;
+import com.kursov.model.User;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -69,7 +71,19 @@ public Person addPerson(Person p) {
 
     @Transactional
     public void init() {
-        lastStatus = "Тачки построены!";
+        // 1--EntityManager em = emf.createEntityManager();
+        //em.createQuery("delete from Cat c where c.id>0").executeUpdate();
+        //Cat c;
+        // 1--em.getTransaction().begin();
+//        em.createQuery("delete from Cat c where c.id>0").executeUpdate();
+//        em.createQuery("delete from Person c where c.id>0").executeUpdate();
+        Role r1 = new Role("ROLE_USER");
+        Role r2 = new Role("ROLE_ADMIN");
+        em.persist(r1);
+        em.persist(r2);
+
+        em.getTransaction().commit();
+
     }
 
     /// проблема с многопоточным доступом! 
@@ -134,6 +148,15 @@ public Person addPerson(Person p) {
         // EntityManager em = emf.createEntityManager();
         // Cat res = em.createQuery("select c from Cat c where c.id=:paramName ",Cat.class).getSingleResult();
         // Query query = session.createQuery("from ContactEntity where firstName = :paramName");
+        return res;
+    }
+
+    @Transactional
+    public User findUserByUsername(String username) {
+        // 1--EntityManager em = emf.createEntityManager();
+        Query query = em.createQuery("select p from users p where p.username=:paramName ");
+        query.setParameter("paramName", username);
+        User res = (User)query.getSingleResult();
         return res;
     }
 

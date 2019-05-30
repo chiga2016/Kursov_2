@@ -20,6 +20,24 @@ public class User {
     @Transient
     private String confirmPassword;
 
+    @Column(name = "fam")
+    private String fam;
+
+    @Column(name = "name")
+    private String name;
+
+    @Column(name = "ot")
+    private String ot;
+
+    @Column(name = "dr")
+    private String dr;
+
+    @Column(name = "vuNumber")
+    private String vuNumber;
+
+    @Column(name = "phone")
+    private String phone;
+
     @ManyToMany
     @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
@@ -63,5 +81,53 @@ public class User {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+
+    public String getFam() {
+        return fam;
+    }
+
+    public void setFam(String fam) {
+        this.fam = fam;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+    public String getOt() {
+        return ot;
+    }
+
+    public void setOt(String ot) {
+        this.ot = ot;
+    }
+
+    public String getDr() {
+        return dr;
+    }
+
+    public void setDr(String dr) {
+        this.dr = dr;
+    }
+
+    public String getVuNumber() {
+        return vuNumber;
+    }
+
+    public void setVuNumber(String vuNumber) {
+        this.vuNumber = vuNumber;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }

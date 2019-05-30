@@ -1,5 +1,7 @@
 package com.kursov.controllers;
 
+import com.kursov.dao.HiberDAO;
+import com.kursov.model.Person;
 import com.kursov.model.User;
 import com.kursov.service.SecurityService;
 import com.kursov.service.UserService;
@@ -11,6 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 
 @Controller
@@ -24,6 +27,9 @@ public class UserController {
 
     @Autowired
     private UserValidator userValidator;
+
+    @Autowired
+    HiberDAO dao;
 
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String registration(Model model) {
@@ -61,9 +67,9 @@ public class UserController {
     }
 
     @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
-    public String welcome(Model model) {
-        return "welcome";
-    }
+    public String welcome(Model model) {        return "welcome";    }
+
+
 
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
     public String admin(Model model) {
