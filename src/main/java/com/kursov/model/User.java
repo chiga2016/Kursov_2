@@ -38,7 +38,7 @@ public class User {
     @Column(name = "phone")
     private String phone;
 
-    @ManyToMany
+    @ManyToMany //(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
@@ -129,5 +129,22 @@ public class User {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", confirmPassword='" + confirmPassword + '\'' +
+                ", fam='" + fam + '\'' +
+                ", name='" + name + '\'' +
+                ", ot='" + ot + '\'' +
+                ", dr='" + dr + '\'' +
+                ", vuNumber='" + vuNumber + '\'' +
+                ", phone='" + phone + '\'' +
+               // ", roles=" + roles +
+                '}';
     }
 }

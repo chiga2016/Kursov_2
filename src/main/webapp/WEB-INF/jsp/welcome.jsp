@@ -14,7 +14,9 @@
 
     <title>Welcome</title>
 
-    <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
+    <!--<link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">-->
+    <link href="/resources/css/bootstrap.min.css" rel="stylesheet">
+
 </head>
 <body>
 

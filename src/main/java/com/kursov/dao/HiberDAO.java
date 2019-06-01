@@ -38,6 +38,19 @@ public Person addPerson(Person p) {
 }
 
     @Transactional
+    public User addUser(User u) {
+        // 1--EntityManager em = emf.createEntityManager();
+        //Person p = new Person(fam, name, ot, dr);
+        // 1--em.getTransaction().begin();
+        /////////c.setName("Cat"+r.nextInt(100));
+        ////////////c.setWeight(1.0f+r.nextInt(40)/10.0f);
+        em.persist(u);
+        // 1--em.getTransaction().commit();
+        lastStatus = "Чувак добавлен!";
+        return u;
+    }
+
+    @Transactional
     public Cars addCars(String name, String model, String korobka, String year) {
         // 1--EntityManager em = emf.createEntityManager();
         Cars cars = new Cars(name, model, korobka, year);

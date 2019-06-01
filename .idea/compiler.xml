@@ -15,7 +15,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="Kursov" options="" />
+      <module name="Kursov" options="-endorseddirs D:\JAVA\Kursov\target/endorsed" />
     </option>
   </component>
 </project>

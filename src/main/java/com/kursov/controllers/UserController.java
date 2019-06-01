@@ -4,9 +4,15 @@ import com.kursov.dao.HiberDAO;
 import com.kursov.model.Person;
 import com.kursov.model.User;
 import com.kursov.service.SecurityService;
+import com.kursov.service.SecurityServiceImpl;
 import com.kursov.service.UserService;
 import com.kursov.validator.UserValidator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,6 +25,11 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class UserController {
 
+    private static final Logger logger = LoggerFactory.getLogger(UserController.class);
+
+    @Autowired
+    private UserValidator userValidator;
+
     @Autowired
     private UserService userService;
 
@@ -26,7 +37,7 @@ public class UserController {
     private SecurityService securityService;
 
     @Autowired
-    private UserValidator userValidator;
+    private UserDetailsService userDetailsService;
 
     @Autowired
     HiberDAO dao;
@@ -49,7 +60,11 @@ public class UserController {
         userService.save(userForm);
 
         securityService.autoLogin(userForm.getUsername(), userForm.getConfirmPassword());
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
+        logger.info(userForm.getConfirmPassword());
+        logger.info(securityService.findLoggedInUsername()) ;
+        logger.info(auth.toString());
         return "redirect:/welcome";
     }
 
@@ -67,7 +82,23 @@ public class UserController {
     }
 
     @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
-    public String welcome(Model model) {        return "welcome";    }
+    public ModelAndView welcome() {
+      ModelAndView modelAndView= new  ModelAndView("profilePage");
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName();
+        User user = userService.findByUsername(username);
+        modelAndView.addObject("u",user);
+        modelAndView.addObject("ustring", user.toString());
+       return modelAndView;
+    }
+//    public ModelAndView welcome(){
+//        ModelAndView m = new ModelAndView("profilePage");
+//        String username = securityService.findLoggedInUsername();
+//        User user = userService.findByUsername(username);
+//        m.addObject("fam", user.getFam());
+//
+//        return m;
+//    }
 
 
 

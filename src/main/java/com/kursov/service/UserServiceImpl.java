@@ -39,7 +39,8 @@ public class UserServiceImpl implements UserService {
             Set<Role> roles = new HashSet<>();
             roles.add(roleDao.getOne(1L));
             user.setRoles(roles);
-            userDao.save(user);
+            dao.addUser(user);
+           // userDao.save(user);
         }
         catch(Exception ex)
         {
