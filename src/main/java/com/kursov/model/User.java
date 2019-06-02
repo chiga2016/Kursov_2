@@ -1,11 +1,14 @@
 package com.kursov.model;
 
 import javax.persistence.*;
+
+import java.sql.Date;
 import java.util.Set;
 
 @Entity
 @Table(name = "users")
 public class User {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -38,10 +41,44 @@ public class User {
     @Column(name = "phone")
     private String phone;
 
-    @ManyToMany //(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @Column(name = "enabled")
+    private boolean enabled;
+
+    @Column(name = "dateCreate")
+    private Date dateCreate;
+
+    @ManyToMany //(fetch = FetchType.EAGER)//, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
+
+    @OneToOne
+    @JoinColumn(name = "currentCar")
+    private Cars currentCar;
+
+    public Cars getCurrentCar() {
+        return currentCar;
+    }
+
+    public void setCurrentCar(Cars currentCar) {
+        this.currentCar = currentCar;
+    }
+
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+    public User() {
+    }
+    public Date getDateCreate() {
+        return dateCreate;
+    }
+
+    public void setDateCreate(Date dateCreate) {
+        this.dateCreate = dateCreate;
+    }
+
+
 
     public Long getId() {
         return id;
@@ -83,6 +120,16 @@ public class User {
         this.roles = roles;
     }
 
+
+    public String getRoles2() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Roles: ");
+        for (Role c : roles) {
+            sb.append(c.getName());
+            sb.append(',');
+        }
+        return sb.toString();
+    }
 
     public String getFam() {
         return fam;
@@ -131,6 +178,14 @@ public class User {
         this.phone = phone;
     }
 
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -144,7 +199,9 @@ public class User {
                 ", dr='" + dr + '\'' +
                 ", vuNumber='" + vuNumber + '\'' +
                 ", phone='" + phone + '\'' +
-               // ", roles=" + roles +
+                ", enabled=" + enabled +
+                ", dateCreate='" + dateCreate + '\'' +
+                ", " + getRoles2() + '\'' +
                 '}';
     }
 }

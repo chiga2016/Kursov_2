@@ -1,17 +1,22 @@
 
 package com.kursov.controllers;
 
+import com.kursov.dao.CarsDao;
 import com.kursov.dao.HiberDAO;
+import com.kursov.dao.UserDao;
 import com.kursov.model.Cars;
 
 import java.util.Collections;
 import java.util.List;
 
 import com.kursov.model.Person;
+import com.kursov.service.CarsService;
+import com.kursov.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,14 +24,34 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.annotation.Resource;
+
 
 @Controller
 public class MainController {
     
     Logger log = LoggerFactory.getLogger(this.getClass());
-    
+
     @Autowired
     HiberDAO dao;
+
+    @Autowired
+    UserService userService;
+
+//    @Autowired
+//    @Qualifier(value = "carsService")
+//    CarsService carsService;
+
+    @Autowired
+    CarsDao carsDao;
+
+
+   /* @Autowired
+    UserDao userDao;
+    @Autowired
+    CarsDao carsDao;
+*/
+
     
     @ModelAttribute("status")
     public String getStatus() {
@@ -38,7 +63,6 @@ public class MainController {
         ModelAndView mv = new ModelAndView("listalldata");
         List<Cars> allCars = dao.getAllCars();
         mv.addObject("cars", allCars);
-        mv.addObject("persons", dao.getAllPersons());
         log.info(allCars.toString());
         return mv;              
     }
@@ -63,7 +87,6 @@ public class MainController {
         //mv.addObject("cats", Collections.singletonList(c));
         List<Cars> allCars = dao.getAllCars();
         mv.addObject("cars", allCars);
-        mv.addObject("persons", dao.getAllPersons());
 
         return mv;
         //return showAll();
@@ -77,8 +100,8 @@ public class MainController {
        dao.deletePerson(id);
         //mv.addObject("cats", Collections.singletonList(c));
         List<Cars> allCars = dao.getAllCars();
-        List<Person> allPersons = dao.getAllPersons();
-        mv.addObject("persons", allPersons);
+        //List<Person> allPersons = dao.getAllPersons();
+        //mv.addObject("persons", allPersons);
 
         return mv;
         //return showAll();
@@ -90,8 +113,13 @@ public class MainController {
             // Запрос по точке входа "/" будет выводить нам index.jsp, а найдет он его благодаря нашему dispatcher-servlet
         }
     @RequestMapping("admin")
-    public String admin(){
-        return "admin";
+    public ModelAndView admin(){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("admin");
+        modelAndView.addObject("users",userService.findAll()); //userDao.findAll());
+        modelAndView.addObject("cars", carsDao.findAll());
+
+        return modelAndView;
     }
         
     @RequestMapping("init.do")
@@ -111,7 +139,7 @@ public class MainController {
 
     @RequestMapping(value = "/add/car", method = RequestMethod.POST)
     public ModelAndView addCar(@ModelAttribute("cars") Cars cars)  {
-        dao.addCars(cars.getName(), cars.getModel(), cars.getKorobka(), cars.getYear() );
+        dao.addCars(cars.getName(), cars.getModel(), cars.getTransmission(), cars.getYear() );
         return showAll();
     }
 
@@ -145,8 +173,8 @@ public class MainController {
         //dao.deletePerson(id);
         //mv.addObject("cats", Collections.singletonList(c));
         List<Cars> allCars = dao.getAllCars();
-        List<Person> allPersons = dao.getAllPersons();
-        mv.addObject("persons", allPersons);
+        //List<Person> allPersons = dao.getAllPersons();
+        //mv.addObject("persons", allPersons);
 
         mv.addObject("cats", allCars);
         return mv;

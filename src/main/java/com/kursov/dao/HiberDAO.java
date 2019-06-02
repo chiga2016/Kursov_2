@@ -70,9 +70,9 @@ public Person addPerson(Person p) {
     }
 
     @Transactional
-    public List<Person> getAllPersons() {
+    public List<User> getAllUsers() {
         // 1--EntityManager em = emf.createEntityManager();
-          List<Person> res = em.createQuery("select p from Person p",Person.class).getResultList();
+          List<User> res = em.createQuery("select u from users u",User.class).getResultList();
        //  List<Person> res = em.createQuery("select p from Person p LEFT JOIN FETCH p.cats",Person.class).getResultList();
         /*
         for (Person p: res ) {
@@ -217,7 +217,7 @@ public Person addPerson(Person p) {
         Person p = findPersonById(pid, em);
         System.out.print("Тачку " + c + " передаем персоне ");
         System.out.println(p);
-        c.setOwner(p);
+        //c.setOwner(p);
         //em.createQuery("delete  from Person p where p.id=:?").setParameter(1,id).executeUpdate();
         //Query query = em.createQuery("DELETE FROM Person p WHERE p.id = :param ");
         //query.setParameter("param", id);

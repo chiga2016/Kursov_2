@@ -21,10 +21,27 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
+    <!-- включаем в связи с ошибкой
+    org.hibernate.LazyInitializationException: failed to lazily initialize a collection of role: mvc3.model.Topic.comments, no session or session was closed
+    *************************************************************************-->
+    <filter>
+        <filter-name>openEntityManagerInViewFilter</filter-name>
+        <filter-class>org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter</filter-class>
+        <init-param>
+            <param-name>singleSession</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>openEntityManagerInViewFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
     <filter>
         <filter-name>springSecurityFilterChain</filter-name>
         <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
     </filter>
+
+    <!-- ******************************************************************************************************* -->
     <filter-mapping>
         <filter-name>springSecurityFilterChain</filter-name>
         <url-pattern>/*</url-pattern>

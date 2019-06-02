@@ -12,28 +12,37 @@ public class Cars {
     @GeneratedValue
     @Column(name="car_id")
     private long id; // identifier
+
+    @Column(name="name")
     String name;
+    @Column(name="model")
     String model;
-    String korobka;
-    //@Temporal(javax.persistence.TemporalType.DATE)
+    @Column(name="transmission")
+    String transmission;
+    @Column(name="year")
     private String year;
+    @Column(name="available")
+    private boolean available;
+    //@Temporal(javax.persistence.TemporalType.DATE)
+
 
     //  @Transient
-    @ManyToOne(cascade={CascadeType.ALL/*CascadeType.PERSIST*/})
-    private Person owner;
+    @OneToOne( mappedBy = "currentCar", cascade={CascadeType.ALL,  /*CascadeType.PERSIST*/})
+    //@Column(name= "currentOwner")
+    private User currentOwner;
 
-    public Person getOwner() {
-        return owner;
+    public User getCurrentOwner() {
+        return currentOwner;
     }
 
-    public void setOwner(Person owner) {
-        this.owner = owner;
+    public void setCurrentOwner(User owner) {
+        this.currentOwner = currentOwner;
     }
 
-    public Cars(String name, String model, String korobka, String year) {
+    public Cars(String name, String model, String transmission, String year) {
         this.name = name;
         this.model = model;
-        this.korobka = korobka;
+        this.transmission = transmission;
         this.year = year;
     }
 
@@ -48,12 +57,12 @@ public class Cars {
         this.model = model;
     }
 
-    public String getKorobka() {
-        return korobka;
+    public String getTransmission() {
+        return transmission;
     }
 
-    public void setKorobka(String korobka) {
-        this.korobka = korobka;
+    public void setTransmission(String transmission) {
+        this.transmission = transmission;
     }
 
     public String getYear() {

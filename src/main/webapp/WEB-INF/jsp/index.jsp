@@ -6,7 +6,7 @@
 <body>
         <h1>Добро пожаловать </h1>
 
-        <a href="http://localhost:8090/register.do" > Зарегистрируйтесь </a> или <a href="http://localhost:8090/login.do" > войдите </a>
+        <a href="/registration" > Зарегистрируйтесь </a> или <a href="/login" > войдите </a>
 <!--
         <ul>
             <li><a href="addPerson.do"/>Создать персону</a></li>

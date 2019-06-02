@@ -9,20 +9,19 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>ShowPersons</title>
+    <title>ShowUsers</title>
 </head>
 <body>
 <h1>Люди:</h1>
 <table><tbody>
-<c:forEach var="x" items="${persons}">
+<c:forEach var="x" items="${users}">
 <tr>
     <td>${x.id}</td>
+    <td>${x.username}</td>
     <td>${x.fam}</td>
     <td>${x.name}</td>
     <td>${x.ot}</td>
     <td>${x.dr}</td>
-    <td>${x.carIds}</td>
-    <td>${x.carNames}</td>
 </tr>
 </c:forEach>
     <tbody></table>

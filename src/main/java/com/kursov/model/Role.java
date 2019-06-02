@@ -4,13 +4,6 @@ package com.kursov.model;
 import javax.persistence.*;
 import java.util.Set;
 
-/**
- * Simple JavaBean object that represents role of {@link User}.
- *
- * @author Eugene Suleimanov
- * @version 1.0
- */
-
 @Entity
 @Table(name = "roles")
 public class Role {
@@ -22,7 +15,7 @@ public class Role {
     @Column(name = "name")
     private String name;
 
-    @ManyToMany(mappedBy = "roles") //, fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY, cascade = CascadeType.ALL) //cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private Set<User> users;
 
     public Role() {
