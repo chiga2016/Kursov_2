@@ -10,6 +10,7 @@ import java.util.Collections;
 import java.util.List;
 
 import com.kursov.model.Person;
+import com.kursov.model.User;
 import com.kursov.service.CarsService;
 import com.kursov.service.UserService;
 import org.slf4j.Logger;
@@ -112,15 +113,7 @@ public class MainController {
             return new ModelAndView("index");
             // Запрос по точке входа "/" будет выводить нам index.jsp, а найдет он его благодаря нашему dispatcher-servlet
         }
-    @RequestMapping("admin")
-    public ModelAndView admin(){
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("admin");
-        modelAndView.addObject("users",userService.findAll()); //userDao.findAll());
-        modelAndView.addObject("cars", carsDao.findAll());
 
-        return modelAndView;
-    }
         
     @RequestMapping("init.do")
     public String init() {
@@ -129,23 +122,43 @@ public class MainController {
     }
 
     @RequestMapping(value = "/add/person", method = RequestMethod.POST)
-    public String  addUser(@ModelAttribute("user") Person person)  {
-       // dao.addPerson(person.getFam(), person.getName(), person.getOt(), person.getDr() );
-        dao.addPerson(person);
-        return "afterRegister";
+    public ModelAndView  addUser(@ModelAttribute("user") User user)  {
+        ModelAndView modelAndView = new ModelAndView();
+        // dao.addPerson(person.getFam(), person.getName(), person.getOt(), person.getDr() );
+        //dao.addPerson(person);
+        //return "afterRegister";
         //return showAll();
+        userService.save(user);
+        modelAndView.setViewName("admin");
+        modelAndView.addObject("cars", carsDao.findAll());
+        modelAndView.addObject("users",userService.findAll() );
+
+
+        return modelAndView;
     }
 
 
-    @RequestMapping(value = "/add/car", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/addcar", method = RequestMethod.POST)
     public ModelAndView addCar(@ModelAttribute("cars") Cars cars)  {
-        dao.addCars(cars.getName(), cars.getModel(), cars.getTransmission(), cars.getYear() );
-        return showAll();
+       // dao.addCars(cars.getName(), cars.getModel(), cars.getTransmission(), cars.getYear() );
+        ModelAndView modelAndView = new ModelAndView();
+        carsDao.saveAndFlush(cars);
+
+        modelAndView.setViewName("admin");
+        modelAndView.addObject("cars", carsDao.findAll());
+        modelAndView.addObject("users",userService.findAll() );
+
+        return modelAndView;
     }
 
-    @RequestMapping("addCar.do")
+    @RequestMapping(value = "/admin/addcar", method = RequestMethod.GET)
     public String addCar(){
         return "addCar";
+    }
+
+    @RequestMapping(value = "/admin/adduser", method = RequestMethod.GET)
+    public String addUser(){
+        return "addUser";
     }
 
     @RequestMapping("login.do")

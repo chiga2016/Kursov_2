@@ -13,16 +13,16 @@
 <body>
 <h3> Create Car</h3>
 <br>
-<form action="http://localhost:8090/add/car" method="post">
+<form action="http://localhost:8090/admin/addcar" method="post">
     <h5>Name</h5><input title="name" type="text" name="name"><br>
     <h5>Model</h5><input title="model" type="text" name="model"><br>
     <h5>Transmission</h5>
     <input type="radio" id="contactChoice1"
-           name="korobka" value="MT" checked>
+           name="transmission" value="MT" checked>
     <label for="contactChoice1">MT</label>
 
     <input type="radio" id="contactChoice2"
-           name="korobka" value="AT">
+           name="transmission" value="AT">
     <label for="contactChoice2">AT</label>
     <br>
 

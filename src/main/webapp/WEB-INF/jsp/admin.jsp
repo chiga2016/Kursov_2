@@ -88,7 +88,7 @@
 
             </c:forEach>
 
-            <tr > <a href="/admin/addUser">Добавить клиента </a> </tr>
+            <tr > <a href="/admin/adduser">Добавить клиента </a> </tr>
         </table>
     </div>
 
