@@ -142,11 +142,11 @@ public Person addPerson(Person p) {
     }
 
     @Transactional
-    public Person findPerson(long i) {
+    public User findPerson(long i) {
         // 1--EntityManager em = emf.createEntityManager();
-        Query query = em.createQuery("select p from Person p where p.id=:paramName ");
+        Query query = em.createQuery("select p from User p where p.id=:paramName ");
         query.setParameter("paramName", i);
-        Person res = (Person)query.getSingleResult();
+        User res = (User)query.getSingleResult();
         //resultList.forEach(System.out::println);
         // em.close();
         // EntityManager em = emf.createEntityManager();
@@ -238,9 +238,20 @@ public Person addPerson(Person p) {
         Cars bestBeforeCar = user.getCurrentCar();
             user.setCurrentCar(cars);
             cars.setAvailable(false);
-if (bestBeforeCar!=null){
+        if (bestBeforeCar!=null){
             bestBeforeCar.setAvailable(true);}
             return user;
+        }
+    @Transactional
+    public User delCarToUser(long idUser){
+        User user = userDao.findUserById(idUser);
+        //Cars cars = carsDao.findCarsById(idCar);
+        Cars bestBeforeCar = user.getCurrentCar();
+        user.setCurrentCar(null);
+        bestBeforeCar.setAvailable(true);
+//        if (bestBeforeCar!=null){
+//            bestBeforeCar.setAvailable(true);}
+        return user;
     }
 
 }

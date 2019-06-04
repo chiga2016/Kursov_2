@@ -151,10 +151,21 @@
             <option value=${y.id}>${y.id} ${y.name} ${y.model} ${y.transmission} ${y.year}</option>
         </c:forEach>
     </select>
-
-    <input type="submit">
+    <input type="submit" value="Арендовать">
 </form>
 
+        <form action="delCarToUser" method="post">
+            <input name="idUser" hidden value=${u.id} >
+            <input type="submit" value="Освободить">
+        </form>
+
+        <button onclick="remove(${u.id})">Remove</button>
+
+        <script>
+            function deleteCat(id) {
+                fetch('http://localhost:8090/delCarToUser/'+id, {method: 'DELETE'}).catch(function(err) {alert(err);})
+            }
+        </script>
 
     </c:if>
 
