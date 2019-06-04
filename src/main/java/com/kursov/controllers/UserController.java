@@ -104,7 +104,7 @@ public class UserController {
       if (auth!=null) {
           String username = auth.getName();
           if(username=="admin"){
-              modelAndView.setViewName("admin");
+              modelAndView.setViewName("redirect:/admin");
               return modelAndView;
           }
           else {

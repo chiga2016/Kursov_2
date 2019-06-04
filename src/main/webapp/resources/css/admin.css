@@ -1,0 +1,22 @@
+.car_div{
+    margin: 0;
+    padding: 0;
+    float: left;
+
+}
+
+.user_div{
+    margin: 0;
+    padding: 0;
+    float: right;
+}
+
+th{
+    padding: 20px;
+    margin-left: auto;
+    margin: 20px;
+}
+
+tr:hover{
+    color: #2e6da4;
+}

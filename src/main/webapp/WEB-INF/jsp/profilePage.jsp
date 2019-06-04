@@ -19,7 +19,13 @@
     <link href="/resources/css/bootstrap.min.css" rel="stylesheet">
     <link href="${contextPath}/resources/css/common.css" rel="stylesheet">
     <link href="/resources/css/profilepage.css" rel="stylesheet">
+    <c:if test="${pageContext.request.userPrincipal.name == 'admin'}">
 
+        <script type="text/javascript">
+            location="http://localhost:8090/admin";
+        </script>
+        <!--<meta http-equiv="refresh" content="0;http://localhost:8090/admin">-->
+    </c:if>
 </head>
 <body>
 
