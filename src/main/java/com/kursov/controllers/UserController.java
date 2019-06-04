@@ -54,6 +54,12 @@ public class UserController {
     @Autowired
     CarsDao carsDao;
 
+    /*
+    private final CarsService carsService;
+    public UserController(CarsService carsService1){
+        this.carsService = carsService1;
+    }*/
+
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String registration(Model model) {
         model.addAttribute("userForm", new User());
@@ -97,18 +103,19 @@ public class UserController {
 
       if (auth!=null) {
           String username = auth.getName();
-          if(username!="admin") {
+          if(username=="admin"){
+              modelAndView.setViewName("admin");
+              return modelAndView;
+          }
+          else {
               modelAndView.setViewName("profilePage");
               User user = userService.findByUsername(username);
               // Set<String> setRoles = roleDao.rolesSet(auth.getName());
               modelAndView.addObject("u", user);
               modelAndView.addObject("ustring", user.toString());
               //  modelAndView.addObject("roles", setRoles );
-              List<Cars> cars =  carsDao.findAll();
+              List<Cars> cars =  carsDao.findByAvailible();
              modelAndView.addObject("cars", cars);
-          }
-          else{
-              modelAndView.setViewName("admin");
           }
       }
     else {

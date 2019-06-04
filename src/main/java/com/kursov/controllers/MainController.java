@@ -194,6 +194,25 @@ public class MainController {
         //return showAll();
     }
 
+    @RequestMapping(value = "addCarToUser", method = RequestMethod.POST)
+    public ModelAndView addCarToUser(@ModelAttribute("idUser") String idUser, @ModelAttribute("idCar") String idCar) { //(@PathVariable("idCar") int idCar, @PathVariable("idUser") int idUser ){
+       User user = dao.addCarToUser(Long.parseLong(idUser), Long.parseLong(idCar));
+       List<Cars> cars = carsDao.findByAvailible();
+
+//        Long idUserL = ;
+//Long idCarL= ;
+//User user = userService.findUserById(idUserL);
+//Cars cars = carsDao.findCarsById(idCarL);
+//user.setCurrentCar(cars);
+        log.info(idUser);
+//        log.info(idCar);
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("profilePage");
+        modelAndView.addObject("u", user);
+        modelAndView.addObject("cars", cars);
+        return modelAndView;
+    }
+
     //
     
 

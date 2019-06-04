@@ -7,12 +7,17 @@ import javax.persistence.*;
 
 import com.kursov.model.Role;
 import com.kursov.model.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 
 @Repository
 public class HiberDAO {
+    @Autowired
+    UserDao userDao;
+    @Autowired
+    CarsDao carsDao;
     
     // 1--@Autowired
     // 1--EntityManagerFactory emf;
@@ -51,9 +56,9 @@ public Person addPerson(Person p) {
     }
 
     @Transactional
-    public Cars addCars(String name, String model, String korobka, String year) {
+    public Cars addCars(String name, String model, String korobka, String year, boolean availiable, float price) {
         // 1--EntityManager em = emf.createEntityManager();
-        Cars cars = new Cars(name, model, korobka, year);
+        Cars cars = new Cars(name, model, korobka, year, availiable, price);
         // 1--em.getTransaction().begin();
         /////////c.setName("Cat"+r.nextInt(100));
         ////////////c.setWeight(1.0f+r.nextInt(40)/10.0f);
@@ -90,12 +95,12 @@ public Person addPerson(Person p) {
         // 1--em.getTransaction().begin();
 //        em.createQuery("delete from Cat c where c.id>0").executeUpdate();
 //        em.createQuery("delete from Person c where c.id>0").executeUpdate();
-        Role r1 = new Role("ROLE_USER");
-        Role r2 = new Role("ROLE_ADMIN");
-        em.persist(r1);
-        em.persist(r2);
-
-        em.getTransaction().commit();
+//        Role r1 = new Role("ROLE_USER");
+//        Role r2 = new Role("ROLE_ADMIN");
+//        em.persist(r1);
+//        em.persist(r2);
+//
+//        em.getTransaction().commit();
 
     }
 
@@ -224,6 +229,18 @@ public Person addPerson(Person p) {
         //int rowsDeleted = query.executeUpdate();
         // 1--em.getTransaction().commit();
         lastStatus = "Тачка переприсвоена!";
+    }
+
+    @Transactional
+    public User addCarToUser(long idUser, long idCar){
+        User user = userDao.findUserById(idUser);
+        Cars cars = carsDao.findCarsById(idCar);
+        Cars bestBeforeCar = user.getCurrentCar();
+            user.setCurrentCar(cars);
+            cars.setAvailable(false);
+if (bestBeforeCar!=null){
+            bestBeforeCar.setAvailable(true);}
+            return user;
     }
 
 }

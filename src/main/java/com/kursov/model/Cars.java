@@ -1,6 +1,7 @@
 package com.kursov.model;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name="cars")
@@ -23,27 +24,62 @@ public class Cars {
     private String year;
     @Column(name="available")
     private boolean available;
+
+    @Column(name="price")
+    private float price;
     //@Temporal(javax.persistence.TemporalType.DATE)
 
-
     //  @Transient
-    @OneToOne( mappedBy = "currentCar", cascade={CascadeType.ALL,  /*CascadeType.PERSIST*/})
+    @OneToOne( mappedBy = "currentCar", cascade={CascadeType.ALL,  CascadeType.PERSIST})/**/
     //@Column(name= "currentOwner")
     private User currentOwner;
 
+//    @OneToMany( mappedBy = "carId",fetch = FetchType.EAGER )
+//    private Set<Jurnal> jurnalSet;
+
+    public float getPrice() {
+        return price;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
+    }
+
+//    public Set<Jurnal> getJurnalSet() {
+//        return jurnalSet;
+//    }
+//
+//    public void setJurnalSet(Set<Jurnal> jurnalSet) {
+//        this.jurnalSet = jurnalSet;
+//    }
+
     public User getCurrentOwner() {
         return currentOwner;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
     }
 
     public void setCurrentOwner(User owner) {
         this.currentOwner = currentOwner;
     }
 
-    public Cars(String name, String model, String transmission, String year) {
+    public Cars(String name, String model, String transmission, String year, boolean available, float price) {
         this.name = name;
         this.model = model;
         this.transmission = transmission;
         this.year = year;
+        this.available = available;
+        this.price = price;
     }
 
     public Cars() {

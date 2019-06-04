@@ -1,10 +1,8 @@
 package com.kursov.service;
 
-import com.kursov.dao.CarsDao;
-import com.kursov.dao.HiberDAO;
-import com.kursov.dao.RoleDao;
-import com.kursov.dao.UserDao;
+import com.kursov.dao.*;
 import com.kursov.model.Cars;
+import com.kursov.model.Jurnal;
 import com.kursov.model.Role;
 import com.kursov.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,15 +19,17 @@ public class DataLoader {
     private RoleDao roleDao;
     private UserDao userDao;
     private CarsDao carsDao;
-    HiberDAO dao;
+    private JurnalDao jurnalDao;
+
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
-    public DataLoader(RoleDao roleDao, UserDao userDao, BCryptPasswordEncoder bCryptPasswordEncoder, CarsDao carsDao) {
+    public DataLoader(RoleDao roleDao, UserDao userDao, BCryptPasswordEncoder bCryptPasswordEncoder, CarsDao carsDao, JurnalDao jurnalDao) {
         this.roleDao = roleDao;
         this.userDao = userDao;
         this.carsDao = carsDao;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+        this.jurnalDao=jurnalDao;
         LoadUsers();
     }
 
@@ -46,9 +46,12 @@ public class DataLoader {
         user.setRoles(roles);
         userDao.saveAndFlush(user);
 
-        carsDao.saveAndFlush(new Cars("car1", "Skoda", "M", "2013"));
-        carsDao.saveAndFlush(new Cars("car2", "Skoda", "A", "2019"));
+        carsDao.saveAndFlush(new Cars("car1", "Skoda", "M", "2013", true, 7.1f));
+        carsDao.saveAndFlush(new Cars("car2", "Skoda", "A", "2019", true, 12.1f));
+        carsDao.saveAndFlush(new Cars("car3", "VAZ", "M", "2019", true, 3.1f));
 
+       // Jurnal jurnal = new Jurnal();
+       // jurnalDao.save(jurnal);
 //userDao.save(user);
         //dao.addUser(user);
       //  logger.info(user.getUsername());

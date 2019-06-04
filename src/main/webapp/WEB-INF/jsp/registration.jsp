@@ -1,6 +1,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
@@ -29,90 +30,145 @@
 <div class="container">
 
     <form:form method="POST" modelAttribute="userForm" class="form-signin">
-        <h2 class="form-signin-heading">Create your account</h2>
+        <h2 class="form-signin-heading">Регистрация</h2>
 
+        <style type="text/css">
+            .reg {
+                width: 100%; /* Ширина всей таблицы */
+            }
+            TD {
+                vertical-align: top;
+                horiz-align: left/* Вертикальное выравнивание в ячейках */
+               }
+             </style>
+
+        <table cellspacing="0" class="reg">
+            <tr>
+                <td class="leftcol">
 
         <spring:bind path="username">
-            <div class="form-group ${status.error ? 'has-error' : ''}">
-                <label>username</label>
-                <form:input type="text" path="username" class="form-control" placeholder="Username"
-                            autofocus="true" value="BalagutdinovIF" ></form:input>
-                <form:errors path="username"></form:errors>
-            </div>
-        </spring:bind>
+                        <div class="form-group ${status.error ? 'has-error' : ''}">
+                            <label>Имя пользователя</label>
+                            <form:input type="text" path="username" class="form-control" placeholder="Username"
+                                        autofocus="true" value="BalagutdinovIF" ></form:input>
+                            <form:errors path="username"></form:errors>
+                        </div>
+                    </spring:bind>
+                </td>
+                <td class="spacer"></td>
+                <td cla ="rightcol">
+                                                    <spring:bind path="fam">
+                        <div class="form-group ${status.error ? 'has-error' : ''}">
+                            <label>Фамилия</label>
+                            <form:input type="text" path="fam" class="form-control" placeholder="fam"  value="Balagutdinov" ></form:input>
+                            <form:errors path="fam"></form:errors>
+                        </div>
+                    </spring:bind>
+                </td>
 
-        <spring:bind path="fam">
-            <div class="form-group ${status.error ? 'has-error' : ''}">
-                <label>fam</label>
-                <form:input type="text" path="fam" class="form-control" placeholder="fam"  value="Balagutdinov" ></form:input>
-                <form:errors path="fam"></form:errors>
-            </div>
-        </spring:bind>
+                    </tr>
 
-        <spring:bind path="name">
-            <div class="form-group ${status.error ? 'has-error' : ''}">
-                <label>name</label>
-                <form:input type="text" path="name" class="form-control" placeholder="name"  value="Ilgiz" ></form:input>
-                <form:errors path="name"></form:errors>
-            </div>
-        </spring:bind>
-
+            <tr>
+                <td class="leftcol">
         <spring:bind path="password">
-            <div class="form-group ${status.error ? 'has-error' : ''}">
-                <label>password</label>
-                <form:input type="password" path="password" class="form-control" placeholder="Password"  value="Balagutdinov" ></form:input>
-                <form:errors path="password"></form:errors>
-            </div>
-        </spring:bind>
+                        <div class="form-group ${status.error ? 'has-error' : ''}">
+                            <label>Пароль</label>
+                            <form:input type="password" path="password" class="form-control" placeholder="Password"  value="Balagutdinov" ></form:input>
+                            <form:errors path="password"></form:errors>
+                        </div>
+                    </spring:bind>
+                </td>
+                <td class="spacer"></td>
+                <td cla ="rightcol">
+                    <spring:bind path="name">
+                    <div class="form-group ${status.error ? 'has-error' : ''}">
+                        <label>Имя</label>
+                        <form:input type="text" path="name" class="form-control" placeholder="name"  value="Ilgiz" ></form:input>
+                        <form:errors path="name"></form:errors>
+                    </div>
+                    </spring:bind>
+                </td>
 
+            </tr>
+
+            <tr>
+                <td class="leftcol">
         <spring:bind path="confirmPassword">
-        <div class="form-group ${status.error ? 'has-error' : ''}">
-            <label>confirmPassword</label>
-            <form:input type="password" path="confirmPassword" class="form-control"
-                        placeholder="Confirm your password"   value="Balagutdinov" ></form:input>
-            <form:errors path="confirmPassword"></form:errors>
-        </div>
-    </spring:bind>
-
+                        <div class="form-group ${status.error ? 'has-error' : ''}">
+                            <label>Подтвердите </label>
+                            <form:input type="password" path="confirmPassword" class="form-control"
+                                        placeholder="Confirm your password"   value="Balagutdinov" ></form:input>
+                            <form:errors path="confirmPassword"></form:errors>
+                        </div>
+                    </spring:bind>
+                </td>
+                <td class="spacer"></td>
+                <td cla ="rightcol">
         <spring:bind path="ot">
-            <div class="form-group ${status.error ? 'has-error' : ''}">
-                <label>ot</label>
-                <form:input type="text" path="ot" class="form-control"
-                            placeholder="ot"   value="Faritovich" ></form:input>
-                <form:errors path="ot"></form:errors>
-            </div>
-        </spring:bind>
+                        <div class="form-group ${status.error ? 'has-error' : ''}">
+                            <label>Отчество</label>
+                            <form:input type="text" path="ot" class="form-control"
+                                        placeholder="ot"   value="Faritovich" ></form:input>
+                            <form:errors path="ot"></form:errors>
+                        </div>
+                    </spring:bind>
+                </td>
 
-        <spring:bind path="dr">
-            <div class="form-group ${status.error ? 'has-error' : ''}">
-                <label>dr</label>
-                <form:input type="date" path="dr" class="form-control"
-                            placeholder="dr"   value="1986-12-25" ></form:input>
-                <form:errors path="dr"></form:errors>
-            </div>
-        </spring:bind>
+            </tr>
 
+            <tr>
+                <td class="leftcol">
+                </td>
+            <td class="spacer"></td>
+            <td class ="rightcol">
+            <spring:bind path="dr">
+                        <div class="form-group ${status.error ? 'has-error' : ''}">
+                            <label>Дата рождения</label>
+                            <form:input type="date" path="dr" class="form-control"
+                                        placeholder="dr"   value="1986-12-25" ></form:input>
+                            <form:errors path="dr"></form:errors>
+                        </div>
+                    </spring:bind>
+            </td>
+            </tr>
+
+            <tr>
+                <td class="leftcol">
+                </td>
+                <td class="spacer"></td>
+                <td class ="rightcol">
         <spring:bind path="vuNumber">
-            <div class="form-group ${status.error ? 'has-error' : ''}">
-                <label>vuNumber</label>
-                <form:input type="text" path="vuNumber" class="form-control"
-                            placeholder="vuNumber"   value="0207727737" ></form:input>
-                <form:errors path="vuNumber"></form:errors>
-            </div>
-        </spring:bind>
+                        <div class="form-group ${status.error ? 'has-error' : ''}">
+                            <label>Водительское удостоверение</label>
+                            <form:input type="text" path="vuNumber" class="form-control"
+                                        placeholder="vuNumber"   value="0207727737" ></form:input>
+                            <form:errors path="vuNumber"></form:errors>
+                        </div>
+                    </spring:bind>
+                </td>
+            </tr>
 
+            <tr>
+                <td class="leftcol">
+                </td>
+                <td class="spacer"></td>
+                <td class ="rightcol">
         <spring:bind path="phone">
-            <div class="form-group ${status.error ? 'has-error' : ''}">
-                <label>phone</label>
-                <form:input type="tel" path="phone" class="form-control"
-                            placeholder="phone"   value="79899520151" ></form:input>
-                <form:errors path="phone"></form:errors>
-            </div>
-        </spring:bind>
+                        <div class="form-group ${status.error ? 'has-error' : ''}">
+                            <label>Телефон</label>
+                            <form:input type="tel" path="phone" class="form-control"
+                                        placeholder="phone"   value="79899520151" ></form:input>
+                            <form:errors path="phone"></form:errors>
+                        </div>
+                    </spring:bind>
 
+                  </td>
 
+            </tr>
 
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+        </table>
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Зарегистрироваться</button>
     </form:form>
 
 </div>
