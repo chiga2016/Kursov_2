@@ -11,4 +11,8 @@ public interface CarsService {
 
     List<Cars> findAll();
 
+    void saveAndFlush(Cars cars);
+
+    List<Cars> findByAvailible();
+
 }

@@ -59,7 +59,7 @@
         <%--</style>--%>
 
         <%--<input type="checkbox" id="InDa" hidden /> <input id="In"/>--%>
-
+<div class="profileInfo">
         <table>
             <tr>
                 <td>id</td>
@@ -150,29 +150,32 @@
                 <%--</tr>--%>
             <%--</c:forEach>--%>
         <%--</table>--%>
-<form action="addCarToUser" method="post">
-    <input name="idUser" hidden value=${u.id} >
-    <select name="idCar" >
-        <c:forEach var="y" items="${cars}">
-            <option value=${y.id}>${y.id} ${y.name} ${y.model} ${y.transmission} ${y.year}</option>
-        </c:forEach>
-    </select>
-    <input type="submit" value="Арендовать">
-</form>
-
-        <form action="delCarToUser" method="post">
-            <input name="idUser" hidden value=${u.id} >
-            <input type="submit" value="Освободить">
-        </form>
-
-        <button onclick="remove(${u.id})">Remove</button>
-
-        <script>
-            function deleteCat(id) {
-                fetch('http://localhost:8090/delCarToUser/'+id, {method: 'DELETE'}).catch(function(err) {alert(err);})
-            }
-        </script>
-
+</div>
+        <div class="selectCar">
+            <form action="addCarToUser" method="post">
+                <input name="idUser" hidden value=${u.id} >
+                <h3> Доступные автомобили </h3>
+                <select name="idCar" >
+                    <c:forEach var="y" items="${cars}">
+                        <option  value=${y.id}>${y.id} ${y.name} ${y.model} ${y.transmission} ${y.year}</option>
+                    </c:forEach>
+                </select>
+                <input type="submit" value="Арендовать">
+            </form>
+                    <form action="delCarToUser" method="post">
+                        <input name="idUser" hidden value=${u.id}  >
+                        <br>
+                        <h3> На данный момент за вами автомобиль: </h3>
+                        <input type="text" value="${u.currentCar.name}" size="50"> </input>
+                        <input type="submit" value="Освободить">
+                    </form>
+                    <%--<button onclick="remove(${u.id})">Remove</button>--%>
+                    <%--<script>--%>
+                        <%--function deleteCat(id) {--%>
+                            <%--fetch('http://localhost:8090/delCarToUser/'+id, {method: 'DELETE'}).catch(function(err) {alert(err);})--%>
+                        <%--}--%>
+                    <%--</script>--%>
+        </div>
     </c:if>
 
 </div>

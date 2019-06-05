@@ -2,6 +2,7 @@ package com.kursov.model;
 import javax.persistence.*;
 import java.time.Clock;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 @Table(name = "Jurnal")
@@ -14,7 +15,35 @@ public class Jurnal {
     private long id;
 
     @Column(name = "regDate")
-    private Long regDate;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date regDate;
+
+    @Column(name = "eliminDate")
+    private Long eliminDate;
+
+    @ManyToOne //(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinColumn(name = "carId")//, nullable = false)
+    private Cars cars;
+
+    @ManyToOne
+    @JoinColumn(name = "userId")
+    private User user;
+
+
+
+    public Cars getCars() {
+        return cars;
+    }
+
+    public void setCars(Cars cars) {
+        this.cars = cars;
+    }
+
+    public Jurnal(Cars cars, User user) {
+        //this.regDate = System.currentTimeMillis();
+        this.cars = cars;
+        this.user = user;
+    }
 
     public long getId() {
         return id;
@@ -24,20 +53,15 @@ public class Jurnal {
         this.id = id;
     }
 
-    public Long getRegDate() {
+    public Date getRegDate() {
         return regDate;
     }
 
-    public void setRegDate(Long regDate) {
+    public void setRegDate(Date regDate) {
         this.regDate = regDate;
     }
 
-    //    @OneToOne
-//    @JoinColumn(name = "userId")
-//    private User user;
-
-
     public Jurnal() {
-        this.regDate = System.currentTimeMillis(); // LocalDateTime.now(Clock.systemUTC());
+        this.regDate =  new Date() ; // LocalDateTime.now(Clock.systemUTC());
     }
 }

@@ -1,0 +1,15 @@
+.selectCar{
+    margin: 0;
+    padding: 0;
+    width: 40%;
+    height: 100%;
+    float: right;
+}
+
+.profileInfo{
+    margin: 0;
+    padding: 0;
+    width: 40%;
+    height: 100%;
+    float: left;
+}

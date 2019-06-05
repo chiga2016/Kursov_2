@@ -3,6 +3,7 @@ package com.kursov.model;
 import javax.persistence.*;
 
 import java.sql.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -55,6 +56,17 @@ public class User {
     @OneToOne
     @JoinColumn(name = "currentCar")
     private Cars currentCar;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+    private Set<Jurnal> jurnalSetUser = new HashSet<>();
+
+    public Set<Jurnal> getJurnalSetUser() {
+        return jurnalSetUser;
+    }
+
+    public void setJurnalSetUser(Set<Jurnal> jurnalSetUser) {
+        this.jurnalSetUser = jurnalSetUser;
+    }
 
     public Cars getCurrentCar() {
         return currentCar;

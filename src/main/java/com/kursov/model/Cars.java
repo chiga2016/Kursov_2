@@ -1,6 +1,7 @@
 package com.kursov.model;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -25,6 +26,19 @@ public class Cars {
     @Column(name="available")
     private boolean available;
 
+    //@OneToMany(fetch = FetchType.EAGER, mappedBy = "carId")
+    @OneToMany(mappedBy = "cars",fetch = FetchType.LAZY, cascade={CascadeType.ALL}) //cascade = CascadeType.ALL)
+    private Set<Jurnal> jurnalSetCar = new HashSet<>();
+
+
+    public Set<Jurnal> getJurnalSetCar() {
+        return jurnalSetCar;
+    }
+
+    public void setJurnalSetCar(Set<Jurnal> jurnalSetCar) {
+        this.jurnalSetCar = jurnalSetCar;
+    }
+
     @Column(name="price")
     private float price;
     //@Temporal(javax.persistence.TemporalType.DATE)
@@ -34,9 +48,6 @@ public class Cars {
     //@Column(name= "currentOwner")
     private User currentOwner;
 
-//    @OneToMany( mappedBy = "carId",fetch = FetchType.EAGER )
-//    private Set<Jurnal> jurnalSet;
-
     public float getPrice() {
         return price;
     }
@@ -44,14 +55,6 @@ public class Cars {
     public void setPrice(float price) {
         this.price = price;
     }
-
-//    public Set<Jurnal> getJurnalSet() {
-//        return jurnalSet;
-//    }
-//
-//    public void setJurnalSet(Set<Jurnal> jurnalSet) {
-//        this.jurnalSet = jurnalSet;
-//    }
 
     public User getCurrentOwner() {
         return currentOwner;
@@ -109,9 +112,6 @@ public class Cars {
         this.year = year;
     }
 
-
-//    private Set kittens = new HashSet();
-
     private void setId(Long id) {
         this.id=id;
     }
@@ -125,14 +125,6 @@ public class Cars {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    @Override
-    public String toString() {
-        String mid;
-        return super.toString()+ "{ id=" + id + " name=" + name  + " ownerid="
-                ;//+(owner==null?"<none>":owner.getId())+'}';
-        //+ " birthdate=" + birthdate
     }
 
 

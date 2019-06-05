@@ -19,6 +19,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+@Service
 public class CarsServiceImpl implements CarsService {
 
     @Autowired
@@ -32,6 +33,16 @@ public class CarsServiceImpl implements CarsService {
     @Override
     public List<Cars> findAll() {
        return carsDao.findAll();
+    }
+
+    public List<Cars> findByAvailible(){
+       return carsDao.findByAvailible();
+    }
+
+
+    @Override
+    public void saveAndFlush(Cars cars) {
+
     }
 
 }

@@ -2,6 +2,7 @@ package com.kursov.controllers;
 
 import com.kursov.dao.CarsDao;
 import com.kursov.dao.HiberDAO;
+import com.kursov.service.CarsService;
 import com.kursov.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,27 +21,23 @@ public class AdminController {
     @Autowired
     UserService userService;
 
-//    @Autowired
-//    @Qualifier(value = "carsService")
-//    CarsService carsService;
-
+    @Autowired
+    CarsService carsService;
+/*
     @Autowired
     CarsDao carsDao;
-
-
-   /* @Autowired
+    @Autowired
     UserDao userDao;
     @Autowired
     CarsDao carsDao;
 */
-
 
     @RequestMapping("admin")
     public ModelAndView admin(){
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("admin");
         modelAndView.addObject("users",userService.findAll()); //userDao.findAll());
-        modelAndView.addObject("cars", carsDao.findAll());
+        modelAndView.addObject("cars", carsService.findAll());
 
         return modelAndView;
     }
