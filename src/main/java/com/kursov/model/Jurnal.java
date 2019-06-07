@@ -1,8 +1,10 @@
 package com.kursov.model;
 import javax.persistence.*;
+
 import java.time.Clock;
 import java.time.LocalDateTime;
 import java.util.Date;
+
 
 @Entity
 @Table(name = "Jurnal")
@@ -15,7 +17,7 @@ public class Jurnal {
     private long id;
 
     @Column(name = "regDate")
-    @Temporal(TemporalType.TIMESTAMP)
+   // @Temporal(TemporalType.TIMESTAMP)
     private Date regDate;
 
     @Column(name = "eliminDate")
@@ -40,7 +42,9 @@ public class Jurnal {
     }
 
     public Jurnal(Cars cars, User user) {
-        //this.regDate = System.currentTimeMillis();
+        Date date = new Date();
+
+        this.regDate = new Date(date.getTime());
         this.cars = cars;
         this.user = user;
     }
@@ -58,10 +62,11 @@ public class Jurnal {
     }
 
     public void setRegDate(Date regDate) {
-        this.regDate = regDate;
+        this.regDate = new Date(regDate.getTime());
     }
 
     public Jurnal() {
-        this.regDate =  new Date() ; // LocalDateTime.now(Clock.systemUTC());
+
+         ; // LocalDateTime.now(Clock.systemUTC());
     }
 }
