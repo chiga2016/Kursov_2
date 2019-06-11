@@ -41,24 +41,31 @@ public class MainController {
         //User user = dao.addCarToUser(Long.parseLong(idUser), Long.parseLong(idCar));
         User user = hiberService.addCarToUser(Long.parseLong(idUser), Long.parseLong(idCar));
         List<Cars> cars = carsService.findByAvailible();
+        List<Cars> allCars =  carsService.findAll();
+
         //log.info(idUser);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("profilePage");
         modelAndView.addObject("u", user);
         modelAndView.addObject("cars", cars);
+        modelAndView.addObject("allCars", allCars);
         return modelAndView;
     }
 
     @RequestMapping(value = "delCarToUser", method = RequestMethod.POST)
     public ModelAndView delCarToUser(@ModelAttribute("idUser") String idUser) {
-        dao.delCarToUser(Long.parseLong(idUser));
+        hiberService.delCarToUser(Long.parseLong(idUser));
+
         User user = userService.findUserById(Long.parseLong(idUser));
         List<Cars> cars = carsService.findByAvailible();
+        List<Cars> allCars =  carsService.findAll();
+
         //log.info(idUser);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("profilePage");
         modelAndView.addObject("u", user);
         modelAndView.addObject("cars", cars);
+        modelAndView.addObject("allCars", allCars);
         return modelAndView;
     }
 
@@ -86,9 +93,9 @@ public class MainController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView main(){
-            return new ModelAndView("index");
-            // Запрос по точке входа "/" будет выводить нам index.jsp, а найдет он его благодаря нашему dispatcher-servlet
-        }
+        return new ModelAndView("index");
+        // Запрос по точке входа "/" будет выводить нам index.jsp, а найдет он его благодаря нашему dispatcher-servlet
+    }
 
     @RequestMapping(value = "/add/person", method = RequestMethod.POST)
     public ModelAndView  addUser(@ModelAttribute("user") User user)  {
@@ -107,7 +114,7 @@ public class MainController {
 
     @RequestMapping(value = "/admin/addcar", method = RequestMethod.POST)
     public ModelAndView addCar(@ModelAttribute("cars") Cars cars)  {
-       // dao.addCars(cars.getName(), cars.getModel(), cars.getTransmission(), cars.getYear() );
+        // dao.addCars(cars.getName(), cars.getModel(), cars.getTransmission(), cars.getYear() );
         ModelAndView modelAndView = new ModelAndView();
         carsService.saveAndFlush(cars);
 

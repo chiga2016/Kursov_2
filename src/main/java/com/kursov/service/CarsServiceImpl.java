@@ -24,6 +24,8 @@ public class CarsServiceImpl implements CarsService {
 
     @Autowired
     CarsDao carsDao;
+    @Autowired
+    JurnalService jurnalService;
 
     @Override
     public void save(Cars cars) {
@@ -32,7 +34,11 @@ public class CarsServiceImpl implements CarsService {
 
     @Override
     public List<Cars> findAll() {
-       return carsDao.findAll();
+       List<Cars> cars = carsDao.findAll();
+//        for (Cars car: cars ) {
+//            car.setCurrentOwner(jurnalService.getLastUserByCar(car.getId())  );
+//        }
+        return cars ;
     }
 
     public List<Cars> findByAvailible(){

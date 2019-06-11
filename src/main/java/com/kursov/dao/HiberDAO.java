@@ -67,7 +67,7 @@ public class HiberDAO {
     @Transactional
     public List<User> getAllUsers() {
         // 1--EntityManager em = emf.createEntityManager();
-          List<User> res = em.createQuery("select u from users u",User.class).getResultList();
+          List<User> res = em.createQuery("select u from User u",User.class).getResultList();
        //  List<Person> res = em.createQuery("select p from Person p LEFT JOIN FETCH p.cats",Person.class).getResultList();
         /*
         for (Person p: res ) {
@@ -162,7 +162,7 @@ public class HiberDAO {
     @Transactional
     public User findUserByUsername(String username) {
         // 1--EntityManager em = emf.createEntityManager();
-        Query query = em.createQuery("select p from users p where p.username=:paramName ");
+        Query query = em.createQuery("select p from User p where p.username=:paramName ");
         query.setParameter("paramName", username);
         User res = (User)query.getSingleResult();
         return res;
@@ -227,34 +227,30 @@ public class HiberDAO {
         }
 
     @Transactional
-    public User delCarToUser(long idUser){
-        User user = userDao.findUserById(idUser);
-        //Cars cars = carsDao.findCarsById(idCar);
-        Cars bestBeforeCar = user.getCurrentCar();
-        user.setCurrentCar(null);
-        bestBeforeCar.setAvailable(true);
+    public Jurnal delCarToUser(User user, Cars bestBeforeCar){
 
-        //Date date = new Date();
-
-        log.info("idUser="+user.getId());
-        log.info("idCar="+bestBeforeCar.getId());
+//        log.info("idUser="+user.getId());
+//        log.info("idCar="+bestBeforeCar.getId());
 
         //Query query = em.createQuery("select p from users p where p.username=:paramName ");
-        //Query query = em.createQuery("select p from jurnal p where p.idUser=2 and p.idCar=1 ");
-        //query.setParameter("idUser", user.getId());
-        //query.setParameter("idCar", bestBeforeCar.getId());
+        Query query = em.createQuery("select p from Jurnal p where p.user=:idUser and p.cars=:idCar and p.eliminDate is null ");
+        query.setParameter("idUser", user);
+        query.setParameter("idCar", bestBeforeCar);
 
         //query.setParameter("paramName", "BalagutdinovIF");
         //User res = (User)query.getSingleResult();
-        //Jurnal jurnal = (Jurnal)query.getSingleResult();
-        //jurnal.setEliminDate(date.getTime());
+        Date date = new Date();
+        Jurnal jurnal = (Jurnal)query.getSingleResult();
+        jurnal.setEliminDate(new Date(date.getTime()));
+        if (bestBeforeCar!=null){bestBeforeCar.setAvailable(true);}
+        em.persist(jurnal);
 
+        return jurnal;
+    }
 
-
-        //em.persist(jurnal);
-//        if (bestBeforeCar!=null){
-//            bestBeforeCar.setAvailable(true);}
-        return user;
+    @Transactional
+    public void costJurnal(Jurnal jurnal){
+        em.persist(jurnal);
     }
 
 }

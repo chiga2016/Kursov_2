@@ -13,7 +13,7 @@ public class MyRestController {
     @RequestMapping(value = "delCarToUser/{id}", method = RequestMethod.DELETE,
             produces = {"application/json"})
     String delCarToUser(@PathVariable("id") int id) {
-        dao.delCarToUser(id);
+        //dao.delCarToUser(id);
         return  "";
         //List<Cat> allCats = dao.getAllCats();
         // return cat.toString();

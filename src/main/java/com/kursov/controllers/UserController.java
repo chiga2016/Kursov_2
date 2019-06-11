@@ -73,30 +73,33 @@ public class UserController {
 
     @RequestMapping(value = {"/welcome"}, method = RequestMethod.GET)
     public ModelAndView welcome() {
-      ModelAndView modelAndView= new  ModelAndView();
+        ModelAndView modelAndView= new  ModelAndView();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
-      if (auth!=null) {
-          String username = auth.getName();
-          if(username=="admin"){
-              modelAndView.setViewName("redirect:/admin");
-              return modelAndView;
-          }
-          else {
-              modelAndView.setViewName("profilePage");
-              //User user = userService.findByUsername(username);
-              User user = userService.findUserByUsername(username);
-              // Set<String> setRoles = roleDao.rolesSet(auth.getName());
-              modelAndView.addObject("u", user);
-              modelAndView.addObject("ustring", user.toString());
-              //  modelAndView.addObject("roles", setRoles );
-              List<Cars> cars =  carsService.findByAvailible();
-             modelAndView.addObject("cars", cars);
-          }
-      }
-    else {
-    modelAndView.setViewName("index");
-      }
+        if (auth!=null) {
+            String username = auth.getName();
+            if(username=="admin"){
+                modelAndView.setViewName("redirect:/admin");
+                return modelAndView;
+            }
+            else {
+                modelAndView.setViewName("profilePage");
+                //User user = userService.findByUsername(username);
+                User user = userService.findUserByUsername(username);
+                // Set<String> setRoles = roleDao.rolesSet(auth.getName());
+                modelAndView.addObject("u", user);
+                modelAndView.addObject("ustring", user.toString());
+                //  modelAndView.addObject("roles", setRoles );
+                List<Cars> cars =  carsService.findByAvailible();
+                modelAndView.addObject("cars", cars);
+
+                List<Cars> allCars =  carsService.findAll();
+                modelAndView.addObject("allCars", allCars);
+            }
+        }
+        else {
+            modelAndView.setViewName("index");
+        }
         return modelAndView;
     }
 

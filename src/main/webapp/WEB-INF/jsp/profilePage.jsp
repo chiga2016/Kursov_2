@@ -128,42 +128,30 @@
                 <td></td>
             </tr>
         </table>
-        <%--<br>--%>
-        <%--${ustring}--%>
-        <%--<br>--%>
 
-        <%--<table>--%>
-            <%--<tr>--%>
-                <%--<th>id</th>--%>
-                <%--<th>name</th>--%>
-                <%--<th>model</th>--%>
-                <%--<th>transmission</th>--%>
-                <%--<th>year</th>--%>
-            <%--</tr>--%>
-            <%--<c:forEach var="y" items="${cars}">--%>
-                <%--<tr>--%>
-                    <%--<td><a href="/admin/editcar">${y.id}</a></td>--%>
-                    <%--<td>${y.name}</td>--%>
-                    <%--<td>${y.model}</td>--%>
-                    <%--<td>${y.transmission}</td>--%>
-                    <%--<td>${y.year}</td>--%>
-                <%--</tr>--%>
-            <%--</c:forEach>--%>
-        <%--</table>--%>
 </div>
         <div class="selectCar">
+            <table>
+                <caption> Каталог автомобилей </caption>
+                <c:forEach var="car" items="${allCars}">
+                    <tr  onclick="window.location.href='/cars/' + ${car.id} ; return false"><td> ${car.id}  ${car.name} ${car.model} ${car.transmission} ${car.year} ${car.price} </td></tr>
+                    <%--<tr><a style="display: block;" href="">Иванов И.И.</a></tr>--%>
+                </c:forEach>
+            </table>
+
             <form action="addCarToUser" method="post">
                 <input name="idUser" hidden value=${u.id} >
                 <h3> Доступные автомобили </h3>
                 <select name="idCar" >
                     <c:forEach var="y" items="${cars}">
-                        <option  value=${y.id}>${y.id} ${y.name} ${y.model} ${y.transmission} ${y.year}</option>
+                        <option  value=${y.id}>${y.id} ${y.name} ${y.model} ${y.transmission} ${y.year} ${y.price}</option>
                     </c:forEach>
                 </select>
                 <input type="datetime" />
 
                 <input type="submit" value="Арендовать">
             </form>
+
                     <form action="delCarToUser" method="post">
                         <input name="idUser" hidden value=${u.id}  >
                         <br>
@@ -179,10 +167,8 @@
                     <%--</script>--%>
         </div>
     </c:if>
-
 </div>
-
-
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="${contextPath}/resources/js/bootstrap.min.js"></script>
+

@@ -27,12 +27,12 @@ public class Cars {
     private boolean available;
 
     //@OneToMany(fetch = FetchType.EAGER, mappedBy = "carId")
-    @OneToMany(mappedBy = "cars",fetch = FetchType.LAZY, cascade={CascadeType.ALL}) //cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "cars",fetch = FetchType.LAZY, cascade={CascadeType.ALL})
     private Set<Jurnal> jurnalSetCar = new HashSet<>();
 
 
     public Set<Jurnal> getJurnalSetCar() {
-        return jurnalSetCar;
+        return jurnalSetCar ;
     }
 
     public void setJurnalSetCar(Set<Jurnal> jurnalSetCar) {
@@ -44,7 +44,7 @@ public class Cars {
     //@Temporal(javax.persistence.TemporalType.DATE)
 
     //  @Transient
-    @OneToOne( mappedBy = "currentCar", cascade={CascadeType.ALL,  CascadeType.PERSIST})/**/
+    @OneToOne( mappedBy = "currentCar", fetch = FetchType.LAZY,  cascade={CascadeType.ALL,  CascadeType.PERSIST})/**/
     //@Column(name= "currentOwner")
     private User currentOwner;
 

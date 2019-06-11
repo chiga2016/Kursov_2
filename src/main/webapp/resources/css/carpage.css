@@ -1,0 +1,12 @@
+
+.carInfo{
+    margin: 20px;
+    padding: 20px;
+    width: 40%;
+    height: 100%;
+    float: left;
+    font-size: 18px;
+}
+.carInfo table tr td {
+    font-size: 18px;
+}

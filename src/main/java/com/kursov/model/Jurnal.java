@@ -1,8 +1,6 @@
 package com.kursov.model;
 import javax.persistence.*;
 
-import java.time.Clock;
-import java.time.LocalDateTime;
 import java.util.Date;
 
 
@@ -20,22 +18,25 @@ public class Jurnal {
    // @Temporal(TemporalType.TIMESTAMP)
     private Date regDate;
 
+    @Column(name = "cost")
+    private float cost;
+
     @Column(name = "eliminDate")
-    private Long eliminDate;
+    private Date eliminDate;
 
     @ManyToOne //(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinColumn(name = "carId")//, nullable = false)
+    @JoinColumn(name = "idCar")//, nullable = false)
     private Cars cars;
 
     @ManyToOne
-    @JoinColumn(name = "userId")
+    @JoinColumn(name = "idUser")
     private User user;
 
-    public Long getEliminDate() {
+    public Date getEliminDate() {
         return eliminDate;
     }
 
-    public void setEliminDate(long eliminDate) {
+    public void setEliminDate(Date eliminDate) {
         this.eliminDate = eliminDate;
     }
 
@@ -61,6 +62,14 @@ public class Jurnal {
         this.regDate = new Date(date.getTime());
         this.cars = cars;
         this.user = user;
+    }
+
+    public float getCost() {
+        return cost;
+    }
+
+    public void setCost(float cost) {
+        this.cost = cost;
     }
 
     public long getId() {
