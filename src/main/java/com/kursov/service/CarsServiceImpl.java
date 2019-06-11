@@ -39,6 +39,11 @@ public class CarsServiceImpl implements CarsService {
        return carsDao.findByAvailible();
     }
 
+    @Override
+    public Cars findCarsById(long id) {
+        return carsDao.findCarsById(id);
+    }
+
 
     @Override
     public void saveAndFlush(Cars cars) {

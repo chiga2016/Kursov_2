@@ -15,4 +15,6 @@ public interface CarsService {
 
     List<Cars> findByAvailible();
 
+    Cars findCarsById(long id);
+
 }

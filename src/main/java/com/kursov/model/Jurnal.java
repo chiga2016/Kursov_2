@@ -31,7 +31,21 @@ public class Jurnal {
     @JoinColumn(name = "userId")
     private User user;
 
+    public Long getEliminDate() {
+        return eliminDate;
+    }
 
+    public void setEliminDate(long eliminDate) {
+        this.eliminDate = eliminDate;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public Cars getCars() {
         return cars;

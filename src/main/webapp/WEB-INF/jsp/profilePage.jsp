@@ -160,7 +160,7 @@
                         <option  value=${y.id}>${y.id} ${y.name} ${y.model} ${y.transmission} ${y.year}</option>
                     </c:forEach>
                 </select>
-                <input type="datetime-local" />
+                <input type="datetime" />
 
                 <input type="submit" value="Арендовать">
             </form>

@@ -10,6 +10,7 @@ import java.util.List;
 
 import com.kursov.model.User;
 import com.kursov.service.CarsService;
+import com.kursov.service.HiberService;
 import com.kursov.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,13 +30,16 @@ public class MainController {
     @Autowired
     HiberDAO dao;
     @Autowired
+    HiberService hiberService;
+    @Autowired
     UserService userService;
     @Autowired
     CarsService carsService;
 
     @RequestMapping(value = "addCarToUser", method = RequestMethod.POST)
     public ModelAndView addCarToUser(@ModelAttribute("idUser") String idUser, @ModelAttribute("idCar") String idCar) { //(@PathVariable("idCar") int idCar, @PathVariable("idUser") int idUser ){
-        User user = dao.addCarToUser(Long.parseLong(idUser), Long.parseLong(idCar));
+        //User user = dao.addCarToUser(Long.parseLong(idUser), Long.parseLong(idCar));
+        User user = hiberService.addCarToUser(Long.parseLong(idUser), Long.parseLong(idCar));
         List<Cars> cars = carsService.findByAvailible();
         //log.info(idUser);
         ModelAndView modelAndView = new ModelAndView();

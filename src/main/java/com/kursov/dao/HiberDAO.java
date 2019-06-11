@@ -1,10 +1,13 @@
 package com.kursov.dao;
 import com.kursov.model.*;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 import javax.persistence.*;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,6 +15,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public class HiberDAO {
+
+    Logger log = LoggerFactory.getLogger(this.getClass());
     @Autowired
     UserDao userDao;
     @Autowired
@@ -26,19 +31,6 @@ public class HiberDAO {
     private String lastStatus;
     public HiberDAO() {
     }
-
-//@Transactional
-//public Person addPerson(Person p) {
-//    // 1--EntityManager em = emf.createEntityManager();
-//    //Person p = new Person(fam, name, ot, dr);
-//    // 1--em.getTransaction().begin();
-//    /////////c.setName("Cat"+r.nextInt(100));
-//    ////////////c.setWeight(1.0f+r.nextInt(40)/10.0f);
-//    em.persist(p);
-//    // 1--em.getTransaction().commit();
-//    lastStatus = "Чувак добавлен!";
-//    return p;
-//}
 
     @Transactional
     public User addUser(User u) {
@@ -230,20 +222,10 @@ public class HiberDAO {
 //    }
 
     @Transactional
-    public User addCarToUser(long idUser, long idCar){
-        User user = userDao.findUserById(idUser);
-        Cars cars = carsDao.findCarsById(idCar);
-        Cars bestBeforeCar = user.getCurrentCar();
-            user.setCurrentCar(cars);
-            cars.setAvailable(false);
-            Jurnal jurnal = new Jurnal(cars, user);
-
-            em.persist(jurnal);
-
-        if (bestBeforeCar!=null){
-            bestBeforeCar.setAvailable(true);}
-            return user;
+    public void addCarToUser( Jurnal jurnal){
+        em.persist(jurnal);
         }
+
     @Transactional
     public User delCarToUser(long idUser){
         User user = userDao.findUserById(idUser);
@@ -251,6 +233,25 @@ public class HiberDAO {
         Cars bestBeforeCar = user.getCurrentCar();
         user.setCurrentCar(null);
         bestBeforeCar.setAvailable(true);
+
+        //Date date = new Date();
+
+        log.info("idUser="+user.getId());
+        log.info("idCar="+bestBeforeCar.getId());
+
+        //Query query = em.createQuery("select p from users p where p.username=:paramName ");
+        //Query query = em.createQuery("select p from jurnal p where p.idUser=2 and p.idCar=1 ");
+        //query.setParameter("idUser", user.getId());
+        //query.setParameter("idCar", bestBeforeCar.getId());
+
+        //query.setParameter("paramName", "BalagutdinovIF");
+        //User res = (User)query.getSingleResult();
+        //Jurnal jurnal = (Jurnal)query.getSingleResult();
+        //jurnal.setEliminDate(date.getTime());
+
+
+
+        //em.persist(jurnal);
 //        if (bestBeforeCar!=null){
 //            bestBeforeCar.setAvailable(true);}
         return user;
