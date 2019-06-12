@@ -6,6 +6,8 @@ import com.kursov.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class JurnalServiceImpl implements JurnalService {
     @Autowired
@@ -14,6 +16,11 @@ public class JurnalServiceImpl implements JurnalService {
     @Override
     public void save(Jurnal jurnal) {
         jurnalDao.save(jurnal);
+    }
+
+    @Override
+    public List<Jurnal> getJurnalByUser_Id(long id) {
+        return jurnalDao.findJurnalByUser_Id(id);
     }
 
 //    @Override

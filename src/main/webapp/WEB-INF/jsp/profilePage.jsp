@@ -160,9 +160,48 @@
             </form>
 
             <div>
-                <table>
+                <button onclick="jurnal()">jurnal</button>
 
-                </table>
+                <script>
+                    function jurnal() {
+                        var u = document.getElementById('lst');
+                        var p = document.createElement("li")
+                        // p.innerHTML = 'Hello' +(u.children.length+1);
+                        // u.appendChild( p )
+                        fetch('http://localhost:8090/jurnal/'+${u.id})
+                            .then(function(response) {
+                                return response.json();
+                            })
+                            .then(function(myJson) {
+                                // создать элемент p и найти, куда его будем добавлять - в u
+                                p.innerHTML = JSON.stringify(myJson); // если текст JSON
+                                // p.innerHTML = myJson.name + myJson.cats[0].name
+                                u.appendChild( p )
+                            });
+                            <%--.then(function(myJson) {--%>
+                                <%--var u = document.getElementById('cattable');--%>
+                                <%--var p = document.createElement("tr")--%>
+                                <%--//p.innerHTML = myJson.length + JSON.stringify(myJson[0].name);--%>
+                                <%--//u.appendChild( p );--%>
+                                <%--//document.write('<table border="1" >')--%>
+                                <%--//document.write('<tr> <th>id</th> <th>name</th> <th>birthdate</th> <th>weight</th> <th>owner.id</th> </tr>')--%>
+                                <%--p.innerHTML=`<th>id</th> <th>idCar</th> <th>regDate</th> <th> eliminDate</th>`--%>
+                                <%--u.appendChild( p )--%>
+                                <%--for (var i = 0; i < myJson.length; i++) {--%>
+                                    <%--console.log(myJson[i])--%>
+                                    <%--var p = document.createElement("tr")--%>
+                                    <%--//var tr = "<tr>";--%>
+                                    <%--p.innerHTML=`<td>${myJson[i].id}</td><td>${myJson[i].idCar}</td><td>${myJson[i].eliminDate}</td><td><button onclick="deleteCat(${myJson[i].id})">X</button></td>`--%>
+                                    <%--console.log(p.innerHtml)--%>
+                                    <%--//document.write(tr);--%>
+                                    <%--u.appendChild( p )--%>
+                                <%--}--%>
+                                <%--//document.write('</table>')--%>
+                            <%--});--%>
+                    }
+                </script>
+
+
             </div>
 
                     <%--<form action="delCarToUser" method="post">--%>
