@@ -222,8 +222,9 @@ public class HiberDAO {
 //    }
 
     @Transactional
-    public void addCarToUser( Jurnal jurnal){
+    public void addCarToUser( Jurnal jurnal, User user){
         em.persist(jurnal);
+        em.persist(user);
         }
 
     @Transactional

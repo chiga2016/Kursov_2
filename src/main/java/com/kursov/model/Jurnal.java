@@ -24,6 +24,9 @@ public class Jurnal {
     @Column(name = "eliminDate")
     private Date eliminDate;
 
+    @Column(name = "duration")
+    private float duration;
+
     @ManyToOne //(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "idCar")//, nullable = false)
     private Cars cars;
@@ -86,6 +89,14 @@ public class Jurnal {
 
     public void setRegDate(Date regDate) {
         this.regDate = new Date(regDate.getTime());
+    }
+
+    public float getDuration() {
+        return duration;
+    }
+
+    public void setDuration(float duration) {
+        this.duration = duration;
     }
 
     public Jurnal() {

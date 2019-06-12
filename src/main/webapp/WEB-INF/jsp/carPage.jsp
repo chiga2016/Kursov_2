@@ -20,13 +20,15 @@
 <div class="container">
 <c:if test="${pageContext.request.userPrincipal.name != null}">
     <form id="logoutForm"  method="POST" action="${contextPath}/logout">
-    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-    </form>
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /></form>
 
     <h2>Добро пожаловать ${pageContext.request.userPrincipal.name} | <a onclick="document.forms['logoutForm'].submit()">Logout</a>
     </h2>
 
-    <a href="/welcome"> <h1>Личный кабинет</h1> </a>
+    <a href="/welcome"> <h3>Перейти в личный кабинет</h3> </a>
+
+    <h1>Профиль автомобиля</h1>
+
 <div class="carInfo">
     <table>
         <tr>
@@ -58,6 +60,12 @@
             <td class="prof">${car.available}</td>
         </tr>
     </table>
+    <form action="http://localhost:8090/addCarToUser" method="post">
+        <input name="idUser" hidden value=${user.id} >
+        <input name="idCar" hidden value=${car.id} >
+        <input type="submit" value="Арендовать">
+    </form>
+
     </c:if>
 </div>
 </div>

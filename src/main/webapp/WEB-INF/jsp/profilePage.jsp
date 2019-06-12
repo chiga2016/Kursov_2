@@ -103,7 +103,16 @@
             </tr>
             <tr>
                 <td>currentCar</td>
-                <td class="prof">${u.currentCar}</td>
+                <td class="prof">
+                    <label> ${u.currentCar.name} </label>
+                    <form action="delCarToUser" method="post">
+                        <input name="idUser" hidden value=${u.id}  >
+                        <%--<br>--%>
+                        <%--<h3> На данный момент за вами автомобиль: </h3>--%>
+                        <%--<input type="text" value="${u.currentCar.name}" size="50"> </input>--%>
+                        <input type="submit" <c:if test="${u.currentCar==null}" > hidden</c:if> value="Освободить">
+                    </form>
+                </td>
             </tr>
             <tr hidden>
                 <td>enabled</td>
@@ -134,8 +143,7 @@
             <table>
                 <caption> Каталог автомобилей </caption>
                 <c:forEach var="car" items="${allCars}">
-                    <tr  onclick="window.location.href='/cars/' + ${car.id} ; return false"><td> ${car.id}  ${car.name} ${car.model} ${car.transmission} ${car.year} ${car.price} </td></tr>
-                    <%--<tr><a style="display: block;" href="">Иванов И.И.</a></tr>--%>
+                    <tr  onclick="window.location.href='/cars/' + ${car.id} ; return false"><td> ${car.id}  ${car.name} ${car.model} ${car.transmission} ${car.year} ${car.price} ${car.available} </td></tr>
                 </c:forEach>
             </table>
 
@@ -147,18 +155,25 @@
                         <option  value=${y.id}>${y.id} ${y.name} ${y.model} ${y.transmission} ${y.year} ${y.price}</option>
                     </c:forEach>
                 </select>
-                <input type="datetime" />
 
                 <input type="submit" value="Арендовать">
             </form>
 
-                    <form action="delCarToUser" method="post">
-                        <input name="idUser" hidden value=${u.id}  >
-                        <br>
-                        <h3> На данный момент за вами автомобиль: </h3>
-                        <input type="text" value="${u.currentCar.name}" size="50"> </input>
-                        <input type="submit" value="Освободить">
-                    </form>
+            <div>
+                <table>
+
+                </table>
+            </div>
+
+                    <%--<form action="delCarToUser" method="post">--%>
+                        <%--<input name="idUser" hidden value=${u.id}  >--%>
+                        <%--<br>--%>
+                        <%--<h3> На данный момент за вами автомобиль: </h3>--%>
+                        <%--<input type="text" value="${u.currentCar.name}" size="50"> </input>--%>
+                        <%--<input type="submit" value="Освободить">--%>
+                    <%--</form>--%>
+
+
                     <%--<button onclick="remove(${u.id})">Remove</button>--%>
                     <%--<script>--%>
                         <%--function deleteCat(id) {--%>

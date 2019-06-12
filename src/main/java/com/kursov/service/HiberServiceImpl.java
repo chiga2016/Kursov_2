@@ -30,12 +30,21 @@ public class HiberServiceImpl implements HiberService {
         Cars bestBeforeCar = user.getCurrentCar();
         user.setCurrentCar(cars);
         cars.setAvailable(false);
-        Jurnal jurnal = new Jurnal(cars, user);
+        if (bestBeforeCar!=null){
+            bestBeforeCar.setAvailable(true);
+            Jurnal jurnal = hiberDAO.delCarToUser(user, bestBeforeCar);
+            long diff =  jurnal.getEliminDate().getTime() - jurnal.getRegDate().getTime();
+            diff = Math.round(diff/1000);
+            jurnal.setDuration(diff);
+            float cost = diff*bestBeforeCar.getPrice();
+            jurnal.setCost(cost);
+            log.info("DIFF=" + Long.toString(diff));
+            log.info("COST=" + Float.toString(cost));
+            hiberDAO.costJurnal(jurnal);
 
-        hiberDAO.addCarToUser(jurnal);
-
-        if (bestBeforeCar!=null){ bestBeforeCar.setAvailable(true);}
-
+        }
+        Jurnal jurnalNew = new Jurnal(cars, user);
+        hiberDAO.addCarToUser(jurnalNew, user);
         return user;
     }
 
@@ -46,24 +55,15 @@ public class HiberServiceImpl implements HiberService {
         Cars bestBeforeCar = user.getCurrentCar();
         user.setCurrentCar(null);
         bestBeforeCar.setAvailable(true);
-
        Jurnal jurnal = hiberDAO.delCarToUser(user, bestBeforeCar);
-
        long diff =  jurnal.getEliminDate().getTime() - jurnal.getRegDate().getTime();
-
-       diff =   Math.round(diff/1000);
-
+       diff = Math.round(diff/1000);
+       jurnal.setDuration(diff);
        float cost = diff*bestBeforeCar.getPrice();
-
        jurnal.setCost(cost);
-
        log.info("DIFF=" + Long.toString(diff));
-
        log.info("COST=" + Float.toString(cost));
-
        hiberDAO.costJurnal(jurnal);
-
-
     }
 
 //    @Override

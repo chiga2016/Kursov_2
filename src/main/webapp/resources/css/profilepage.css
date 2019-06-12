@@ -7,6 +7,17 @@
     float: left;
 }
 
+.profileInfo tr td {
+    width: 400px;
+}
+
+.profileInfo table form input {
+    float: right;
+}
+.profileInfo label {
+    float: left;
+}
+
 .carsAll {
     margin: 0;
     padding: 0;
