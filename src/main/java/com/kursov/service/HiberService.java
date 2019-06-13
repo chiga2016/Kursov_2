@@ -5,6 +5,8 @@ import com.kursov.model.Jurnal;
 import com.kursov.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
+
 public interface HiberService {
 
    User addCarToUser(long idUser, long idCar);
@@ -12,6 +14,7 @@ public interface HiberService {
 
    void delCarToUser(long idUser);
 
+   List<Jurnal> findJurnalByUserId(long idUser);
 
 
 }

@@ -41,38 +41,48 @@
     float: right;
 }
 
-.selectCar table {
+.selectCar .selectCarTable table {
     border: 2px solid #000;  /* граница всей таблицы */
     border-spacing: 3px;
     border-spacing: 3px;
 }
 
-.selectCar table tr td a {
+.selectCar .selectCarTable table tr td a {
     /*display:block;*/
     height:100%;
     width:100%;
 }
 
-.selectCar caption {
+.selectCar .selectCarTable caption {
     /*font-weight: bold;*/
     color: #000;
     font-size: 22px;
 }
-.selectCar tr {
+.selectCar .selectCarTable tr {
     border: 1px solid #ccc;
     width: 100px;
     /* границы между строками */
 }
-.selectCar tr:hover {
+.selectCar .selectCarTable tr:hover {
     background: #1b6d85; /* Цвет фона при наведении */
     color: #fff; /* Цвет текста при наведении */
     /* границы между строками */
 }
-.selectCar td, th {
+.selectCar .selectCarTable td, th {
     border: 2px solid #ccc;  /* границы между столбцами */
     width: 10%;
     vertical-align: bottom;
     height: 30px;
 }
 
-
+.jsonTableJurnal{
+    border: 2px solid #000;  /* граница всей таблицы */
+    border-spacing: 3px;
+    border-spacing: 3px;
+}
+.jsonTableJurnal td, th {
+    border: 2px solid #ccc;  /* границы между столбцами */
+    width: 10%;
+    vertical-align: bottom;
+    height: 30px;
+}

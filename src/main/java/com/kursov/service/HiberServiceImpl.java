@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class HiberServiceImpl implements HiberService {
@@ -64,6 +65,11 @@ public class HiberServiceImpl implements HiberService {
        log.info("DIFF=" + Long.toString(diff));
        log.info("COST=" + Float.toString(cost));
        hiberDAO.costJurnal(jurnal);
+    }
+
+    @Override
+    public List<Jurnal> findJurnalByUserId(long idUser) {
+        return hiberDAO.findJurnalByUserId(idUser);
     }
 
 //    @Override

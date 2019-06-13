@@ -41,7 +41,7 @@
         <h2>Добро пожаловать ${pageContext.request.userPrincipal.name} | <a onclick="document.forms['logoutForm'].submit()">Logout</a>
         </h2>
 
-        <h1>Личный кабинет</h1>
+        <a href="/welcome"><h1>Личный кабинет</h1></a>
         <%--<input type="submit" value="Редактирование вашего профиля" class="main gen">--%>
         <%--<input type="text" name="email" size="35" value="chiga_@bk.ru" readonly="readonly" style="color: gray;">--%>
 
@@ -140,7 +140,7 @@
 
 </div>
         <div class="selectCar">
-            <table>
+            <table class="selectCarTable">
                 <caption> Каталог автомобилей </caption>
                 <c:forEach var="car" items="${allCars}">
                     <tr  onclick="window.location.href='/cars/' + ${car.id} ; return false"><td> ${car.id}  ${car.name} ${car.model} ${car.transmission} ${car.year} ${car.price} ${car.available} </td></tr>
@@ -161,11 +161,14 @@
 
             <div>
                 <button onclick="jurnal()">jurnal</button>
+                <button onclick="remove()">Remove</button>
+                <%--<ul id="lst"></ul>--%>
+                <table id= "table" class="jsonTableJurnal"> </table>
 
                 <script>
                     function jurnal() {
-                        var u = document.getElementById('lst');
-                        var p = document.createElement("li")
+                        //var u = document.getElementById('lst');
+                        //var p = document.createElement("li")
                         // p.innerHTML = 'Hello' +(u.children.length+1);
                         // u.appendChild( p )
                         fetch('http://localhost:8090/jurnal/'+${u.id})
@@ -173,32 +176,47 @@
                                 return response.json();
                             })
                             .then(function(myJson) {
-                                // создать элемент p и найти, куда его будем добавлять - в u
-                                p.innerHTML = JSON.stringify(myJson); // если текст JSON
-                                // p.innerHTML = myJson.name + myJson.cats[0].name
-                                u.appendChild( p )
+                                // var u = document.getElementById('table');
+                                var u = document.getElementById('table');
+                                var p = document.createElement("tr")
+                                // var u1 = document.getElementById('lst');
+                                // var p1 = document.createElement("li")
+                                //p.innerHTML = myJson.length + JSON.stringify(myJson[0].name);
+                                //u.appendChild( p );
+                                //document.write('<table border="1" >')
+                                //document.write('<tr> <th>id</th> <th>name</th> <th>birthdate</th> <th>weight</th> <th>owner.id</th> </tr>')
+                                p.innerHTML=`<th>id</th> <th>eliminDate</th> <th>regDate</th> <th> duration</th><th> cost</th>`
+                                u.appendChild(p)
+                                for (var i = 0; i < myJson.length; i++) {
+                                    console.log(myJson[i])
+                                    console.log(myJson[i].id)
+                                    var p = document.createElement("tr")
+                                    //var p1 = document.createElement("li")
+                                    <%--p1.innerHTML=${myJson[i].id}--%>
+                                    <%--p.innerHTML=`<td>${myJson[i].id}</td><td>${myJson[i].eliminDate}</td><td>${myJson[i].regDate}</td><td>${myJson[i].duration}</td><td>${myJson[i].cost}</td>`--%>
+
+                                    p.innerHTML="<td>" + myJson[i].id+"</td><td>"+myJson[i].eliminDate+"</td><td>"+myJson[i].regDate+"</td><td>"+myJson[i].duration+"</td><td>"+myJson[i].cost+"</td>"
+
+
+                                    console.log(p.innerHTML)
+                                    //document.write(myJson[i].id);
+                                    u.appendChild(p)
+                                    //u1.appendChild(p1)
+
+                                    <%--<td><button onclick="deleteCat(${myJson[i].id})">X</button></td>--%>
+                                }
+                                //document.write('</table>')
                             });
-                            <%--.then(function(myJson) {--%>
-                                <%--var u = document.getElementById('cattable');--%>
-                                <%--var p = document.createElement("tr")--%>
-                                <%--//p.innerHTML = myJson.length + JSON.stringify(myJson[0].name);--%>
-                                <%--//u.appendChild( p );--%>
-                                <%--//document.write('<table border="1" >')--%>
-                                <%--//document.write('<tr> <th>id</th> <th>name</th> <th>birthdate</th> <th>weight</th> <th>owner.id</th> </tr>')--%>
-                                <%--p.innerHTML=`<th>id</th> <th>idCar</th> <th>regDate</th> <th> eliminDate</th>`--%>
-                                <%--u.appendChild( p )--%>
-                                <%--for (var i = 0; i < myJson.length; i++) {--%>
-                                    <%--console.log(myJson[i])--%>
-                                    <%--var p = document.createElement("tr")--%>
-                                    <%--//var tr = "<tr>";--%>
-                                    <%--p.innerHTML=`<td>${myJson[i].id}</td><td>${myJson[i].idCar}</td><td>${myJson[i].eliminDate}</td><td><button onclick="deleteCat(${myJson[i].id})">X</button></td>`--%>
-                                    <%--console.log(p.innerHtml)--%>
-                                    <%--//document.write(tr);--%>
-                                    <%--u.appendChild( p )--%>
-                                <%--}--%>
-                                <%--//document.write('</table>')--%>
-                            <%--});--%>
                     }
+
+
+                    function remove() {
+                        var p = document.querySelectorAll('#table')
+                        // var p = document.querySelectorAll('#table > tr:last-child')
+                        //console.log(p[0])
+                        p[0].remove()
+                    }
+
                 </script>
 
 

@@ -1,4 +1,6 @@
 package com.kursov.model;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 import java.util.Date;
@@ -28,10 +30,12 @@ public class Jurnal {
     private float duration;
 
     @ManyToOne //(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JsonIgnore
     @JoinColumn(name = "idCar")//, nullable = false)
     private Cars cars;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "idUser")
     private User user;
 
