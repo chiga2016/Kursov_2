@@ -116,10 +116,14 @@ public class HiberDAO {
     public List<Jurnal> findJurnalByUserId(long id) {
         // 1--EntityManager em = emf.createEntityManager();
 
-        //Query query = em.createQuery("select p from Jurnal p where p.user=:id ");
-        //query.setParameter("id", id);
-        //List<Jurnal> res = (List<Jurnal>) query.getResultList();
-        List<Jurnal> res = em.createQuery("select j from Jurnal j",Jurnal.class).getResultList();
+        User user = userDao.findUserById(id);
+        Query query = em.createQuery("select j from Jurnal j where j.user=:id",Jurnal.class);
+        query.setParameter("id", user);
+        log.info("МЫ В HIBERDAO" + Long.toString(id));
+        log.info(query.toString());
+
+        List<Jurnal> res = (List<Jurnal>) query.getResultList();
+        //List<Jurnal> res = em.createQuery("select j from Jurnal j",Jurnal.class).getResultList();
         return res;
     }
 

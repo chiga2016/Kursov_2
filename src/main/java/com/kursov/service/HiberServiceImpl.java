@@ -68,8 +68,9 @@ public class HiberServiceImpl implements HiberService {
     }
 
     @Override
-    public List<Jurnal> findJurnalByUserId(long idUser) {
-        return hiberDAO.findJurnalByUserId(idUser);
+    public List<Jurnal> findJurnalByUserId(long id) {
+        log.info("МЫ В ХИБЕРСЕРВИСЕ" + Long.toString(id));
+        return hiberDAO.findJurnalByUserId(id);
     }
 
 //    @Override
