@@ -29,3 +29,15 @@
     background-color: #8c8c8c;
     margin-top: 20px;
 }
+
+.carCost {
+    width: 40%;
+    height: 100%;
+}
+
+.d1 .d2 {
+    float: left;
+}
+.t1 .t2 {
+    float: right;
+}

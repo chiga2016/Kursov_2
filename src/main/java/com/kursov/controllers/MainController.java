@@ -77,20 +77,6 @@ public class MainController {
         return modelAndView;
     }
 
-    @RequestMapping("/delete/car/{id}")
-    public ModelAndView deleteCarId(@PathVariable("id") long id) {
-        ModelAndView mv = new ModelAndView("listalldata");
-        //Cat c = dao.getCatById(1);
-        //Cat c = dao.find(id);
-        dao.deleteCar(id);
-        //mv.addObject("cats", Collections.singletonList(c));
-        List<Cars> allCars = dao.getAllCars();
-        mv.addObject("cars", allCars);
-
-        return mv;
-        //return showAll();
-    }
-
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView main(){
         return new ModelAndView("index");
@@ -136,4 +122,18 @@ public class MainController {
     }
 
 
+
+//    @RequestMapping("/delete/car/{id}")
+//    public ModelAndView deleteCarId(@PathVariable("id") long id) {
+//        ModelAndView mv = new ModelAndView("listalldata");
+//        //Cat c = dao.getCatById(1);
+//        //Cat c = dao.find(id);
+//        dao.deleteCar(id);
+//        //mv.addObject("cats", Collections.singletonList(c));
+//        List<Cars> allCars = dao.getAllCars();
+//        mv.addObject("cars", allCars);
+//
+//        return mv;
+//        //return showAll();
+//    }
 }

@@ -69,11 +69,11 @@
     <div class="carCost">
         <form name="costDivForm">
             <label>Начало бронирования</label>
-            <input type="date" name="date1" value="2019-06-16"/>
-            <input type="time" name="time1" value="23:00">
+            <input class="d1" type="date" name="date1" value="2019-06-16"/>
+            <input class="t1" type="time" name="time1" value="23:00">
             <label>Конец бронирования</label>
-            <input type="date" name="date2" value="2019-06-16"/>
-            <input type="time" name="time2" value="23:55">
+            <input class="d2" type="date" name="date2" value="2019-06-16"/>
+            <input class="t2" type="time" name="time2" value="23:55">
         </form>
             <p id="p"></p>
             <button name = "carCostButton" onclick = "costFunction()" value="Рассчитать"></button>

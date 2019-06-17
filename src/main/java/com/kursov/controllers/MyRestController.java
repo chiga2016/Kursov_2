@@ -24,15 +24,6 @@ public class MyRestController {
     @Autowired
     private CarsService carsService;
 
-    @RequestMapping(value = "delCarToUser/{id}", method = RequestMethod.DELETE,
-            produces = {"application/json"})
-    String delCarToUser(@PathVariable("id") int id) {
-        //dao.delCarToUser(id);
-        return  "";
-        //List<Cat> allCats = dao.getAllCats();
-        // return cat.toString();
-    }
-
     @RequestMapping(value = "cars", method = RequestMethod.GET,
             produces = {"application/json"})
     float getCostJurnal(@RequestParam("dur") long dur, @RequestParam("car") long car) {
@@ -66,4 +57,14 @@ public class MyRestController {
         log.info("JURNALLIST" + jurnalList.toString());
         return jurnalList;
     }
+
+
+    //    @RequestMapping(value = "delCarToUser/{id}", method = RequestMethod.DELETE,
+//            produces = {"application/json"})
+//    String delCarToUser(@PathVariable("id") int id) {
+//        //dao.delCarToUser(id);
+//        return  "";
+//        //List<Cat> allCats = dao.getAllCats();
+//        // return cat.toString();
+//    }
 }

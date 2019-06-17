@@ -18,5 +18,7 @@ public interface HiberService {
 
    float calcCost(long duration, long car);
 
+   String pullStatus();
+
 
 }

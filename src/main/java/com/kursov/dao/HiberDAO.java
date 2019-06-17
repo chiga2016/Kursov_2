@@ -28,7 +28,7 @@ public class HiberDAO {
     @Transactional
     public User addUser(User u) {
         em.persist(u);
-        lastStatus = "Чувак добавлен!";
+        lastStatus = "Пользователь добавлен!";
         return u;
     }
 
@@ -38,7 +38,7 @@ public class HiberDAO {
         Cars cars = new Cars(name, model, korobka, year, availiable, price);
         em.persist(cars);
         // 1--em.getTransaction().commit();
-        lastStatus = "Тачка добавлена!";
+        lastStatus = "Автомобиль добавлен!";
         return cars;
     }
 
@@ -52,12 +52,6 @@ public class HiberDAO {
     public List<User> getAllUsers() {
         // 1--EntityManager em = emf.createEntityManager();
           List<User> res = em.createQuery("select u from User u",User.class).getResultList();
-       //  List<Person> res = em.createQuery("select p from Person p LEFT JOIN FETCH p.cats",Person.class).getResultList();
-        /*
-        for (Person p: res ) {
-            p.getCars().size();
-        }
-        */
         return res;
     }
 
@@ -135,7 +129,7 @@ public class HiberDAO {
         c=em.merge(c);
         em.remove(c);
         // 1--em.getTransaction().commit();
-        lastStatus = "Тачка удалена!";
+        lastStatus = "Автомобиль удален!";
     }
 
     @Transactional
@@ -172,79 +166,8 @@ public class HiberDAO {
         return lastStatus;
     }
 
-//    @Transactional
-//    public void init() {
-//        // 1--EntityManager em = emf.createEntityManager();
-//        //em.createQuery("delete from Cat c where c.id>0").executeUpdate();
-//        //Cat c;
-//        // 1--em.getTransaction().begin();
-////        em.createQuery("delete from Cat c where c.id>0").executeUpdate();
-////        em.createQuery("delete from Person c where c.id>0").executeUpdate();
-////        Role r1 = new Role("ROLE_USER");
-////        Role r2 = new Role("ROLE_ADMIN");
-////        em.persist(r1);
-////        em.persist(r2);
-////
-////        em.getTransaction().commit();
-//    }
+    public void setLastStatus(String str){
+        this.lastStatus = str;
+    }
 
-    //public Cat getCatById(int i) {
-    //   return new Cat("??", 0f, null);
-    //}
-
-//    @Transactional
-//    public void deletePerson(long id) {
-//        // 1--EntityManager em = emf.createEntityManager();
-//        // 1--em.getTransaction().begin();
-//        //em.createQuery("delete  from Person p where p.id=:?").setParameter(1,id).executeUpdate();
-////                Query query = em.createQuery("DELETE FROM Person p WHERE p.id = :param ");
-////                query.setParameter("param", id);
-////                int rowsDeleted = query.executeUpdate();
-//        Person p = findPersonById(id, em);
-//        p=em.merge(p);
-//        em.remove(p);
-//
-//        // 1--em.getTransaction().commit();
-//        lastStatus = "Персона удалена!";
-//    }
-
-//    @Transactional
-//    public void changePerson(long pid, long cid) {
-//        // 1--EntityManager em = emf.createEntityManager();
-//        // 1-- em.getTransaction().begin();
-//        Cars c = findCarById(cid, em) ;
-//        Person p = findPersonById(pid, em);
-//        System.out.print("Тачку " + c + " передаем персоне ");
-//        System.out.println(p);
-//        //c.setOwner(p);
-//        //em.createQuery("delete  from Person p where p.id=:?").setParameter(1,id).executeUpdate();
-//        //Query query = em.createQuery("DELETE FROM Person p WHERE p.id = :param ");
-//        //query.setParameter("param", id);
-//        //int rowsDeleted = query.executeUpdate();
-//        // 1--em.getTransaction().commit();
-//        lastStatus = "Тачка переприсвоена!";
-//    }
-
-//    @Transactional
-//    public Person findPersonById(long i, EntityManager em) {
-//        //EntityManager em = emf.createEntityManager();
-//        Query query = em.createQuery("select c from Person c where c.id=:paramName ");
-//        query.setParameter("paramName", i);
-//        Person res = (Person)query.getSingleResult();
-//        return res;
-//    }
-
-    //    @Transactional
-//    public Person findPersonByUsername(String username) {
-//        // 1--EntityManager em = emf.createEntityManager();
-//        Query query = em.createQuery("select p from Person p where p.username=:paramName ");
-//        query.setParameter("paramName", username);
-//        Person res = (Person)query.getSingleResult();
-//        //resultList.forEach(System.out::println);
-//        // em.close();
-//        // EntityManager em = emf.createEntityManager();
-//        // Cat res = em.createQuery("select c from Cat c where c.id=:paramName ",Cat.class).getSingleResult();
-//        // Query query = session.createQuery("from ContactEntity where firstName = :paramName");
-//        return res;
-//    }
 }

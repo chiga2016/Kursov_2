@@ -185,11 +185,21 @@
                                 for (var i = 0; i < myJson.length; i++) {
                                     console.log(myJson[i])
                                     console.log(myJson[i].id)
+                                    var id = myJson[i].id
+                                    if(myJson[i].eliminDate != null)
+                                        { var eliminDate = (new Date(myJson[i].eliminDate)).toLocaleString() } else {var eliminDate=0}
+
+                                    if(myJson[i].regDate != null)
+                                    { var regDate = (new Date(myJson[i].regDate)).toLocaleString() } else {var regDate=0}
+
+                                    var duration = myJson[i].duration
+                                    var cost = myJson[i].cost
+
                                     var p = document.createElement("tr")
                                     //var p1 = document.createElement("li")
                                     <%--p1.innerHTML=${myJson[i].id}--%>
                                     <%--p.innerHTML=`<td>${myJson[i].id}</td><td>${myJson[i].eliminDate}</td><td>${myJson[i].regDate}</td><td>${myJson[i].duration}</td><td>${myJson[i].cost}</td>`--%>
-                                    p.innerHTML="<td>" + myJson[i].id+"</td><td>"+(new Date(myJson[i].eliminDate)).toLocaleString()+"</td><td>"+(new Date(myJson[i].regDate)).toLocaleString() +"</td><td>"+myJson[i].duration+"</td><td>"+myJson[i].cost+"</td>"
+                                    p.innerHTML="<td>" + id +"</td><td>"+eliminDate+"</td><td>"+ regDate +"</td><td>"+duration+"</td><td>"+cost+"</td>"
                                     console.log(p.innerHTML)
                                     //document.write(myJson[i].id);
                                     u.appendChild(p)

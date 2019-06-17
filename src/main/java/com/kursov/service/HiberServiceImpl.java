@@ -27,8 +27,10 @@ public class HiberServiceImpl implements HiberService {
     public User addCarToUser(long idUser, long idCar) {
         User user = userService.findUserById(idUser);
         Cars cars = carsService.findCarsById(idCar);
-
         Cars bestBeforeCar = user.getCurrentCar();
+
+        if (cars.isAvailable()){
+
         user.setCurrentCar(cars);
         cars.setAvailable(false);
         if (bestBeforeCar!=null){
@@ -44,10 +46,16 @@ public class HiberServiceImpl implements HiberService {
             log.info("COST=" + Float.toString(cost));
             hiberDAO.costJurnal(jurnal);
 
-        }
+            }
         Jurnal jurnalNew = new Jurnal(cars, user);
         hiberDAO.addCarToUser(jurnalNew, user);
+        }
+        else{
+
+        }
         return user;
+
+
     }
 
     @Override
@@ -80,6 +88,12 @@ public class HiberServiceImpl implements HiberService {
         log.info(currentCar.toString());
         return currentCar.getPrice()*duration/(1000*60);
     }
+
+    @Override
+    public String pullStatus() {
+       return hiberDAO.pullStatus();
+    }
+
 
 //    @Override
 //    public User delCarToUser(long idUser, long idCar) {
