@@ -167,7 +167,6 @@ public class HiberDAO {
         em.persist(jurnal);
     }
 
-
     /// проблема с многопоточным доступом!
     public String pullStatus() {
         return lastStatus;

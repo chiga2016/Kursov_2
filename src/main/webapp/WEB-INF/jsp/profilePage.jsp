@@ -155,17 +155,18 @@
                         <option  value=${y.id}>${y.id} ${y.name} ${y.model} ${y.transmission} ${y.year} ${y.price}</option>
                     </c:forEach>
                 </select>
-
                 <input type="submit" value="Арендовать">
             </form>
-
             <div>
-                <button onclick="jurnal()">jurnal</button>
-                <button onclick="remove()">Remove</button>
+                <%--onclick="jurnal()"--%>
+                <button id="j" >jurnal</button>
+                <%--<button onclick="remove()">Remove</button>--%>
                 <%--<ul id="lst"></ul>--%>
                 <table id= "table" class="jsonTableJurnal"> </table>
-
                 <script>
+                    window.onload=function(){
+                        var btn = document.getElementById("j");
+                        btn.addEventListener("click", jurnal);
                     function jurnal() {
                         //var u = document.getElementById('lst');
                         //var p = document.createElement("li")
@@ -179,12 +180,6 @@
                                 // var u = document.getElementById('table');
                                 var u = document.getElementById('table');
                                 var p = document.createElement("tr")
-                                // var u1 = document.getElementById('lst');
-                                // var p1 = document.createElement("li")
-                                //p.innerHTML = myJson.length + JSON.stringify(myJson[0].name);
-                                //u.appendChild( p );
-                                //document.write('<table border="1" >')
-                                //document.write('<tr> <th>id</th> <th>name</th> <th>birthdate</th> <th>weight</th> <th>owner.id</th> </tr>')
                                 p.innerHTML=`<th>id</th> <th>eliminDate</th> <th>regDate</th> <th> duration</th><th> cost</th>`
                                 u.appendChild(p)
                                 for (var i = 0; i < myJson.length; i++) {
@@ -194,29 +189,23 @@
                                     //var p1 = document.createElement("li")
                                     <%--p1.innerHTML=${myJson[i].id}--%>
                                     <%--p.innerHTML=`<td>${myJson[i].id}</td><td>${myJson[i].eliminDate}</td><td>${myJson[i].regDate}</td><td>${myJson[i].duration}</td><td>${myJson[i].cost}</td>`--%>
-
-                                    p.innerHTML="<td>" + myJson[i].id+"</td><td>"+myJson[i].eliminDate+"</td><td>"+myJson[i].regDate+"</td><td>"+myJson[i].duration+"</td><td>"+myJson[i].cost+"</td>"
-
-
+                                    p.innerHTML="<td>" + myJson[i].id+"</td><td>"+(new Date(myJson[i].eliminDate)).toLocaleString()+"</td><td>"+(new Date(myJson[i].regDate)).toLocaleString() +"</td><td>"+myJson[i].duration+"</td><td>"+myJson[i].cost+"</td>"
                                     console.log(p.innerHTML)
                                     //document.write(myJson[i].id);
                                     u.appendChild(p)
                                     //u1.appendChild(p1)
-
                                     <%--<td><button onclick="deleteCat(${myJson[i].id})">X</button></td>--%>
                                 }
                                 //document.write('</table>')
+                                btn.removeEventListener("click", jurnal)
                             });
-                    }
-
-
-                    function remove() {
-                        var p = document.querySelectorAll('#table')
-                        // var p = document.querySelectorAll('#table > tr:last-child')
-                        //console.log(p[0])
-                        p[0].remove()
-                    }
-
+                    }}
+                    // function remove() {
+                    //     var p = document.querySelectorAll('#table')
+                    //     // var p = document.querySelectorAll('#table > tr:last-child')
+                    //     //console.log(p[0])
+                    //     p[0].remove()
+                    // }
                 </script>
 
 

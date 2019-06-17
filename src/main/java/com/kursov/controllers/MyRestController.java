@@ -1,16 +1,15 @@
 package com.kursov.controllers;
 
 import com.kursov.dao.HiberDAO;
+import com.kursov.model.Cars;
 import com.kursov.model.Jurnal;
+import com.kursov.service.CarsService;
 import com.kursov.service.HiberService;
 import com.kursov.service.JurnalService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,6 +21,8 @@ public class MyRestController {
     private JurnalService jurnalService;
     @Autowired
     private HiberService hiberService;
+    @Autowired
+    private CarsService carsService;
 
     @RequestMapping(value = "delCarToUser/{id}", method = RequestMethod.DELETE,
             produces = {"application/json"})
@@ -30,6 +31,21 @@ public class MyRestController {
         return  "";
         //List<Cat> allCats = dao.getAllCats();
         // return cat.toString();
+    }
+
+    @RequestMapping(value = "cars", method = RequestMethod.GET,
+            produces = {"application/json"})
+    float getCostJurnal(@RequestParam("dur") long dur, @RequestParam("car") long car) {
+        Logger log = LoggerFactory.getLogger(this.getClass());
+        log.info("duration = " + Long.toString(dur)+ "car=" + car);
+
+        //List<Jurnal> jurnalList = jurnalService.getJurnalByUser_Id(id) ;  //dao.findPerson(id);
+        float cost = hiberService.calcCost(dur,car);
+//        String res;
+//        if(id instanceof Long){ res= "true";} else {res="false";}
+//        log.info( res );
+        //log.info("JURNALLIST" + jurnalList.toString());
+        return cost;
     }
 
 

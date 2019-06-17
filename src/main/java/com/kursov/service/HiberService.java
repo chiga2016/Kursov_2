@@ -16,5 +16,7 @@ public interface HiberService {
 
    List<Jurnal> findJurnalByUserId(long idUser);
 
+   float calcCost(long duration, long car);
+
 
 }

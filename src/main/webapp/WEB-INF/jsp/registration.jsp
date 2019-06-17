@@ -73,7 +73,7 @@
         <spring:bind path="password">
                         <div class="form-group ${status.error ? 'has-error' : ''}">
                             <label>Пароль</label>
-                            <form:input type="password" path="password" class="form-control" placeholder="Password"  value="Balagutdinov" ></form:input>
+                            <form:input type="password" path="password" class="form-control" placeholder="Password"  value="1111" ></form:input>
                             <form:errors path="password"></form:errors>
                         </div>
                     </spring:bind>
@@ -97,7 +97,7 @@
                         <div class="form-group ${status.error ? 'has-error' : ''}">
                             <label>Подтвердите </label>
                             <form:input type="password" path="confirmPassword" class="form-control"
-                                        placeholder="Confirm your password"   value="Balagutdinov" ></form:input>
+                                        placeholder="Confirm your password"   value="1111" ></form:input>
                             <form:errors path="confirmPassword"></form:errors>
                         </div>
                     </spring:bind>

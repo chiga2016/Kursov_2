@@ -1,7 +1,9 @@
 
 .carInfo{
-    margin: 20px;
-    padding: 20px;
+    /*margin: 20px;
+    padding: 20px;*/
+    margin-right: 20px;
+    padding-right: 20px;
     width: 40%;
     height: 100%;
     float: left;
@@ -10,4 +12,20 @@
 .carInfo table tr td {
     font-size: 18px;
     width: 400px;
+}
+
+.carCost{
+    margin-right: 20px;
+    padding-right: 20px;
+    width: 20%;
+    height: 100%;
+    float: left;
+}
+
+.carCost button {
+    size: 10px;
+    width: 130px;
+    height: 20px;
+    background-color: #8c8c8c;
+    margin-top: 20px;
 }

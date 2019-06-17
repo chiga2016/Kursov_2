@@ -65,9 +65,48 @@
         <input name="idCar" hidden value=${car.id} >
         <input type="submit" value="Арендовать">
     </form>
+</div>
+    <div class="carCost">
+        <form name="costDivForm">
+            <label>Начало бронирования</label>
+            <input type="date" name="date1" value="2019-06-16"/>
+            <input type="time" name="time1" value="23:00">
+            <label>Конец бронирования</label>
+            <input type="date" name="date2" value="2019-06-16"/>
+            <input type="time" name="time2" value="23:55">
+        </form>
+            <p id="p"></p>
+            <button name = "carCostButton" onclick = "costFunction()" value="Рассчитать"></button>
+            <%--<button id="demo" value="Рассчитать"></button>--%>
+            <script>
+                // window.onload=function(){
+                //     var btn = document.getElementById("demo");
+                //     btn.addEventListener("click", costFunction);
 
+                function costFunction() {
+                    var d1=document.querySelector('[name="date1"]');
+                    var t1=document.querySelector('[name="time1"]');
+                    var date1 = new Date((d1.value +" "+ t1.value).replace(/-/g,"/"))
+
+                    var d2=document.querySelector('[name="date2"]');
+                    var t2=document.querySelector('[name="time2"]');
+                    var date2 = new Date((d2.value +" "+ t2.value).replace(/-/g,"/"))
+                    var duration = date2.getTime() - date1.getTime()
+
+                    var u = document.getElementById('p');
+                    var url = 'http://localhost:8090/cars?dur='+duration+'&car='+${car.id}
+                    fetch('http://localhost:8090/cars?dur='+duration+'&car='+${car.id})
+                        .then(function(response) {
+                            return response.json();
+                        })
+                        .then(function(myJson) {
+                            u.innerHTML = 'Предварительная стоимость = ' + myJson.toString()
+                            //document.write(myJson.toString()) ;
+                        });
+                }
+            </script>
+
+    </div>
     </c:if>
-</div>
-</div>
 </body>
 </html>
