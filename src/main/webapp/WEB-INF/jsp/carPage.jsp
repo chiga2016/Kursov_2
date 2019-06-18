@@ -67,16 +67,18 @@
     </form>
 </div>
     <div class="carCost">
+        <label class="carCostLabel"> Предварительный расчет аренды автомобиля</label>
+
         <form name="costDivForm">
-            <label>Начало бронирования</label>
+            <label class="carCostD1Label">Начало бронирования</label>
             <input class="d1" type="date" name="date1" value="2019-06-16"/>
             <input class="t1" type="time" name="time1" value="23:00">
-            <label>Конец бронирования</label>
+            <label class="carCostD2Label">Конец бронирования</label>
             <input class="d2" type="date" name="date2" value="2019-06-16"/>
             <input class="t2" type="time" name="time2" value="23:55">
         </form>
             <p id="p"></p>
-            <button name = "carCostButton" onclick = "costFunction()" value="Рассчитать"></button>
+            <button name = "carCostButton" onclick = "costFunction()" value="Рассчитать">Рассчитать</button>
             <%--<button id="demo" value="Рассчитать"></button>--%>
             <script>
                 // window.onload=function(){
@@ -94,13 +96,14 @@
                     var duration = date2.getTime() - date1.getTime()
 
                     var u = document.getElementById('p');
-                    var url = 'http://localhost:8090/cars?dur='+duration+'&car='+${car.id}
+                    //var url = 'http://localhost:8090/cars?dur='+duration+'&car='+${car.id}
+
                     fetch('http://localhost:8090/cars?dur='+duration+'&car='+${car.id})
                         .then(function(response) {
                             return response.json();
                         })
                         .then(function(myJson) {
-                            u.innerHTML = 'Предварительная стоимость = ' + myJson.toString()
+                            u.innerHTML = '<br> <h1> Предварительная стоимость = ' + myJson.toLocaleString() + '</h1>'
                             //document.write(myJson.toString()) ;
                         });
                 }

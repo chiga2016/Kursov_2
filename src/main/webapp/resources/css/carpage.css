@@ -26,7 +26,7 @@
     size: 10px;
     width: 130px;
     height: 20px;
-    background-color: #8c8c8c;
+    /*background-color: #8c8c8c; */
     margin-top: 20px;
 }
 
@@ -40,4 +40,13 @@
 }
 .t1 .t2 {
     float: right;
+}
+
+.carCostLabel {
+    margin-bottom: 20px;
+}
+
+.carCostD1Label .carCostD2Label {
+    width: 200px;
+
 }
