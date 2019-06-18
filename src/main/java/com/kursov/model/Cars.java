@@ -1,5 +1,7 @@
 package com.kursov.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -26,6 +28,7 @@ public class Cars {
     @Column(name="available")
     private boolean available;
 
+    @JsonIgnore
     //@OneToMany(fetch = FetchType.EAGER, mappedBy = "carId")
     @OneToMany(mappedBy = "cars",fetch = FetchType.LAZY, cascade={CascadeType.ALL})
     private Set<Jurnal> jurnalSetCar = new HashSet<>();
@@ -77,6 +80,8 @@ public class Cars {
     }
 
     public Cars(String name, String model, String transmission, String year, boolean available, float price) {
+        if(price==0){price=5;}
+
         this.name = name;
         this.model = model;
         this.transmission = transmission;

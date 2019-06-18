@@ -50,9 +50,7 @@ public class HiberServiceImpl implements HiberService {
         Jurnal jurnalNew = new Jurnal(cars, user);
         hiberDAO.addCarToUser(jurnalNew, user);
         }
-        else{
 
-        }
         return user;
 
 
@@ -86,7 +84,12 @@ public class HiberServiceImpl implements HiberService {
     public float calcCost(long duration, long car){
         Cars currentCar = carsService.findCarsById(car);
         log.info(currentCar.toString());
-        return currentCar.getPrice()*duration/(1000*60);
+        float rez=0;
+        if (duration>0){
+            rez = currentCar.getPrice()*duration/(1000*60);
+        }
+
+        return rez;
     }
 
     @Override

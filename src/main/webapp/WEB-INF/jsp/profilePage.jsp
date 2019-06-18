@@ -180,7 +180,7 @@
                                 // var u = document.getElementById('table');
                                 var u = document.getElementById('table');
                                 var p = document.createElement("tr")
-                                p.innerHTML=`<th>id</th> <th>eliminDate</th> <th>regDate</th> <th> duration</th><th> cost</th>`
+                                p.innerHTML=`<th>id</th> <th>eliminDate</th> <th>regDate</th> <th> duration</th><th> cost</th><th> car </th>`
                                 u.appendChild(p)
                                 for (var i = 0; i < myJson.length; i++) {
                                     console.log(myJson[i])
@@ -194,12 +194,13 @@
 
                                     var duration = myJson[i].duration
                                     var cost = myJson[i].cost
+                                    var carName = myJson[i].cars.name
 
                                     var p = document.createElement("tr")
                                     //var p1 = document.createElement("li")
                                     <%--p1.innerHTML=${myJson[i].id}--%>
                                     <%--p.innerHTML=`<td>${myJson[i].id}</td><td>${myJson[i].eliminDate}</td><td>${myJson[i].regDate}</td><td>${myJson[i].duration}</td><td>${myJson[i].cost}</td>`--%>
-                                    p.innerHTML="<td>" + id +"</td><td>"+eliminDate+"</td><td>"+ regDate +"</td><td>"+duration+"</td><td>"+cost+"</td>"
+                                    p.innerHTML="<td>" + id +"</td><td>"+eliminDate+"</td><td>"+ regDate +"</td><td>"+duration+"</td><td>"+cost+"</td><td>"+carName+"</td>"
                                     console.log(p.innerHTML)
                                     //document.write(myJson[i].id);
                                     u.appendChild(p)

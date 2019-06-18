@@ -30,7 +30,7 @@ public class Jurnal {
     private float duration;
 
     @ManyToOne //(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JsonIgnore
+    //@JsonIgnore
     @JoinColumn(name = "idCar")//, nullable = false)
     private Cars cars;
 
