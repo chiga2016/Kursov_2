@@ -170,4 +170,7 @@ public class HiberDAO {
         this.lastStatus = str;
     }
 
+    public void updateCar(Cars cars) {
+        em.persist(cars);
+    }
 }

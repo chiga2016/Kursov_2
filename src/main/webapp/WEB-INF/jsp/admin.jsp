@@ -43,7 +43,7 @@
             <c:forEach var="x" items="${cars}">
 
                     <tr>
-                        <td><a href="/admin/editcar">${x.id}</a></td>
+                        <td><a href="/admin/editcar/${x.id}">${x.id}</a></td>
                         <td>${x.name}</td>
                         <td>${x.model}</td>
                         <td>${x.transmission}</td>
@@ -74,7 +74,7 @@
 
                 <tr>
 
-                        <td><a href="/admin/edituser">${x.id}</a></td>
+                        <td><a href="/admin/edituser/${x.id}">${x.id}</a></td>
                         <td>${x.username}</td>
                         <%--<td>${x.fam}</td>--%>
                         <%--<td>${x.name}</td>--%>

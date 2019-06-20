@@ -1,6 +1,9 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -157,9 +160,32 @@
                 </select>
                 <input type="submit" value="Арендовать">
             </form>
+
+            <br>
+            <br>
+            <div>
+                <table>
+                    <th>id</th> <th>eliminDate</th> <th>regDate</th> <th> duration</th><th> cost</th><th> car </th>
+                    <caption> Журнал аренды </caption>
+                    <c:forEach var="j" items="${jurnal}">
+                        <tr>
+                        <td> ${j.id}</td>
+                        <td><fmt:formatDate type = "both" dateStyle = "short" timeStyle = "medium" value = "${j.eliminDate}" /></td>
+                        <td><fmt:formatDate type = "both" dateStyle = "short" timeStyle = "medium" value = "${j.regDate}" /></td>
+                        <td>${j.duration}</td>
+                        <td>${j.cost}</td>
+                        <td>${j.cars.name}</td>
+                        </tr>
+                    </c:forEach>
+
+                    <%--http://localhost:8090/jurnal/2--%>
+                </table>
+            </div>
+            <br>
+
             <div>
                 <%--onclick="jurnal()"--%>
-                <button id="j" >jurnal</button>
+                <button id="j" hidden >jurnal</button>
                 <%--<button onclick="remove()">Remove</button>--%>
                 <%--<ul id="lst"></ul>--%>
                 <table id= "table" class="jsonTableJurnal"> </table>

@@ -20,7 +20,7 @@
 
 <div class="container">
 
-    <form action="/add/person" method="post">
+    <form action="/admin/addUser" method="post">
        <label>username</label> <input name="username" placeholder="username" type="text" /><br>
         <label>fam</label> <input name="fam" placeholder="fam"  type="text" /><br>
         <label>name</label> <input name="name"  placeholder="name" type="text" /><br>

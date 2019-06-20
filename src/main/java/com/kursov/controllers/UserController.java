@@ -3,8 +3,10 @@ package com.kursov.controllers;
 import com.kursov.dao.CarsDao;
 import com.kursov.dao.HiberDAO;
 import com.kursov.model.Cars;
+import com.kursov.model.Jurnal;
 import com.kursov.model.User;
 import com.kursov.service.CarsService;
+import com.kursov.service.HiberService;
 import com.kursov.service.SecurityService;
 import com.kursov.service.UserService;
 import com.kursov.validator.UserValidator;
@@ -39,7 +41,7 @@ public class UserController {
     @Autowired
     private UserDetailsService userDetailsService;
     @Autowired
-    HiberDAO dao;
+    HiberService hiberService;
 
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String registration(Model model) {
@@ -95,6 +97,9 @@ public class UserController {
 
                 List<Cars> allCars =  carsService.findAll();
                 modelAndView.addObject("allCars", allCars);
+
+                List<Jurnal> jurnal = hiberService.findJurnalByUserId(user.getId());
+                modelAndView.addObject("jurnal", jurnal );
             }
         }
         else {

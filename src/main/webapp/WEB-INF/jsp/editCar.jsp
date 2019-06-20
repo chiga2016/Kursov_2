@@ -13,7 +13,7 @@
 <body>
 <h3> Create Car</h3>
 <br>
-<form action="http://localhost:8090/admin/editcar" method="post">
+<form action="/admin/editcar" method="post">
     <input name="id" value= value=${cars.id} hidden />
     <h5>Name</h5><input title="name" type="text" name="name"  value=${cars.name}><br>
     <h5>Model</h5><input title="model" type="text" name="model"  value=${cars.model}><br>

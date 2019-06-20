@@ -1,8 +1,10 @@
 package com.kursov.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
@@ -39,18 +41,12 @@ public class Jurnal {
     @JoinColumn(name = "idUser")
     private User user;
 
-    public Date getEliminDate() {
-        return eliminDate;
-    }
-
-    public void setEliminDate(Date eliminDate) {
-        this.eliminDate = eliminDate;
-    }
-
+    @JsonIgnore
     public User getUser() {
         return user;
     }
 
+    @JsonProperty
     public void setUser(User user) {
         this.user = user;
     }
@@ -62,6 +58,9 @@ public class Jurnal {
     public void setCars(Cars cars) {
         this.cars = cars;
     }
+
+
+//    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
     public Jurnal(Cars cars, User user) {
         Date date = new Date();
@@ -93,6 +92,12 @@ public class Jurnal {
 
     public void setRegDate(Date regDate) {
         this.regDate = new Date(regDate.getTime());
+    }
+
+    public Date getEliminDate() {   return eliminDate;  }
+
+    public void setEliminDate(Date eliminDate) {
+        this.eliminDate = eliminDate;
     }
 
     public float getDuration() {

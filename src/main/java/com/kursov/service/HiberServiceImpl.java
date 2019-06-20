@@ -76,6 +76,11 @@ public class HiberServiceImpl implements HiberService {
     }
 
     @Override
+    public void updateCar(Cars cars) {
+        hiberDAO.updateCar(cars);
+    }
+
+    @Override
     public List<Jurnal> findJurnalByUserId(long id) {
         log.info("МЫ В ХИБЕРСЕРВИСЕ" + Long.toString(id));
         return hiberDAO.findJurnalByUserId(id);

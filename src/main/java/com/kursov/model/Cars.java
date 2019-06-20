@@ -1,6 +1,7 @@
 package com.kursov.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -48,6 +49,7 @@ public class Cars {
 
     //  @Transient
     @OneToOne( mappedBy = "currentCar", fetch = FetchType.LAZY,  cascade={CascadeType.ALL,  CascadeType.PERSIST})/**/
+    @JsonIgnore
     //@Column(name= "currentOwner")
     private User currentOwner;
 
@@ -59,9 +61,7 @@ public class Cars {
         this.price = price;
     }
 
-    public User getCurrentOwner() {
-        return currentOwner;
-    }
+
 
     public void setId(long id) {
         this.id = id;
@@ -75,6 +75,11 @@ public class Cars {
         this.available = available;
     }
 
+    @JsonIgnore
+    public User getCurrentOwner() {
+        return currentOwner;
+    }
+    @JsonProperty
     public void setCurrentOwner(User owner) {
         this.currentOwner = currentOwner;
     }
