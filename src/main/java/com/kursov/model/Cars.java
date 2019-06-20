@@ -48,6 +48,7 @@ public class Cars {
     //@Temporal(javax.persistence.TemporalType.DATE)
 
     //  @Transient
+    //@JsonIgnore //////
     @OneToOne( mappedBy = "currentCar", fetch = FetchType.LAZY,  cascade={CascadeType.ALL,  CascadeType.PERSIST})/**/
     @JsonIgnore
     //@Column(name= "currentOwner")

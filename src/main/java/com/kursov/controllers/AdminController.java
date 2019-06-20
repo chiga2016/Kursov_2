@@ -103,6 +103,9 @@ public class AdminController {
     public ModelAndView editUserPost(@ModelAttribute("user") User user){
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("admin");
+
+        hiberService.updateUser(user);
+
         modelAndView.addObject("users",userService.findAll()); //userDao.findAll());
 
         return modelAndView;

@@ -77,7 +77,54 @@ public class HiberServiceImpl implements HiberService {
 
     @Override
     public void updateCar(Cars cars) {
-        hiberDAO.updateCar(cars);
+        Cars carOld = carsService.findCarsById(cars.getId());
+
+        log.info("id = "+cars.getId()
+                +        "; name = "+cars.getName()
+                + "; model = "+cars.getModel()
+                + "; transmission = "+        cars.getTransmission()
+                + "; year = "+        cars.getYear()
+                + "; price = "+       cars.getPrice()
+                + "; availiable = "+        cars.isAvailable()
+        );
+
+        carOld.setName(cars.getName());
+        carOld.setModel(cars.getModel());
+        carOld.setTransmission(cars.getTransmission());
+        carOld.setYear(cars.getYear());
+        carOld.setPrice(cars.getPrice());
+        carOld.setAvailable(cars.isAvailable());
+
+        hiberDAO.updateCar(carOld);
+    }
+
+    @Override
+    public void updateUser(User user) {
+        User userOld = userService.findUserById(user.getId());
+
+        log.info("id = "+user.getId()
+        +        "; username = "+user.getUsername()
+        + "; fam = "+user.getFam()
+                        + "; name = "+        user.getName()
+                        + "; ot = "+        user.getOt()
+                        + "; dr = "+        user.getDr()
+                        + "; phone = "+        user.getPhone()
+                        + "; vuNumber = "+        user.getVuNumber()
+                       // + "; pass = "+        user.getPassword()
+                        + "; enable = "+        user.isEnabled()
+        );
+
+        userOld.setUsername(user.getUsername());
+        userOld.setFam(user.getFam());
+        userOld.setName(user.getName());
+        userOld.setOt(user.getOt());
+        userOld.setDr(user.getDr());
+        userOld.setPhone(user.getPhone());
+        userOld.setVuNumber(user.getVuNumber());
+        //userOld.setPassword(user.getPassword());
+        userOld.setEnabled(user.isEnabled());
+
+        hiberDAO.updateUser(userOld);
     }
 
     @Override

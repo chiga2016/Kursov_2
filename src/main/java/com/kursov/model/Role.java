@@ -1,6 +1,8 @@
 package com.kursov.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -15,6 +17,7 @@ public class Role {
     @Column(name = "name")
     private String name;
 
+    //@JsonIgnore
     @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY, cascade = CascadeType.ALL) //cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private Set<User> users;
 

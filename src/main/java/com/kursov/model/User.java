@@ -1,5 +1,7 @@
 package com.kursov.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 import java.sql.Date;
@@ -53,10 +55,12 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
 
+    //@JsonIgnore // не факт
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "currentCar")
     private Cars currentCar;
 
+    //@JsonIgnore // не факт
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
     private Set<Jurnal> jurnalSetUser = new HashSet<>();
 
@@ -82,6 +86,18 @@ public class User {
     }
     public User() {
     }
+
+    public User(String username, String fam, String name, String ot, String dr, String vuNumber, String phone, boolean enabled) {
+        this.username = username;
+        this.fam = fam;
+        this.name = name;
+        this.ot = ot;
+        this.dr = dr;
+        this.vuNumber = vuNumber;
+        this.phone = phone;
+        this.enabled = enabled;
+    }
+
     public Date getDateCreate() {
         return dateCreate;
     }

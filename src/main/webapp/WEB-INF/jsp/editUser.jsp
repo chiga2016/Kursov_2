@@ -21,6 +21,7 @@
 <div class="container">
 
     <form action="/admin/edituser" method="post">
+        <input name="id" type="text" hidden  value=${users.id}  /><br>
        <label>username</label> <input name="username" placeholder="username" type="text" value=${users.username} /><br>
         <label>fam</label> <input name="fam" placeholder="fam"  type="text" value=${users.fam} /><br>
         <label>name</label> <input name="name"  placeholder="name" type="text" value=${users.name} /><br>
@@ -28,7 +29,7 @@
         <label>dr</label> <input name="dr" placeholder="dr"  type="date" value=${users.dr} /><br>
         <label>phone</label> <input name="phone" placeholder="phone"  type="tel" value=${users.phone} /><br>
         <label>vuNumber</label> <input name="vuNumber" placeholder="vuNumber"  type="text" value=${users.vuNumber} /><br>
-        <label>password</label> <input name="password" placeholder="password"  type="text" value=${users.password} /><br>
+        <%--<label>password</label> <input name="password" placeholder="password"  type="text" value=${users.password} /><br>--%>
         <label>enable</label> <input name="enable" placeholder="enable"  type="checkbox" value=${users.enabled} /><br>
          <input name="submit" type="submit" />
 

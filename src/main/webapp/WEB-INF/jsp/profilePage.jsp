@@ -220,7 +220,7 @@
 
                                     var duration = myJson[i].duration
                                     var cost = myJson[i].cost
-                                    var carName = myJson[i].cars.name
+                                    var carName = ""//myJson[i].cars.name
 
                                     var p = document.createElement("tr")
                                     //var p1 = document.createElement("li")

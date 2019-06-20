@@ -170,7 +170,12 @@ public class HiberDAO {
         this.lastStatus = str;
     }
 
+    @Transactional
     public void updateCar(Cars cars) {
         em.persist(cars);
+    }
+
+    @Transactional
+    public void updateUser(User user) { em.persist(user);
     }
 }

@@ -22,5 +22,6 @@ public interface HiberService {
    String pullStatus();
     void updateCar(Cars cars);
 
+   void updateUser(User user);
 
 }
