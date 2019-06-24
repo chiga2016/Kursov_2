@@ -86,8 +86,8 @@ public class UserController {
             }
             else {
                 modelAndView.setViewName("profilePage");
-                //User user = userService.findByUsername(username);
                 User user = userService.findUserByUsername(username);
+                //User user = userService.findByUsername(username);
                 // Set<String> setRoles = roleDao.rolesSet(auth.getName());
                 modelAndView.addObject("u", user);
                 modelAndView.addObject("ustring", user.toString());

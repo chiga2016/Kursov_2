@@ -24,10 +24,17 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
     private UserDao userDao;
 
+    @Autowired
+    private HiberService hiberService;
+
+    @Autowired
+    private UserService userService;
+
     @Override
     @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userDao.findByUsername(username);
+       // User user = userDao.findByUsername(username);
+        User user = userService.findUserByUsername(username);
 
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
 

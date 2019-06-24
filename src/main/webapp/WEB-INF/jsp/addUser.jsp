@@ -28,8 +28,8 @@
 
 <div class="container">
 
-    <h2>Create new user</h2>
-    <br>
+    <h2 class="h2Create">Create new user</h2>
+<br>
 
     <%--<form action="/admin/addUser" method="post">--%>
        <%--<label>username</label> <input name="username" placeholder="username" type="text" /><br><br>--%>
@@ -49,15 +49,15 @@
     <form:form method="POST" action="/admin/addUser" modelAttribute="userForm"  class="form-signin">
         <h2 class="form-signin-heading">Регистрация</h2>
 
-        <style type="text/css">
-            .reg {
-                width: 100%; /* Ширина всей таблицы */
-            }
-            TD {
-                vertical-align: top;
-                horiz-align: left/* Вертикальное выравнивание в ячейках */
-            }
-        </style>
+        <%--<style type="text/css">--%>
+            <%--.reg {--%>
+                <%--width: 100%; /* Ширина всей таблицы */--%>
+            <%--}--%>
+            <%--TD {--%>
+                <%--vertical-align: top;--%>
+                <%--horiz-align: left/* Вертикальное выравнивание в ячейках */--%>
+            <%--}--%>
+        <%--</style>--%>
 
         <table cellspacing="0" class="reg">
             <tr>

@@ -100,7 +100,7 @@ public class HiberDAO {
     @Transactional
     public User findUserByUsername(String username) {
         // 1--EntityManager em = emf.createEntityManager();
-        Query query = em.createQuery("select p from User p where p.username=:paramName ");
+        Query query = em.createQuery("select p from User p where p.enabled = true and  p.username=:paramName ");
         query.setParameter("paramName", username);
         User res = (User)query.getSingleResult();
         return res;

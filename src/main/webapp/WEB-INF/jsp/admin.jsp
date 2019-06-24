@@ -29,7 +29,16 @@
 <body>
 
 <div class="container">
+    <form id="logoutForm"  method="POST" action="${contextPath}/logout">
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+    </form>
+
     <h2>Панель администрирования</h2>
+
+    <div class="main">
+        <a href="/">Главная</a> | <a onclick="document.forms['logoutForm'].submit()">Logout</a>
+    </div>
+
 
     <div class="car_div">
         <table>

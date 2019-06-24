@@ -44,6 +44,7 @@ public class DataLoader {
         roles.add(roleDao.getOne(1L));
         roles.add(roleDao.getOne(2L));
         user.setRoles(roles);
+        user.setEnabled(true);
         userDao.saveAndFlush(user);
 
         carsDao.saveAndFlush(new Cars("car1", "Skoda", "MT", "2013", true, 7.1f));

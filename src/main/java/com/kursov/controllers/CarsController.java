@@ -31,7 +31,7 @@ public class CarsController {
         modelAndView.setViewName("/carPage");
         Cars car = carsService.findCarsById(Long.parseLong(idCar));
         modelAndView.addObject("car", car);
-        modelAndView.addObject("user", userService.findByUsername(auth.getName()) );
+        modelAndView.addObject("user", userService.findUserByUsername(auth.getName()) );
         return modelAndView;
 
     }

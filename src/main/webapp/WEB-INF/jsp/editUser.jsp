@@ -27,20 +27,18 @@
 
 <div class="container">
 
-
-
     <form:form method="POST" action="/admin/edituser" modelAttribute="userForm"  class="form-signin">
-        <h2 class="form-signin-heading">Редактирование данных пользователя</h2>
+        <h4 class="form-signin-heading">Редактирование данных пользователя</h4>
 
-        <style type="text/css">
-            .reg {
-                width: 100%; /* Ширина всей таблицы */
-            }
-            TD {
-                vertical-align: top;
-                horiz-align: left/* Вертикальное выравнивание в ячейках */
-            }
-        </style>
+        <%--<style type="text/css">--%>
+            <%--.reg {--%>
+                <%--width: 100%; /* Ширина всей таблицы */--%>
+            <%--}--%>
+            <%--TD {--%>
+                <%--vertical-align: top;--%>
+                <%--horiz-align: left/* Вертикальное выравнивание в ячейках */--%>
+            <%--}--%>
+        <%--</style>--%>
         <table cellspacing="0" class="reg">
             <tr>
                 <td class="leftcol" hidden>
