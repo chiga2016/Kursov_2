@@ -1,14 +1,19 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: user
-  Date: 11.05.2019
-  Time: 18:21
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>addCar</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>add car</title>
 </head>
 <body>
 <h3> Create Car</h3>
@@ -27,7 +32,12 @@
     <br>
 
     <h5>Year</h5><input title="year" type="text" name="year"><br>
+    <input title="available" type="text" name="available" value="true" hidden>
+    <h5>price</h5><input title="price" type="text" name="price"><br>
     <input type="submit" name="OK" value="OK">
 </form>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="${contextPath}/resources/js/bootstrap.min.js"></script>
 </body>
 </html>

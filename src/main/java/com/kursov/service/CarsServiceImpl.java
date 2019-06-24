@@ -53,7 +53,7 @@ public class CarsServiceImpl implements CarsService {
 
     @Override
     public void saveAndFlush(Cars cars) {
-
+        carsDao.saveAndFlush(cars);
     }
 
 }

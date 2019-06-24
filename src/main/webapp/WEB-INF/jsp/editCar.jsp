@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: user
@@ -14,18 +15,33 @@
 <h3> Create Car</h3>
 <br>
 <form action="/admin/editcar" method="post">
-    <input name="id" value= value=${cars.id} hidden />
+    <input name="id" value= ${cars.id} hidden />
     <h5>Name</h5><input title="name" type="text" name="name"  value=${cars.name}><br>
     <h5>Model</h5><input title="model" type="text" name="model"  value=${cars.model}><br>
     <h5>Transmission</h5>
-    <input type="radio" id="contactChoice1"
-           name="transmission" value="MT" checked>
-    <label for="contactChoice1">MT</label>
 
-    <input type="radio" id="contactChoice2"
-           name="transmission" value="AT">
-    <label for="contactChoice2">AT</label>
-    <br>
+    <c:if test="${cars.transmission == 'MT'}">
+        <input type="radio" id="contactChoice1"
+               name="transmission" value="MT" checked>
+        <label for="contactChoice1">MT</label>
+
+        <input type="radio" id="contactChoice2"
+               name="transmission" value="AT">
+        <label for="contactChoice2">AT</label>
+        <br>
+    </c:if>
+    <c:if test="${cars.transmission == 'AT'}">
+        <input type="radio" id="contactChoice1"
+               name="transmission" value="MT" >
+        <label for="contactChoice1">MT</label>
+
+        <input type="radio" id="contactChoice2"
+               name="transmission" value="AT" checked>
+        <label for="contactChoice2">AT</label>
+        <br>
+    </c:if>
+
+
 
     <h5>Year</h5><input title="year" type="text" name="year" value=${cars.year}><br>
     <h5>Price</h5><input title="price" type="text" name="price" value=${cars.price}><br>

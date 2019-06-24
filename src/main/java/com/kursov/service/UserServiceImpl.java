@@ -49,8 +49,8 @@ public class UserServiceImpl implements UserService {
             //roles.add(roleDao.getOne(2L));
             user.setRoles(roles);
             user.setDateCreate(date);
-            dao.addUser(user);
-           // userDao.save(user);
+           // dao.addUser(user);
+            userDao.save(user);
         }
         catch(Exception ex)
         {

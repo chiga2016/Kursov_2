@@ -4,10 +4,12 @@ import com.kursov.dao.HiberDAO;
 import com.kursov.model.Cars;
 import com.kursov.model.Jurnal;
 import com.kursov.model.User;
+import com.kursov.validator.UserValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.BindingResult;
 
 import java.util.Date;
 import java.util.List;
@@ -20,6 +22,8 @@ public class HiberServiceImpl implements HiberService {
     CarsService carsService;
     @Autowired
     HiberDAO hiberDAO;
+    @Autowired
+    private UserValidator userValidator;
 
     Logger log = LoggerFactory.getLogger(this.getClass());
 
@@ -88,6 +92,7 @@ public class HiberServiceImpl implements HiberService {
                 + "; availiable = "+        cars.isAvailable()
         );
 
+
         carOld.setName(cars.getName());
         carOld.setModel(cars.getModel());
         carOld.setTransmission(cars.getTransmission());
@@ -99,7 +104,7 @@ public class HiberServiceImpl implements HiberService {
     }
 
     @Override
-    public void updateUser(User user) {
+    public void updateUser(User user , BindingResult bindingResult) {
         User userOld = userService.findUserById(user.getId());
 
         log.info("id = "+user.getId()
@@ -124,7 +129,17 @@ public class HiberServiceImpl implements HiberService {
         //userOld.setPassword(user.getPassword());
         userOld.setEnabled(user.isEnabled());
 
-        hiberDAO.updateUser(userOld);
+//        userValidator.validate(user, bindingResult);
+//
+//        if (bindingResult.hasErrors()) {
+//            log.info("ВАЛИДАЦИЯ НЕ ПРОЙДЕНА!!!!!!!!!!"  );
+//            //return "registration";
+//        }
+//        else {
+            hiberDAO.updateUser(userOld);
+       // }
+
+
     }
 
     @Override

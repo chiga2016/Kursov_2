@@ -46,7 +46,7 @@
             <tr>
                 <td class="leftcol">
 
-        <spring:bind path="username">
+                    <spring:bind path="username">
                         <div class="form-group ${status.error ? 'has-error' : ''}">
                             <label>Имя пользователя</label>
                             <form:input type="text" path="username" class="form-control" placeholder="Username"
@@ -57,7 +57,7 @@
                 </td>
                 <td class="spacer"></td>
                 <td cla ="rightcol">
-                                                    <spring:bind path="fam">
+                      <spring:bind path="fam">
                         <div class="form-group ${status.error ? 'has-error' : ''}">
                             <label>Фамилия</label>
                             <form:input type="text" path="fam" class="form-control" placeholder="fam"  value="Balagutdinov" ></form:input>
@@ -137,7 +137,7 @@
                 </td>
                 <td class="spacer"></td>
                 <td class ="rightcol">
-        <spring:bind path="vuNumber">
+                    <spring:bind path="vuNumber">
                         <div class="form-group ${status.error ? 'has-error' : ''}">
                             <label>Водительское удостоверение</label>
                             <form:input type="text" path="vuNumber" class="form-control"
@@ -153,7 +153,7 @@
                 </td>
                 <td class="spacer"></td>
                 <td class ="rightcol">
-        <spring:bind path="phone">
+                    <spring:bind path="phone">
                         <div class="form-group ${status.error ? 'has-error' : ''}">
                             <label>Телефон</label>
                             <form:input type="tel" path="phone" class="form-control"

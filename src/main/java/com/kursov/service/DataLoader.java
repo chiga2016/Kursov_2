@@ -46,9 +46,9 @@ public class DataLoader {
         user.setRoles(roles);
         userDao.saveAndFlush(user);
 
-        carsDao.saveAndFlush(new Cars("car1", "Skoda", "M", "2013", true, 7.1f));
-        carsDao.saveAndFlush(new Cars("car2", "Skoda", "A", "2019", true, 12.1f));
-        carsDao.saveAndFlush(new Cars("car3", "VAZ", "M", "2019", true, 3.1f));
+        carsDao.saveAndFlush(new Cars("car1", "Skoda", "MT", "2013", true, 7.1f));
+        carsDao.saveAndFlush(new Cars("car2", "Skoda", "AT", "2019", true, 12.1f));
+        carsDao.saveAndFlush(new Cars("car3", "VAZ", "MT", "2019", true, 3.1f));
 
        // Jurnal jurnal = new Jurnal();
        // jurnalDao.save(jurnal);

@@ -5,6 +5,7 @@ import com.kursov.model.Cars;
 import com.kursov.model.Jurnal;
 import com.kursov.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
 
 import java.util.List;
 
@@ -22,6 +23,6 @@ public interface HiberService {
    String pullStatus();
     void updateCar(Cars cars);
 
-   void updateUser(User user);
+   void updateUser(User user , BindingResult bindingResult);
 
 }

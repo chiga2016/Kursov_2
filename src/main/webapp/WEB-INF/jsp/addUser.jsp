@@ -1,6 +1,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
@@ -14,24 +15,178 @@
     <meta name="author" content="">
 
     <title>Create an account</title>
+
+    <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${contextPath}/resources/css/common.css" rel="stylesheet">
+
+
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 </head>
 
 <body>
 
 <div class="container">
 
-    <form action="/admin/addUser" method="post">
-       <label>username</label> <input name="username" placeholder="username" type="text" /><br>
-        <label>fam</label> <input name="fam" placeholder="fam"  type="text" /><br>
-        <label>name</label> <input name="name"  placeholder="name" type="text" /><br>
-        <label>ot</label> <input name="ot" placeholder="ot"  type="text" /><br>
-        <label>dr</label> <input name="dr" placeholder="dr"  type="date" /><br>
-        <label>phone</label> <input name="phone" placeholder="phone"  type="tel" /><br>
-        <label>vuNumber</label> <input name="vuNumber" placeholder="vuNumber"  type="text" /><br>
-        <label>password</label> <input name="password" placeholder="password"  type="text" /><br>
-         <input name="submit" type="submit" />
+    <h2>Create new user</h2>
+    <br>
 
-    </form>
+    <%--<form action="/admin/addUser" method="post">--%>
+       <%--<label>username</label> <input name="username" placeholder="username" type="text" /><br><br>--%>
+        <%--<label>fam</label> <input name="fam" placeholder="fam"  type="text" /><br><br>--%>
+        <%--<label>name</label> <input name="name"  placeholder="name" type="text" /><br><br>--%>
+        <%--<label>ot</label> <input name="ot" placeholder="ot"  type="text" /><br><br>--%>
+        <%--<label>dr</label> <input name="dr" placeholder="dr"  type="date" /><br><br>--%>
+        <%--<label>phone</label> <input name="phone" placeholder="phone"  type="tel" /><br><br>--%>
+        <%--<label>vuNumber</label> <input name="vuNumber" placeholder="vuNumber"  type="text" /><br><br>--%>
+        <%--<label>password</label> <input name="password" placeholder="password"  type="text" /><br><br>--%>
+        <%--<label>enabled</label> <input name="enabled" type="checkbox" /><br><br>--%>
+        <%--<br>--%>
+         <%--<input name="submit" type="submit" />modelAttribute="userForm"--%>
+
+    <%--</form>--%>
+
+    <form:form method="POST" action="/admin/addUser" modelAttribute="userForm"  class="form-signin">
+        <h2 class="form-signin-heading">Регистрация</h2>
+
+        <style type="text/css">
+            .reg {
+                width: 100%; /* Ширина всей таблицы */
+            }
+            TD {
+                vertical-align: top;
+                horiz-align: left/* Вертикальное выравнивание в ячейках */
+            }
+        </style>
+
+        <table cellspacing="0" class="reg">
+            <tr>
+                <td class="leftcol">
+
+                    <spring:bind path="username">
+                        <div class="form-group ${status.error ? 'has-error' : ''}">
+                            <label>Имя пользователя</label>
+                            <form:input type="text" path="username" class="form-control" placeholder="Username"
+                                        autofocus="true" value="BalagutdinovIF" ></form:input>
+                            <form:errors path="username"></form:errors>
+                        </div>
+                    </spring:bind>
+                </td>
+                <td class="spacer"></td>
+                <td cla ="rightcol">
+                    <spring:bind path="fam">
+                        <div class="form-group ${status.error ? 'has-error' : ''}">
+                            <label>Фамилия</label>
+                            <form:input type="text" path="fam" class="form-control" placeholder="fam"  value="Balagutdinov" ></form:input>
+                            <form:errors path="fam"></form:errors>
+                        </div>
+                    </spring:bind>
+                </td>
+
+            </tr>
+
+            <tr>
+                <td class="leftcol">
+                    <spring:bind path="password">
+                        <div class="form-group ${status.error ? 'has-error' : ''}">
+                            <label>Пароль</label>
+                            <form:input type="password" path="password" class="form-control" placeholder="Password"  value="1111" ></form:input>
+                            <form:errors path="password"></form:errors>
+                        </div>
+                    </spring:bind>
+                </td>
+                <td class="spacer"></td>
+                <td cla ="rightcol">
+                    <spring:bind path="name">
+                        <div class="form-group ${status.error ? 'has-error' : ''}">
+                            <label>Имя</label>
+                            <form:input type="text" path="name" class="form-control" placeholder="name"  value="Ilgiz" ></form:input>
+                            <form:errors path="name"></form:errors>
+                        </div>
+                    </spring:bind>
+                </td>
+
+            </tr>
+
+            <tr>
+                <td class="leftcol">
+                    <spring:bind path="confirmPassword">
+                        <div class="form-group ${status.error ? 'has-error' : ''}">
+                            <label>Подтвердите </label>
+                            <form:input type="password" path="confirmPassword" class="form-control"
+                                        placeholder="Confirm your password"   value="1111" ></form:input>
+                            <form:errors path="confirmPassword"></form:errors>
+                        </div>
+                    </spring:bind>
+                </td>
+                <td class="spacer"></td>
+                <td cla ="rightcol">
+                    <spring:bind path="ot">
+                        <div class="form-group ${status.error ? 'has-error' : ''}">
+                            <label>Отчество</label>
+                            <form:input type="text" path="ot" class="form-control"
+                                        placeholder="ot"   value="Faritovich" ></form:input>
+                            <form:errors path="ot"></form:errors>
+                        </div>
+                    </spring:bind>
+                </td>
+
+            </tr>
+
+            <tr>
+                <td class="leftcol">
+                </td>
+                <td class="spacer"></td>
+                <td class ="rightcol">
+                    <spring:bind path="dr">
+                        <div class="form-group ${status.error ? 'has-error' : ''}">
+                            <label>Дата рождения</label>
+                            <form:input type="date" path="dr" class="form-control"
+                                        placeholder="dr"   value="1986-12-25" ></form:input>
+                            <form:errors path="dr"></form:errors>
+                        </div>
+                    </spring:bind>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="leftcol">
+                </td>
+                <td class="spacer"></td>
+                <td class ="rightcol">
+                    <spring:bind path="vuNumber">
+                        <div class="form-group ${status.error ? 'has-error' : ''}">
+                            <label>Водительское удостоверение</label>
+                            <form:input type="text" path="vuNumber" class="form-control"
+                                        placeholder="vuNumber"   value="0207727737" ></form:input>
+                            <form:errors path="vuNumber"></form:errors>
+                        </div>
+                    </spring:bind>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="leftcol">
+                </td>
+                <td class="spacer"></td>
+                <td class ="rightcol">
+                    <spring:bind path="phone">
+                        <div class="form-group ${status.error ? 'has-error' : ''}">
+                            <label>Телефон</label>
+                            <form:input type="tel" path="phone" class="form-control"
+                                        placeholder="phone"   value="79899520151" ></form:input>
+                            <form:errors path="phone"></form:errors>
+                        </div>
+                    </spring:bind>
+
+                </td>
+
+            </tr>
+
+        </table>
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Зарегистрироваться</button>
+    </form:form>
 
 
 

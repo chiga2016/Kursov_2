@@ -14,7 +14,7 @@ import java.util.Set;
 public class Cars {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="car_id")
     private long id; // identifier
 
@@ -138,4 +138,18 @@ public class Cars {
         this.name = name;
     }
 
+    @Override
+    public String toString() {
+        return "Cars{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", model='" + model + '\'' +
+                ", transmission='" + transmission + '\'' +
+                ", year='" + year + '\'' +
+                ", available=" + available +
+                ", jurnalSetCar=" + jurnalSetCar +
+                ", price=" + price +
+                ", currentOwner=" + currentOwner +
+                '}';
+    }
 }

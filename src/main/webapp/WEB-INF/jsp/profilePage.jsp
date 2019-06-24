@@ -164,7 +164,7 @@
             <br>
             <br>
             <div>
-                <table>
+                <table class="jurnalAr">
                     <th>id</th> <th>eliminDate</th> <th>regDate</th> <th> duration</th><th> cost</th><th> car </th>
                     <caption> Журнал аренды </caption>
                     <c:forEach var="j" items="${jurnal}">
