@@ -17,11 +17,17 @@
 .profileInfo label {
     float: left;
 }
+.trueAvailiable{
+    background-color: palegreen;
+}
+.falseAvailiable{
+    background-color: lightcoral;
+}
 
 .carsAll {
     margin: 0;
     padding: 0;
-    width: 30%;
+    width: 40%;
     height: 100%;
     float: right;
 }
@@ -56,7 +62,7 @@
 .selectCar .selectCarTable caption {
     /*font-weight: bold;*/
     color: #000;
-    font-size: 22px;
+    font-size: 18px;
 }
 .selectCar .selectCarTable tr {
     border: 1px solid #ccc;
@@ -77,7 +83,7 @@
 .jurnalAr  caption {
     /*font-weight: bold;*/
     color: #000;
-    font-size: 22px;
+    font-size: 18px;
 }
 
 .jurnalAr {

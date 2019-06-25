@@ -41,13 +41,13 @@
 
 
     <div class="car_div">
-        <table>
-            <tr>
-                <th>id</th>
-                <th>name</th>
-                <th>model</th>
-                <th>transmission</th>
-                <th>year</th>
+        <table class="adminCars">
+            <tr class="h">
+                <td>id</td>
+                <td>name</td>
+                <td>model</td>
+                <td>transmission</td>
+                <td>year</td>
             </tr>
             <c:forEach var="x" items="${cars}">
 
@@ -65,19 +65,20 @@
         </table>
     </div>
 
+
     <div class="user_div">
-        <table>
-            <tr>
-                    <th>id</th>
-                    <th>username</th>
+        <table  class="adminUsers">
+            <tr class="h">
+                    <td>id</td>
+                    <td>username</td>
                     <%--<th>fam</th>--%>
                     <%--<th>name</th>--%>
                     <%--<th>ot</th>--%>
                     <%--<th>dr</th>--%>
-                    <th>phone</th>
-                    <th>vuNumber</th>
-                    <th>dateCreate</th>
-                    <th>enabled</th>
+                    <td>phone</td>
+                    <td>vuNumber</td>
+                    <td>dateCreate</td>
+                    <td>enabled</td>
             </tr>
             <c:forEach var="x" items="${users}">
 

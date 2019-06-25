@@ -1,19 +1,19 @@
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: user
-  Date: 11.05.2019
-  Time: 18:21
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html>
 <head>
-    <title>addCar</title>
+    <title>Edit Car</title>
+    <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${contextPath}/resources/css/common.css" rel="stylesheet">
+    <link href="/resources/css/admin.css" rel="stylesheet">
+
 </head>
 <body>
-<h3> Create Car</h3>
-<br>
+<div class="addCar">
+    <h3> Редактирование автомобиля</h3>
+    <br>
 <form action="/admin/editcar" method="post">
     <input name="id" value= ${cars.id} hidden />
     <h5>Name</h5><input title="name" type="text" name="name"  value=${cars.name}><br>
@@ -40,11 +40,16 @@
         <label for="contactChoice2">AT</label>
         <br>
     </c:if>
-
-
-
     <h5>Year</h5><input title="year" type="text" name="year" value=${cars.year}><br>
     <h5>Price</h5><input title="price" type="text" name="price" value=${cars.price}><br>
+    <h5>Доступен</h5>
+    <c:if test="${cars.available == 'true'}">
+        <input name="available" placeholder="available"  type="checkbox" checked /><br>
+    </c:if>
+    <c:if test="${cars.available == 'false'}">
+        <input name="available" placeholder="available"  type="checkbox" /><br>
+    </c:if>
+
 
     <input type="submit" name="OK" value="OK">
 </form>

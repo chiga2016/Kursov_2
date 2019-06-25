@@ -1,6 +1,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
@@ -13,11 +14,17 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>add car</title>
+    <title>Create Car</title>
+    <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${contextPath}/resources/css/common.css" rel="stylesheet">
+    <link href="/resources/css/admin.css" rel="stylesheet">
+
 </head>
 <body>
-<h3> Create Car</h3>
-<br>
+
+<div class="addCar">
+    <h3>Добавление нового автомобиля</h3>
+    <br>
 <form action="/admin/addcar" method="post">
     <h5>Name</h5><input title="name" type="text" name="name"><br>
     <h5>Model</h5><input title="model" type="text" name="model"><br>
@@ -36,7 +43,7 @@
     <h5>price</h5><input title="price" type="text" name="price"><br>
     <input type="submit" name="OK" value="OK">
 </form>
-
+</div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="${contextPath}/resources/js/bootstrap.min.js"></script>
 </body>

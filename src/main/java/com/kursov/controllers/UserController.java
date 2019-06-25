@@ -107,14 +107,4 @@ public class UserController {
         }
         return modelAndView;
     }
-
-//    @RequestMapping(value = "/showUsers", method = RequestMethod.GET)
-//    public ModelAndView showUsers() {
-//        ModelAndView modelAndView = new ModelAndView();
-//        modelAndView.setViewName("showUsers");
-//        List<User> users = userService.findAll();
-//        modelAndView.addObject("users",users);
-//
-//        return modelAndView;
-//    }
 }

@@ -76,7 +76,6 @@ public class MainController {
     public ModelAndView updateJurnal(@ModelAttribute("idUser") Long idUser, @ModelAttribute("idCar") Long idCar){
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("profilePage");
-
         return modelAndView;
     }
 
@@ -86,21 +85,4 @@ public class MainController {
         // Запрос по точке входа "/" будет выводить нам index.jsp, а найдет он его благодаря нашему dispatcher-servlet
     }
 
-
-
-
-
-//    @RequestMapping("/delete/car/{id}")
-//    public ModelAndView deleteCarId(@PathVariable("id") long id) {
-//        ModelAndView mv = new ModelAndView("listalldata");
-//        //Cat c = dao.getCatById(1);
-//        //Cat c = dao.find(id);
-//        dao.deleteCar(id);
-//        //mv.addObject("cats", Collections.singletonList(c));
-//        List<Cars> allCars = dao.getAllCars();
-//        mv.addObject("cars", allCars);
-//
-//        return mv;
-//        //return showAll();
-//    }
 }

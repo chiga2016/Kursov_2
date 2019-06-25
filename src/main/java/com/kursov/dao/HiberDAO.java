@@ -28,7 +28,6 @@ public class HiberDAO {
     @Transactional
     public User addUser(User u) {
         em.persist(u);
-        lastStatus = "Пользователь добавлен!";
         return u;
     }
 
@@ -109,13 +108,11 @@ public class HiberDAO {
     @Transactional
     public List<Jurnal> findJurnalByUserId(long id) {
         // 1--EntityManager em = emf.createEntityManager();
-
         User user = userDao.findUserById(id);
         Query query = em.createQuery("select j from Jurnal j where j.user=:id",Jurnal.class);
         query.setParameter("id", user);
         log.info("МЫ В HIBERDAO" + Long.toString(id));
         log.info(query.toString());
-
         List<Jurnal> res = (List<Jurnal>) query.getResultList();
         //List<Jurnal> res = em.createQuery("select j from Jurnal j",Jurnal.class).getResultList();
         return res;
@@ -129,7 +126,7 @@ public class HiberDAO {
         c=em.merge(c);
         em.remove(c);
         // 1--em.getTransaction().commit();
-        lastStatus = "Автомобиль удален!";
+        //lastStatus = "Автомобиль удален!";
     }
 
     @Transactional

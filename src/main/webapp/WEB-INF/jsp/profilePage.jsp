@@ -1,9 +1,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -14,16 +12,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-
     <title>ProfilePage</title>
-
-    <!--<link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">-->
-
     <link href="/resources/css/bootstrap.min.css" rel="stylesheet">
     <link href="${contextPath}/resources/css/common.css" rel="stylesheet">
     <link href="/resources/css/profilepage.css" rel="stylesheet">
     <c:if test="${pageContext.request.userPrincipal.name == 'admin'}">
-
         <script type="text/javascript">
             location="http://localhost:8090/admin";
         </script>
@@ -31,38 +24,14 @@
     </c:if>
 </head>
 <body>
-
-
 <div class="container">
-
-
     <c:if test="${pageContext.request.userPrincipal.name != null}">
         <form id="logoutForm"  method="POST" action="${contextPath}/logout">
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
         </form>
-
-        <h2>Добро пожаловать ${pageContext.request.userPrincipal.name} | <a onclick="document.forms['logoutForm'].submit()">Logout</a>
-        </h2>
-
-        <a href="/welcome"><h1>Личный кабинет</h1></a>
-        <%--<input type="submit" value="Редактирование вашего профиля" class="main gen">--%>
-        <%--<input type="text" name="email" size="35" value="chiga_@bk.ru" readonly="readonly" style="color: gray;">--%>
-
-        <%--<style>--%>
-            <%--#In {--%>
-                <%--position: relative;--%>
-                <%--z-index: -1;--%>
-            <%--}--%>
-
-            <%--#InDa:checked ~ #In,--%>
-            <%--#InDa:checked ~ * #In,--%>
-            <%--#InDa:checked ~ * * #In {--%>
-                <%--z-index: auto;--%>
-            <%--}--%>
-        <%--</style>--%>
-
-        <%--<input type="checkbox" id="InDa" hidden /> <input id="In"/>--%>
-<div class="profileInfo">
+        <h3>Добро пожаловать ${pageContext.request.userPrincipal.name} | <a onclick="document.forms['logoutForm'].submit()">Logout</a></h3>
+        <a href="/welcome"><h3>Личный кабинет</h3></a>
+    <div class="profileInfo">
         <table>
             <tr>
                 <td>id</td>
@@ -105,7 +74,7 @@
                 <td class="prof">${u.confirmPassword}</td>
             </tr>
             <tr>
-                <td>currentCar</td>
+                <td>Арендованный автомобиль</td>
                 <td class="prof">
                     <label> ${u.currentCar.name} </label>
                     <form action="delCarToUser" method="post">
@@ -135,34 +104,32 @@
                     </ul>
                 </td>
             </tr>
-            <tr>
-                <td></td>
-                <td></td>
-            </tr>
         </table>
-
 </div>
         <div class="selectCar">
             <table class="selectCarTable">
                 <caption> Каталог автомобилей </caption>
                 <c:forEach var="car" items="${allCars}">
-                    <tr  onclick="window.location.href='/cars/' + ${car.id} ; return false"><td> ${car.id}  ${car.name} ${car.model} ${car.transmission} ${car.year} ${car.price} ${car.available} </td></tr>
+                    <tr
+                    <c:if test="${car.available == 'true'}">
+                        class="trueAvailiable"
+                    </c:if>
+                    <c:if test="${car.available == 'false'}">
+                        class="falseAvailiable"
+                    </c:if>
+                    onclick="window.location.href='/cars/' + ${car.id} ; return false"><td> ${car.id}. ${car.name}, Модель: ${car.model}, Трансмиссия: ${car.transmission}, Год: ${car.year}, Прайс: ${car.price}, Доступность: ${car.available} </td></tr>
                 </c:forEach>
             </table>
-
-            <form action="addCarToUser" method="post">
+            <form action="addCarToUser" method="post" hidden>
                 <input name="idUser" hidden value=${u.id} >
-                <h3> Доступные автомобили </h3>
+                <h4> Доступные автомобили </h4>
                 <select name="idCar" >
                     <c:forEach var="y" items="${cars}">
-                        <option  value=${y.id}>${y.id} ${y.name} ${y.model} ${y.transmission} ${y.year} ${y.price}</option>
+                        <option  value=${y.id}> ${y.name}, Модель: ${y.model}, Трансмиссия: ${y.transmission}, Год: ${y.year}, Прайс: ${y.price}</option>
                     </c:forEach>
                 </select>
                 <input type="submit" value="Арендовать">
             </form>
-
-            <br>
-            <br>
             <div>
                 <table class="jurnalAr">
                     <th>id</th> <th>eliminDate</th> <th>regDate</th> <th> duration</th><th> cost</th><th> car </th>
@@ -177,12 +144,10 @@
                         <td>${j.cars.name}</td>
                         </tr>
                     </c:forEach>
-
                     <%--http://localhost:8090/jurnal/2--%>
                 </table>
             </div>
             <br>
-
             <div>
                 <%--onclick="jurnal()"--%>
                 <button id="j" hidden >jurnal</button>
@@ -214,14 +179,11 @@
                                     var id = myJson[i].id
                                     if(myJson[i].eliminDate != null)
                                         { var eliminDate = (new Date(myJson[i].eliminDate)).toLocaleString() } else {var eliminDate=0}
-
                                     if(myJson[i].regDate != null)
                                     { var regDate = (new Date(myJson[i].regDate)).toLocaleString() } else {var regDate=0}
-
                                     var duration = myJson[i].duration
                                     var cost = myJson[i].cost
                                     var carName = ""//myJson[i].cars.name
-
                                     var p = document.createElement("tr")
                                     //var p1 = document.createElement("li")
                                     <%--p1.innerHTML=${myJson[i].id}--%>
@@ -237,32 +199,8 @@
                                 btn.removeEventListener("click", jurnal)
                             });
                     }}
-                    // function remove() {
-                    //     var p = document.querySelectorAll('#table')
-                    //     // var p = document.querySelectorAll('#table > tr:last-child')
-                    //     //console.log(p[0])
-                    //     p[0].remove()
-                    // }
                 </script>
-
-
             </div>
-
-                    <%--<form action="delCarToUser" method="post">--%>
-                        <%--<input name="idUser" hidden value=${u.id}  >--%>
-                        <%--<br>--%>
-                        <%--<h3> На данный момент за вами автомобиль: </h3>--%>
-                        <%--<input type="text" value="${u.currentCar.name}" size="50"> </input>--%>
-                        <%--<input type="submit" value="Освободить">--%>
-                    <%--</form>--%>
-
-
-                    <%--<button onclick="remove(${u.id})">Remove</button>--%>
-                    <%--<script>--%>
-                        <%--function deleteCat(id) {--%>
-                            <%--fetch('http://localhost:8090/delCarToUser/'+id, {method: 'DELETE'}).catch(function(err) {alert(err);})--%>
-                        <%--}--%>
-                    <%--</script>--%>
         </div>
     </c:if>
 </div>

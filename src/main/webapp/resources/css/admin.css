@@ -26,3 +26,51 @@ tr:hover{
     padding: 5px;
     font-size: 16px;
 }
+
+
+.adminCars .adminUsers  caption {
+    /*font-weight: bold;*/
+    color: #000;
+    font-size: 22px;
+}
+
+.adminCars .adminUsers  {
+    border: 2px solid #000;  /* граница всей таблицы */
+    border-spacing: 3px;
+}
+
+
+.adminCars td {
+    border: 2px solid #ccc;  /* границы между столбцами */
+    border-spacing: 3px;
+    margin: 5px; padding: 5px;
+    width:50px;
+    /*min-width:10px;*/
+    white-space: nowrap;
+    vertical-align: bottom;
+    height: 30px;
+}
+.adminUsers td {
+    border: 2px solid #ccc;  /* границы между столбцами */
+    border-spacing: 3px;
+    margin: 5px; padding: 5px;
+    width:auto;
+    min-width:10px;
+    white-space: nowrap;
+    vertical-align: bottom;
+    height: 30px;
+}
+
+.user_div{
+margin-top: 5px;
+}
+
+.h{
+    color: #555555;
+    font-weight: bold;
+}
+
+.addCar{
+    margin: 15px;
+    padding: 15px;
+}

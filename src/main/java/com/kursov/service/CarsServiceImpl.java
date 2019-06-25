@@ -53,6 +53,8 @@ public class CarsServiceImpl implements CarsService {
 
     @Override
     public void saveAndFlush(Cars cars) {
+        cars.setAvailable(true);
+
         carsDao.saveAndFlush(cars);
     }
 

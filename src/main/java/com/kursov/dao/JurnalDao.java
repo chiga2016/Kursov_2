@@ -9,7 +9,5 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface JurnalDao extends JpaRepository<Jurnal, Long> {
-
     List<Jurnal> findJurnalByUser_Id(long id);
-
 }

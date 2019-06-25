@@ -20,8 +20,7 @@ public interface HiberService {
 
    float calcCost(long duration, long car);
 
-   String pullStatus();
-    void updateCar(Cars cars);
+   void updateCar(Cars cars);
 
    void updateUser(User user , BindingResult bindingResult);
 

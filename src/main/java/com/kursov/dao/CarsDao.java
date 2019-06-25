@@ -16,9 +16,4 @@ public interface CarsDao  extends JpaRepository<Cars, Long> {
     @Query("select c from Cars c where c.available = true ")
     List<Cars> findByAvailible();
 
-
-/*
-    @Query("select b from user_roles b where b.name = :name")
-    Role findByName(/*@Param("name")*/ /*String name);
-*/
 }

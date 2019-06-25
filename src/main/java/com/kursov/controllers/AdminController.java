@@ -24,27 +24,16 @@ import org.springframework.web.servlet.ModelAndView;
 public class AdminController {
     private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
     Logger log = LoggerFactory.getLogger(this.getClass());
-    @Autowired
-    HiberDAO dao;
-
+//    @Autowired
+//    HiberDAO dao;
     @Autowired
     UserService userService;
-
     @Autowired
     CarsService carsService;
-
     @Autowired
     HiberService hiberService;
     @Autowired
     private UserValidator userValidator;
-/*
-    @Autowired
-    CarsDao carsDao;
-    @Autowired
-    UserDao userDao;
-    @Autowired
-    CarsDao carsDao;
-*/
 
     @RequestMapping("admin")
     public ModelAndView admin(){
@@ -52,17 +41,12 @@ public class AdminController {
         modelAndView.setViewName("admin");
         modelAndView.addObject("users",userService.findAll()); //userDao.findAll());
         modelAndView.addObject("cars", carsService.findAll());
-
         return modelAndView;
     }
 
     @RequestMapping(value = "/admin/addUser", method = RequestMethod.POST)
     public ModelAndView  addUser(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model)  {
         ModelAndView modelAndView = new ModelAndView();
-        // dao.addPerson(person.getFam(), person.getName(), person.getOt(), person.getDr() );
-        //dao.addPerson(person);
-        //return "afterRegister";
-        //return showAll();
         userValidator.validate(userForm, bindingResult);
         modelAndView.setViewName("admin");
         if (bindingResult.hasErrors()) {
@@ -76,18 +60,14 @@ public class AdminController {
         return modelAndView;
     }
 
-
     @RequestMapping(value = "/admin/addcar", method = RequestMethod.POST)
     public ModelAndView addCar(@ModelAttribute("cars") Cars cars)  {
-        // dao.addCars(cars.getName(), cars.getModel(), cars.getTransmission(), cars.getYear() );
         ModelAndView modelAndView = new ModelAndView();
         log.info("INFOCAR " + cars.toString());
         carsService.saveAndFlush(cars);
-        //carsService.saveAndFlush( new Cars(cars.getName(), cars.getModel(), cars.getTransmission(), cars.getYear(), true ,cars.getPrice())  );
         modelAndView.setViewName("admin");
         modelAndView.addObject("cars", carsService.findAll());
         modelAndView.addObject("users",userService.findAll() );
-
         return modelAndView;
     }
 
@@ -109,9 +89,7 @@ public class AdminController {
 
     @RequestMapping(value ="admin/edituser/{id}", method = RequestMethod.GET)
     public ModelAndView editUser(@PathVariable("id") long id, ModelAndView modelAndView){
-        //ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("editUser");
-//        modelAndView.addObject("users",userService.findUserById(id)); //userDao.findAll());
         modelAndView.addObject("userForm",userService.findUserById(id)); //userDao.findAll());
         return modelAndView;
     }
@@ -121,13 +99,9 @@ public class AdminController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("admin");
         logger.info("НА АДМИН КОНТРОЛЛЕР ПРИШЛО ЗАДАНИЕ ОТРЕДАКТИРОВАТЬ ПОЛЬЗОВАТЕЛЯ С ИД" + userForm.getId());
-//        logger.info("НА АДМИН КОНТРОЛЛЕР ПРИШЛО ЗАДАНИЕ ОТРЕДАКТИРОВАТЬ ПОЛЬЗОВАТЕЛЯ С ИД =" + userForm.toString());
-
         hiberService.updateUser(userForm, bindingResult);
-
         modelAndView.addObject("cars", carsService.findAll());
         modelAndView.addObject("users",userService.findAll() );
-
         return modelAndView;
     }
 
@@ -136,10 +110,8 @@ public class AdminController {
         //ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("editCar");
         modelAndView.addObject("cars", carsService.findCarsById(id));
-
         return modelAndView;
     }
-
 
     @RequestMapping(value ="admin/editcar", method = RequestMethod.POST)
     public ModelAndView editCarPost(@ModelAttribute("cars") Cars cars){
@@ -150,7 +122,6 @@ public class AdminController {
         modelAndView.setViewName("admin");
         modelAndView.addObject("cars", carsService.findAll());
         modelAndView.addObject("users",userService.findAll() );
-
         return modelAndView;
     }
 }

@@ -159,14 +159,4 @@ public class HiberServiceImpl implements HiberService {
         return rez;
     }
 
-    @Override
-    public String pullStatus() {
-       return hiberDAO.pullStatus();
-    }
-
-
-//    @Override
-//    public User delCarToUser(long idUser, long idCar) {
-//return new User();
-//    }
 }

@@ -26,16 +26,10 @@ public class MyRestController {
 
     @RequestMapping(value = "cars", method = RequestMethod.GET,
             produces = {"application/json"})
-    float getCostJurnal(@RequestParam("dur") long dur, @RequestParam("car") long car) {
+        float getCostJurnal(@RequestParam("dur") long dur, @RequestParam("car") long car) {
         Logger log = LoggerFactory.getLogger(this.getClass());
         log.info("duration = " + Long.toString(dur)+ "car=" + car);
-
-        //List<Jurnal> jurnalList = jurnalService.getJurnalByUser_Id(id) ;  //dao.findPerson(id);
         float cost = hiberService.calcCost(dur,car);
-//        String res;
-//        if(id instanceof Long){ res= "true";} else {res="false";}
-//        log.info( res );
-        //log.info("JURNALLIST" + jurnalList.toString());
         return cost;
     }
 
@@ -44,27 +38,10 @@ public class MyRestController {
             produces = {"application/json"})
         List<Jurnal> getJurnal(@PathVariable("id") long id) {
         Logger log = LoggerFactory.getLogger(this.getClass());
-
         log.info("ID = " + Long.toString(id));
-
-
-        //List<Jurnal> jurnalList = jurnalService.getJurnalByUser_Id(id) ;  //dao.findPerson(id);
         List<Jurnal> jurnalList = hiberService.findJurnalByUserId(id);
-//        String res;
-//        if(id instanceof Long){ res= "true";} else {res="false";}
-//        log.info( res );
-
         log.info("JURNALLIST" + jurnalList.toString());
         return jurnalList;
     }
 
-
-    //    @RequestMapping(value = "delCarToUser/{id}", method = RequestMethod.DELETE,
-//            produces = {"application/json"})
-//    String delCarToUser(@PathVariable("id") int id) {
-//        //dao.delCarToUser(id);
-//        return  "";
-//        //List<Cat> allCats = dao.getAllCats();
-//        // return cat.toString();
-//    }
 }

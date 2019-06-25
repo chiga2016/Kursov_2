@@ -26,7 +26,6 @@ public class CarsController {
     @RequestMapping(value = "/cars/{idCar}",method = RequestMethod.GET)
     ModelAndView cars (@PathVariable String idCar){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("/carPage");
         Cars car = carsService.findCarsById(Long.parseLong(idCar));
