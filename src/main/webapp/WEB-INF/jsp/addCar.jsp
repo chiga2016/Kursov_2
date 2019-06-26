@@ -27,6 +27,7 @@
     <br>
 <form action="/admin/addcar" method="post">
     <h5>Name</h5><input title="name" type="text" name="name"><br>
+    <h5>Marka</h5><input title="marka" type="text" name="marka"><br>
     <h5>Model</h5><input title="model" type="text" name="model"><br>
     <h5>Transmission</h5>
     <input type="radio" id="contactChoice1"
@@ -41,6 +42,8 @@
     <h5>Year</h5><input title="year" type="text" name="year"><br>
     <input title="available" type="text" name="available" value="true" hidden>
     <h5>price</h5><input title="price" type="text" name="price"><br>
+    <h5>img</h5><input title="img" type="file" name="img"><br>
+
     <input type="submit" name="OK" value="OK">
 </form>
 </div>

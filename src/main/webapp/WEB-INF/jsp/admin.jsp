@@ -48,6 +48,8 @@
                 <td>model</td>
                 <td>transmission</td>
                 <td>year</td>
+                <td>currentowner</td>
+                <td>X</td>
             </tr>
             <c:forEach var="x" items="${cars}">
 
@@ -57,6 +59,8 @@
                         <td>${x.model}</td>
                         <td>${x.transmission}</td>
                         <td>${x.year}</td>
+                        <td>${x.currentOwner.username}</td>
+                        <td> <form action="delCarToUser" method="post"><input type="submit" value="X" <c:if test="${x.currentOwner==null}" > hidden</c:if> /><input hidden name="idUser" type="text" value=${x.currentOwner.id} /></form> </td>
                     </tr>
 
             </c:forEach>

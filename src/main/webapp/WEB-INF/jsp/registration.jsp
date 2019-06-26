@@ -25,7 +25,7 @@
 
 </head>
 
-<body>
+<body  style="background-image: url('/resources/img/2.jpg'); background-position: top">
 
 <div class="container">
 

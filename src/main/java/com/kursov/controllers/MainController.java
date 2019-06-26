@@ -84,5 +84,10 @@ public class MainController {
         return new ModelAndView("index");
         // Запрос по точке входа "/" будет выводить нам index.jsp, а найдет он его благодаря нашему dispatcher-servlet
     }
+    @RequestMapping(value = "bazaavto", method = RequestMethod.GET)
+    public ModelAndView bazaavto(){
+        return new ModelAndView("bazaavto").addObject("cars", carsService.findAll());
+        // Запрос по точке входа "/" будет выводить нам index.jsp, а найдет он его благодаря нашему dispatcher-servlet
+    }
 
 }

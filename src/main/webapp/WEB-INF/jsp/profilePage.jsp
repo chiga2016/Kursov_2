@@ -23,7 +23,7 @@
         <!--<meta http-equiv="refresh" content="0;http://localhost:8090/admin">-->
     </c:if>
 </head>
-<body>
+<body style="background-image: url('/resources/img/light2.jpg'); background-position: top">
 <div class="container">
     <c:if test="${pageContext.request.userPrincipal.name != null}">
         <form id="logoutForm"  method="POST" action="${contextPath}/logout">

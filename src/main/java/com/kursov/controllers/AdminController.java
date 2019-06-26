@@ -64,6 +64,9 @@ public class AdminController {
     public ModelAndView addCar(@ModelAttribute("cars") Cars cars)  {
         ModelAndView modelAndView = new ModelAndView();
         log.info("INFOCAR " + cars.toString());
+        String img = "/resources/img/" + cars.getImg();
+        cars.setImg(img);
+        log.info("IMG  = " + img);
         carsService.saveAndFlush(cars);
         modelAndView.setViewName("admin");
         modelAndView.addObject("cars", carsService.findAll());

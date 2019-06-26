@@ -17,7 +17,9 @@
 <form action="/admin/editcar" method="post">
     <input name="id" value= ${cars.id} hidden />
     <h5>Name</h5><input title="name" type="text" name="name"  value=${cars.name}><br>
+    <h5>Marka</h5><input title="marka" type="text" name="marka"  value=${cars.marka}><br>
     <h5>Model</h5><input title="model" type="text" name="model"  value=${cars.model}><br>
+
     <h5>Transmission</h5>
 
     <c:if test="${cars.transmission == 'MT'}">
@@ -42,6 +44,10 @@
     </c:if>
     <h5>Year</h5><input title="year" type="text" name="year" value=${cars.year}><br>
     <h5>Price</h5><input title="price" type="text" name="price" value=${cars.price}><br>
+    <h5>img</h5><input title="img"  type="text" name="img" value=${cars.img}><br>
+
+    <h5>img</h5><input title="img" type="file" name="img"><br>
+
     <h5>Доступен</h5>
     <c:if test="${cars.available == 'true'}">
         <input name="available" placeholder="available"  type="checkbox" checked /><br>

@@ -47,9 +47,10 @@ tr:hover{
     width:50px;
     /*min-width:10px;*/
     white-space: nowrap;
-    vertical-align: bottom;
-    height: 30px;
+   /* vertical-align: bottom;
+    height: 30px;*/
 }
+
 .adminUsers td {
     border: 2px solid #ccc;  /* границы между столбцами */
     border-spacing: 3px;

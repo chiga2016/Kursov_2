@@ -20,8 +20,12 @@ public class Cars {
 
     @Column(name="name")
     String name;
+    @Column(name="marka")
+    String marka;
     @Column(name="model")
     String model;
+    @Column(name="img")
+    String img;
     @Column(name="transmission")
     String transmission;
     @Column(name="year")
@@ -96,6 +100,19 @@ public class Cars {
         this.price = price;
     }
 
+    public Cars(String name,String marka, String model, String transmission, String year, boolean available, float price, String img) {
+        if(price==0){price=5;}
+
+        this.name = name;
+        this.marka = marka;
+        this.model = model;
+        this.transmission = transmission;
+        this.year = year;
+        this.available = available;
+        this.price = price;
+        this.img = img;
+    }
+
     public Cars() {
     }
 
@@ -136,6 +153,22 @@ public class Cars {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getMarka() {
+        return marka;
+    }
+
+    public void setMarka(String marka) {
+        this.marka = marka;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 
     @Override
