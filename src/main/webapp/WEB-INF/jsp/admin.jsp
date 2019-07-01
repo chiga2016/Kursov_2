@@ -26,7 +26,7 @@
 
 </head>
 
-<body>
+<body style="background-image: url('/resources/img/light2.jpg'); background-position: top">
 
 <div class="container">
     <form id="logoutForm"  method="POST" action="${contextPath}/logout">

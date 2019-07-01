@@ -10,7 +10,7 @@
     <link href="/resources/css/admin.css" rel="stylesheet">
 
 </head>
-<body>
+<body style="background-image: url('/resources/img/light2.jpg'); background-position: top">
 <div class="addCar">
     <h3> Редактирование автомобиля</h3>
     <br>

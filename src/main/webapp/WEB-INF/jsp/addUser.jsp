@@ -24,7 +24,7 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 </head>
 
-<body>
+<body style="background-image: url('/resources/img/light2.jpg'); background-position: top">
 
 <div class="container">
 

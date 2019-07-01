@@ -8,7 +8,7 @@
         <title>Содержимое базы</title>
         <link href="<c:url value='/main.css'/>" rel="stylesheet" type="text/css">
     </head>
-    <body>
+    <body style="background-image: url('/resources/img/light2.jpg'); background-position: top">
     <!--
         <ul>
             <li><a href="init.do"/>Заполнить заново</a></li>

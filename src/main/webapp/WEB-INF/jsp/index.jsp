@@ -13,7 +13,7 @@
     <script src="/resources/script.js"></script>
 </head>
 
-<body>
+<body padding-top: 30px;>
 <header>
     <nav id="top_nav" style="top: 0px;">
         <ul>
@@ -40,7 +40,7 @@
         </ul>
     </nav>
 </header>
-<div class="container">
+<div class="glavnaya">
 
 
     <div data-am-fadeshow="next-prev-navigation">
@@ -102,6 +102,7 @@
     <h2>Добро пожаловать </h2>
     <a href="/registration" > Зарегистрируйтесь </a> или <a href="/login" > войдите </a>
 </c:if>
+
 
 </body>
 </html>
