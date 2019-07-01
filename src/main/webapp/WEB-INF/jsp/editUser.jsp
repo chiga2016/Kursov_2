@@ -24,6 +24,7 @@
 </head>
 
 <body style="background-image: url('/resources/img/light2.jpg'); background-position: top">
+<h2><a href="/admin"> Страница администратора</a> </h2>
 
 <div class="container">
 

@@ -28,7 +28,6 @@ public class UserValidator implements Validator {
             errors.rejectValue("username", "Size.userForm.username");
         }
 
-       // if (userService.findUserByUsername(user.getUsername()) != null) {
         if (userService.findByUsername(user.getUsername()) != null) {
             errors.rejectValue("username", "Duplicate.userForm.username");
         }
@@ -43,6 +42,24 @@ public class UserValidator implements Validator {
         }
     }
 
+    public void validateFIO(Object o, Errors errors) {
+        User user = (User) o;
+
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "fam", "Required");
+        if (user.getFam().length() < 2 || user.getFam().length() > 32) {
+            errors.rejectValue("fam", "Size.userForm.fam");
+        }
+
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "Required");
+        if (user.getName().length() < 2 || user.getName().length() > 32) {
+            errors.rejectValue("name", "Size.userForm.name");
+        }
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "ot", "Required");
+        if (user.getOt().length() < 2 || user.getOt().length() > 32) {
+            errors.rejectValue("ot", "Size.userForm.ot");
+        }
+
+    }
 
 
 }

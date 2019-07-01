@@ -26,7 +26,7 @@ public class MyRestController {
 
     @RequestMapping(value = "cars", method = RequestMethod.GET,
             produces = {"application/json"})
-        float getCostJurnal(@RequestParam("dur") long dur, @RequestParam("car") long car) {
+    float getCostJurnal(@RequestParam("dur") long dur, @RequestParam("car") long car) {
         Logger log = LoggerFactory.getLogger(this.getClass());
         log.info("duration = " + Long.toString(dur)+ "car=" + car);
         float cost = hiberService.calcCost(dur,car);
@@ -36,7 +36,7 @@ public class MyRestController {
 
     @RequestMapping(value = "jurnal/{id}", method = RequestMethod.GET,
             produces = {"application/json"})
-        List<Jurnal> getJurnal(@PathVariable("id") long id) {
+    List<Jurnal> getJurnal(@PathVariable("id") long id) {
         Logger log = LoggerFactory.getLogger(this.getClass());
         log.info("ID = " + Long.toString(id));
         List<Jurnal> jurnalList = hiberService.findJurnalByUserId(id);

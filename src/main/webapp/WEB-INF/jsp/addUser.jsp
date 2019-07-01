@@ -30,8 +30,8 @@
 
     <h2 class="h2Create">Create new user</h2>
 <br>
-
-    <%--<form action="/admin/addUser" method="post">--%>
+    <h2><a href="/admin"> Страница администратора</a> </h2>
+<%--<form action="/admin/addUser" method="post">--%>
        <%--<label>username</label> <input name="username" placeholder="username" type="text" /><br><br>--%>
         <%--<label>fam</label> <input name="fam" placeholder="fam"  type="text" /><br><br>--%>
         <%--<label>name</label> <input name="name"  placeholder="name" type="text" /><br><br>--%>

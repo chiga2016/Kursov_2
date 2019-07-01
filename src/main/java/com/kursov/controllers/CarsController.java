@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -31,6 +34,10 @@ public class CarsController {
         Cars car = carsService.findCarsById(Long.parseLong(idCar));
         modelAndView.addObject("car", car);
         modelAndView.addObject("user", userService.findUserByUsername(auth.getName()) );
+        modelAndView.addObject("currentDate", new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+        modelAndView.addObject("currentTime", new SimpleDateFormat("HH:mm").format(new Date()));
+        modelAndView.addObject("futureTime", new SimpleDateFormat("HH:mm").format(new Date().getTime()+1000*3600));
+
         return modelAndView;
 
     }

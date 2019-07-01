@@ -102,10 +102,22 @@ public class AdminController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("admin");
         logger.info("НА АДМИН КОНТРОЛЛЕР ПРИШЛО ЗАДАНИЕ ОТРЕДАКТИРОВАТЬ ПОЛЬЗОВАТЕЛЯ С ИД" + userForm.getId());
-        hiberService.updateUser(userForm, bindingResult);
+
+        userValidator.validateFIO(userForm, bindingResult);
+        if (bindingResult.hasErrors()) {
+            log.info("ВАЛИДАЦИЯ НЕ ПРОЙДЕНА!!!!!!!!!!"  );
+            log.info(bindingResult.toString());
+            ModelAndView modelAndView2 = new ModelAndView();
+            modelAndView2.setViewName("editUser");
+            return modelAndView2;
+        }
+        else {
+            hiberService.updateUser(userForm, bindingResult);
+        }
         modelAndView.addObject("cars", carsService.findAll());
         modelAndView.addObject("users",userService.findAll() );
         return modelAndView;
+
     }
 
     @RequestMapping(value ="admin/editcar/{id}", method = RequestMethod.GET)

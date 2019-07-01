@@ -123,7 +123,7 @@ public class HiberDAO {
         // 1--EntityManager em = emf.createEntityManager();
         // 1--em.getTransaction().begin();
         Cars c = findCar( id);
-        c=em.merge(c);
+        ///c=em.merge(c);
         em.remove(c);
         // 1--em.getTransaction().commit();
         //lastStatus = "Автомобиль удален!";
@@ -169,10 +169,10 @@ public class HiberDAO {
 
     @Transactional
     public void updateCar(Cars cars) {
-        em.persist(cars);
+        em.merge(cars);
     }
 
     @Transactional
-    public void updateUser(User user) { em.persist(user);
+    public void updateUser(User user) { em.merge(user);
     }
 }

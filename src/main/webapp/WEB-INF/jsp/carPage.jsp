@@ -13,7 +13,7 @@
     <meta name="author" content="">
     <title>CarPage</title>
     <link href="/resources/css/bootstrap.min.css" rel="stylesheet">
-    <link href="${contextPath}/resources/css/common.css" rel="stylesheet">
+    <link href="/resources/css/common.css" rel="stylesheet">
     <link href="/resources/css/carpage.css" rel="stylesheet">
 </head>
 <body style="background-image: url('/resources/img/light2.jpg'); background-position: top">
@@ -60,7 +60,8 @@
             <td class="prof">${car.available}</td>
         </tr>
     </table>
-    <form action="http://localhost:8090/addCarToUser" method="post">
+    <%--TODO: relative link--%>
+    <form action="/addCarToUser" method="post">
         <input name="idUser" hidden value=${user.id} >
         <input name="idCar" hidden value=${car.id} >
         <input type="submit" value="Арендовать">
@@ -71,11 +72,11 @@
 
         <form name="costDivForm">
             <label class="carCostD1Label">Начало бронирования</label>
-            <input class="d1" type="date" name="date1" value="2019-06-16"/>
-            <input class="t1" type="time" name="time1" value="23:00">
+            <input class="d1" type="date" name="date1" value="${currentDate}"/>
+            <input class="t1" type="time" name="time1" value="${currentTime}">
             <label class="carCostD2Label">Конец бронирования</label>
-            <input class="d2" type="date" name="date2" value="2019-06-16"/>
-            <input class="t2" type="time" name="time2" value="23:55">
+            <input class="d2" type="date" name="date2" value="${currentDate}"/>
+            <input class="t2" type="time" name="time2" value="${futureTime}">
         </form>
             <p id="p"></p>
             <button name = "carCostButton" onclick = "costFunction()" value="Рассчитать">Рассчитать</button>
@@ -98,7 +99,7 @@
                     var u = document.getElementById('p');
                     //var url = 'http://localhost:8090/cars?dur='+duration+'&car='+${car.id}
 
-                    fetch('http://localhost:8090/cars?dur='+duration+'&car='+${car.id})
+                    fetch('${contextPath}/cars?dur='+duration+'&car='+${car.id})
                         .then(function(response) {
                             return response.json();
                         })

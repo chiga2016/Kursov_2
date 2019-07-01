@@ -7,11 +7,13 @@
     <title>Edit Car</title>
     <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
     <link href="${contextPath}/resources/css/common.css" rel="stylesheet">
-    <link href="/resources/css/admin.css" rel="stylesheet">
+    <link href="${contextPath}/resources/css/admin.css" rel="stylesheet">
 
 </head>
 <body style="background-image: url('/resources/img/light2.jpg'); background-position: top">
 <div class="addCar">
+    <h2><a href="/admin"> Страница администратора</a> </h2>
+
     <h3> Редактирование автомобиля</h3>
     <br>
 <form action="/admin/editcar" method="post">
