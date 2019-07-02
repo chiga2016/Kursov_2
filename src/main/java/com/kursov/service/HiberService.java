@@ -1,6 +1,8 @@
 package com.kursov.service;
 
 import com.kursov.dao.HiberDAO;
+import com.kursov.exception.IsNotAvailiableException;
+import com.kursov.exception.UserNotFoundException;
 import com.kursov.model.Cars;
 import com.kursov.model.Jurnal;
 import com.kursov.model.User;
@@ -11,10 +13,10 @@ import java.util.List;
 
 public interface HiberService {
 
-   User addCarToUser(long idUser, long idCar);
+   User addCarToUser(long idUser, long idCar) throws IsNotAvailiableException, UserNotFoundException;
    //User delCarToUser(long idUser, long idCar);
 
-   void delCarToUser(long idUser);
+   void delCarToUser(long idUser) throws UserNotFoundException;
 
    List<Jurnal> findJurnalByUserId(long idUser);
 
@@ -22,6 +24,6 @@ public interface HiberService {
 
    void updateCar(Cars cars);
 
-   void updateUser(User user , BindingResult bindingResult);
+   void updateUser(User user , BindingResult bindingResult) throws UserNotFoundException;
 
 }

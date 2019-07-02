@@ -3,6 +3,7 @@ package com.kursov.service;
 import com.kursov.dao.HiberDAO;
 import com.kursov.dao.RoleDao;
 import com.kursov.dao.UserDao;
+import com.kursov.exception.UserNotFoundException;
 import com.kursov.model.Role;
 import com.kursov.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,9 +78,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findUserById(Long id)  {
+    public User findUserById(Long id) throws UserNotFoundException {
 //       try{
-           return userDao.findUserById(id);
+
+        User user = userDao.findUserById(id);
+
+        if(user==null){
+            throw new UserNotFoundException("User is not found!!!");
+        }
+
+           return user;
 //       }
 //        catch (Exception ex){
 //           return new User();

@@ -1,6 +1,8 @@
 package com.kursov.service;
 
 import com.kursov.dao.HiberDAO;
+import com.kursov.exception.IsNotAvailiableException;
+import com.kursov.exception.UserNotFoundException;
 import com.kursov.model.Cars;
 import com.kursov.model.Jurnal;
 import com.kursov.model.User;
@@ -30,33 +32,32 @@ public class HiberServiceImpl implements HiberService {
 
     @Override
     @Transactional
-    public User addCarToUser(long idUser, long idCar) {
+    public User addCarToUser(long idUser, long idCar) throws IsNotAvailiableException, UserNotFoundException {
         User user = userService.findUserById(idUser);
-        Cars cars = carsService.findCarsById(idCar);
-        /// TODO: wrong id
-        Cars bestBeforeCar = user.getCurrentCar();
+            Cars cars = carsService.findCarsById(idCar);
+            /// TODO: wrong id
+            Cars bestBeforeCar = user.getCurrentCar();
+            if (cars.isAvailable()) {
+                user.setCurrentCar(cars);
+                cars.setAvailable(false);
+                if (bestBeforeCar != null) {
+                    bestBeforeCar.setAvailable(true);
+                    Jurnal jurnal = calcCostbyUser(user, bestBeforeCar);
+                    hiberDAO.costJurnal(jurnal);
+                }
+                Jurnal jurnalNew = new Jurnal(cars, user);
+                hiberDAO.addCarToUser(jurnalNew, user);
+            }//  TODO: else
 
-        if (cars.isAvailable()){
-
-            user.setCurrentCar(cars);
-            cars.setAvailable(false);
-            if (bestBeforeCar!=null){
-                bestBeforeCar.setAvailable(true);
-                Jurnal jurnal = calcCostbyUser(user, bestBeforeCar);
-                hiberDAO.costJurnal(jurnal);
+            else {
+                throw new IsNotAvailiableException("Car is not availiable!!!");
             }
-            Jurnal jurnalNew = new Jurnal(cars, user);
-            hiberDAO.addCarToUser(jurnalNew, user);
-        }//  TODO: else
-
         return user;
-
-
     }
 
     @Override
     @Transactional
-    public void delCarToUser(long idUser) {
+    public void delCarToUser(long idUser) throws UserNotFoundException {
         User user = userService.findUserById(idUser);
         //Cars cars = carsDao.findCarsById(idCar);
         Cars bestBeforeCar = user.getCurrentCar();
@@ -102,7 +103,7 @@ public class HiberServiceImpl implements HiberService {
     }
 
     @Override
-    public void updateUser(User user , BindingResult bindingResult) {
+    public void updateUser(User user , BindingResult bindingResult) throws UserNotFoundException {
         User userOld = userService.findUserById(user.getId());
         log.info("id = "+user.getId()
         +        "; username = "+user.getUsername()

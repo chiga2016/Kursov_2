@@ -2,6 +2,7 @@ package com.kursov.controllers;
 
 import com.kursov.dao.CarsDao;
 import com.kursov.dao.HiberDAO;
+import com.kursov.exception.UserNotFoundException;
 import com.kursov.model.Cars;
 import com.kursov.model.User;
 import com.kursov.service.CarsService;
@@ -93,7 +94,13 @@ public class AdminController {
     @RequestMapping(value ="admin/edituser/{id}", method = RequestMethod.GET)
     public ModelAndView editUser(@PathVariable("id") long id, ModelAndView modelAndView){
         modelAndView.setViewName("editUser");
-        modelAndView.addObject("userForm",userService.findUserById(id)); //userDao.findAll());
+        try {
+            modelAndView.addObject("userForm",userService.findUserById(id)); //userDao.findAll());
+        } catch (UserNotFoundException e) {
+            e.printStackTrace();
+            modelAndView.setViewName("errorPage");
+            modelAndView.addObject("message", e.getMessage());
+        }
         return modelAndView;
     }
 
@@ -112,7 +119,13 @@ public class AdminController {
             return modelAndView2;
         }
         else {
-            hiberService.updateUser(userForm, bindingResult);
+            try {
+                hiberService.updateUser(userForm, bindingResult);
+            } catch (UserNotFoundException e) {
+                e.printStackTrace();
+                modelAndView.setViewName("errorPage");
+                modelAndView.addObject("message", e.getMessage());
+            }
         }
         modelAndView.addObject("cars", carsService.findAll());
         modelAndView.addObject("users",userService.findAll() );

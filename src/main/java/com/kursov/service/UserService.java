@@ -1,5 +1,6 @@
 package com.kursov.service;
 
+import com.kursov.exception.UserNotFoundException;
 import com.kursov.model.User;
 
 import java.util.List;
@@ -14,7 +15,7 @@ public interface UserService {
 
     List<User> findAll();
 
-    User findUserById(Long id);
+    User findUserById(Long id) throws UserNotFoundException;
 
 
 

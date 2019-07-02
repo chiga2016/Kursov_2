@@ -3,6 +3,8 @@ package com.kursov.controllers;
 
 import com.kursov.dao.CarsDao;
 import com.kursov.dao.HiberDAO;
+import com.kursov.exception.IsNotAvailiableException;
+import com.kursov.exception.UserNotFoundException;
 import com.kursov.model.Cars;
 
 import java.util.Collections;
@@ -40,35 +42,49 @@ public class MainController {
     @RequestMapping(value = "addCarToUser", method = RequestMethod.POST)
     public ModelAndView addCarToUser(@ModelAttribute("idUser") String idUser, @ModelAttribute("idCar") String idCar) { //(@PathVariable("idCar") int idCar, @PathVariable("idUser") int idUser ){
         //User user = dao.addCarToUser(Long.parseLong(idUser), Long.parseLong(idCar));
-        User user = hiberService.addCarToUser(Long.parseLong(idUser), Long.parseLong(idCar));
-        List<Cars> cars = carsService.findByAvailible();
-        List<Cars> allCars =  carsService.findAll();
-        List<Jurnal> jurnal = hiberService.findJurnalByUserId(Long.parseLong(idUser));
-        //log.info(idUser);
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("profilePage");
-        modelAndView.addObject("u", user);
-        modelAndView.addObject("cars", cars);
-        modelAndView.addObject("allCars", allCars);
-        modelAndView.addObject("jurnal", jurnal );
+        try {
+            User user = hiberService.addCarToUser(Long.parseLong(idUser), Long.parseLong(idCar));
+            List<Cars> cars = carsService.findByAvailible();
+            List<Cars> allCars =  carsService.findAll();
+            List<Jurnal> jurnal = hiberService.findJurnalByUserId(Long.parseLong(idUser));
+            //log.info(idUser);
+            modelAndView.setViewName("profilePage");
+            modelAndView.addObject("u", user);
+            modelAndView.addObject("cars", cars);
+            modelAndView.addObject("allCars", allCars);
+            modelAndView.addObject("jurnal", jurnal );
+        } catch (IsNotAvailiableException | UserNotFoundException e) {
+            e.printStackTrace();
+            modelAndView.setViewName("errorPage");
+            modelAndView.addObject("message", e.getMessage());
+        }
+
         return modelAndView;
     }
 
     @RequestMapping(value = "delCarToUser", method = RequestMethod.POST)
     public ModelAndView delCarToUser(@ModelAttribute("idUser") String idUser) {
-        hiberService.delCarToUser(Long.parseLong(idUser));
-
-        User user = userService.findUserById(Long.parseLong(idUser));
-        List<Cars> cars = carsService.findByAvailible();
-        List<Cars> allCars =  carsService.findAll();
-        List<Jurnal> jurnal = hiberService.findJurnalByUserId(Long.parseLong(idUser));
-        //log.info(idUser);
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("profilePage");
-        modelAndView.addObject("u", user);
-        modelAndView.addObject("cars", cars);
-        modelAndView.addObject("allCars", allCars);
-        modelAndView.addObject("jurnal", jurnal );
+        User user = null;
+        try {
+            hiberService.delCarToUser(Long.parseLong(idUser));
+            user = userService.findUserById(Long.parseLong(idUser));
+            List<Cars> cars = carsService.findByAvailible();
+            List<Cars> allCars =  carsService.findAll();
+            List<Jurnal> jurnal = hiberService.findJurnalByUserId(Long.parseLong(idUser));
+            //log.info(idUser);
+            modelAndView.setViewName("profilePage");
+            modelAndView.addObject("u", user);
+            modelAndView.addObject("cars", cars);
+            modelAndView.addObject("allCars", allCars);
+            modelAndView.addObject("jurnal", jurnal );
+        } catch (UserNotFoundException e) {
+            e.printStackTrace();
+            modelAndView.setViewName("errorPage");
+            modelAndView.addObject("message", e.getMessage());
+        }
+
         return modelAndView;
     }
 
