@@ -1,6 +1,7 @@
 package com.kursov.controllers;
 
 import com.kursov.dao.HiberDAO;
+import com.kursov.exception.CarNotFoundException;
 import com.kursov.model.Cars;
 import com.kursov.model.Jurnal;
 import com.kursov.service.CarsService;
@@ -29,7 +30,12 @@ public class MyRestController {
     float getCostJurnal(@RequestParam("dur") long dur, @RequestParam("car") long car) {
         Logger log = LoggerFactory.getLogger(this.getClass());
         log.info("duration = " + Long.toString(dur)+ "car=" + car);
-        float cost = hiberService.calcCost(dur,car);
+        float cost = 0;
+        try {
+            cost = hiberService.calcCost(dur,car);
+        } catch (CarNotFoundException e) {
+            e.printStackTrace();
+        }
         return cost;
     }
 

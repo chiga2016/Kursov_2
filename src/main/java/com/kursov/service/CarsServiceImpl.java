@@ -4,6 +4,8 @@ import com.kursov.dao.CarsDao;
 import com.kursov.dao.HiberDAO;
 import com.kursov.dao.RoleDao;
 import com.kursov.dao.UserDao;
+import com.kursov.exception.CarNotFoundException;
+import com.kursov.exception.UserNotFoundException;
 import com.kursov.model.Cars;
 import com.kursov.model.Role;
 import com.kursov.model.User;
@@ -46,8 +48,12 @@ public class CarsServiceImpl implements CarsService {
     }
 
     @Override
-    public Cars findCarsById(long id) {
-        return carsDao.findCarsById(id);
+    public Cars findCarsById(long id) throws CarNotFoundException {
+        Cars cars = carsDao.findCarsById(id);
+        if(cars==null){
+            throw new CarNotFoundException("Car is not found!!!");
+        }
+        return cars ;
     }
 
 

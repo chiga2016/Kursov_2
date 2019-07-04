@@ -1,6 +1,7 @@
 package com.kursov.service;
 
 import com.kursov.dao.HiberDAO;
+import com.kursov.exception.CarNotFoundException;
 import com.kursov.exception.IsNotAvailiableException;
 import com.kursov.exception.UserNotFoundException;
 import com.kursov.model.Cars;
@@ -32,7 +33,7 @@ public class HiberServiceImpl implements HiberService {
 
     @Override
     @Transactional
-    public User addCarToUser(long idUser, long idCar) throws IsNotAvailiableException, UserNotFoundException {
+    public User addCarToUser(long idUser, long idCar) throws IsNotAvailiableException, UserNotFoundException, CarNotFoundException {
         User user = userService.findUserById(idUser);
             Cars cars = carsService.findCarsById(idCar);
             /// TODO: wrong id
@@ -82,7 +83,7 @@ public class HiberServiceImpl implements HiberService {
 
     @Override
     @Transactional
-    public void updateCar(Cars cars) {
+    public void updateCar(Cars cars) throws CarNotFoundException {
         Cars carOld = carsService.findCarsById(cars.getId());
         log.info("id = "+cars.getId()
                 +        "; name = "+cars.getName()
@@ -134,7 +135,7 @@ public class HiberServiceImpl implements HiberService {
         return hiberDAO.findJurnalByUserId(id);
     }
 
-    public float calcCost(long duration, long car){
+    public float calcCost(long duration, long car) throws CarNotFoundException {
         Cars currentCar = carsService.findCarsById(car);
         log.info(currentCar.toString());
         float rez=0;

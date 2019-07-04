@@ -2,6 +2,7 @@ package com.kursov.controllers;
 
 import com.kursov.dao.CarsDao;
 import com.kursov.dao.HiberDAO;
+import com.kursov.exception.CarNotFoundException;
 import com.kursov.exception.UserNotFoundException;
 import com.kursov.model.Cars;
 import com.kursov.model.User;
@@ -136,8 +137,15 @@ public class AdminController {
     @RequestMapping(value ="admin/editcar/{id}", method = RequestMethod.GET)
     public ModelAndView editCar(@PathVariable("id") long id, ModelAndView modelAndView){
         //ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("editCar");
-        modelAndView.addObject("cars", carsService.findCarsById(id));
+
+        try {
+            modelAndView.setViewName("editCar");
+            modelAndView.addObject("cars", carsService.findCarsById(id));
+        } catch (CarNotFoundException e) {
+            e.printStackTrace();
+            modelAndView.setViewName("errorPage");
+            modelAndView.addObject("message", e.getMessage());
+        }
         return modelAndView;
     }
 
@@ -146,10 +154,16 @@ public class AdminController {
         ModelAndView modelAndView = new ModelAndView();
         //Cars carsOld = carsService.findCarsById(cars.getId());
         //carsOld = cars;
-        hiberService.updateCar(cars);
+        try {
+            hiberService.updateCar(cars);
         modelAndView.setViewName("admin");
         modelAndView.addObject("cars", carsService.findAll());
         modelAndView.addObject("users",userService.findAll() );
+        } catch (CarNotFoundException e) {
+            e.printStackTrace();
+            modelAndView.setViewName("errorPage");
+            modelAndView.addObject("message", e.getMessage());
+        }
         return modelAndView;
     }
 }

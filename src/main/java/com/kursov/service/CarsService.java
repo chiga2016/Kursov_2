@@ -1,5 +1,6 @@
 package com.kursov.service;
 
+import com.kursov.exception.CarNotFoundException;
 import com.kursov.model.Cars;
 import com.kursov.model.User;
 
@@ -15,6 +16,6 @@ public interface CarsService {
 
     List<Cars> findByAvailible();
 
-    Cars findCarsById(long id);
+    Cars findCarsById(long id) throws CarNotFoundException;
 
 }

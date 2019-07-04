@@ -1,6 +1,7 @@
 package com.kursov.controllers;
 
 import com.kursov.dao.CarsDao;
+import com.kursov.exception.CarNotFoundException;
 import com.kursov.model.Cars;
 import com.kursov.service.CarsService;
 import com.kursov.service.UserService;
@@ -30,14 +31,21 @@ public class CarsController {
     ModelAndView cars (@PathVariable String idCar){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("/carPage");
-        Cars car = carsService.findCarsById(Long.parseLong(idCar));
+        try {modelAndView.setViewName("/carPage");
+        Cars car = null;
+
+            car = carsService.findCarsById(Long.parseLong(idCar));
+
         modelAndView.addObject("car", car);
         modelAndView.addObject("user", userService.findUserByUsername(auth.getName()) );
         modelAndView.addObject("currentDate", new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
         modelAndView.addObject("currentTime", new SimpleDateFormat("HH:mm").format(new Date()));
         modelAndView.addObject("futureTime", new SimpleDateFormat("HH:mm").format(new Date().getTime()+1000*3600));
-
+    } catch (CarNotFoundException e) {
+            e.printStackTrace();
+            modelAndView.setViewName("errorPage");
+            modelAndView.addObject("message", e.getMessage());
+    }
         return modelAndView;
 
     }

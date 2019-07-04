@@ -3,6 +3,7 @@ package com.kursov.controllers;
 
 import com.kursov.dao.CarsDao;
 import com.kursov.dao.HiberDAO;
+import com.kursov.exception.CarNotFoundException;
 import com.kursov.exception.IsNotAvailiableException;
 import com.kursov.exception.UserNotFoundException;
 import com.kursov.model.Cars;
@@ -54,7 +55,15 @@ public class MainController {
             modelAndView.addObject("cars", cars);
             modelAndView.addObject("allCars", allCars);
             modelAndView.addObject("jurnal", jurnal );
-        } catch (IsNotAvailiableException | UserNotFoundException e) {
+        } catch (IsNotAvailiableException e) {
+            e.printStackTrace();
+            modelAndView.setViewName("errorPage");
+            modelAndView.addObject("message", e.getMessage());
+        } catch (CarNotFoundException e) {
+            e.printStackTrace();
+            modelAndView.setViewName("errorPage");
+            modelAndView.addObject("message", e.getMessage());
+        } catch (UserNotFoundException e) {
             e.printStackTrace();
             modelAndView.setViewName("errorPage");
             modelAndView.addObject("message", e.getMessage());

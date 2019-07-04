@@ -60,7 +60,7 @@
                         <td>${x.transmission}</td>
                         <td>${x.year}</td>
                         <td>${x.currentOwner.username}</td>
-                        <td> <form action="delCarToUser" method="post"><input type="submit" value="X" <c:if test="${x.currentOwner==null}" > hidden</c:if> /><input hidden name="idUser" type="text" value=${x.currentOwner.id} /></form> </td>
+                        <td> <form action="${contextPath}\delCarToUser" method="post"><input type="submit" value="X" <c:if test="${x.currentOwner==null}" > hidden</c:if> /><input hidden name="idUser" type="text" value=${x.currentOwner.id} /></form> </td>
                     </tr>
 
             </c:forEach>
