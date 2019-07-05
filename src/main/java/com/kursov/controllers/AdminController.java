@@ -16,17 +16,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class AdminController {
     private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
     Logger log = LoggerFactory.getLogger(this.getClass());
-//    @Autowired
+    //    @Autowired
 //    HiberDAO dao;
     @Autowired
     UserService userService;
@@ -38,32 +35,32 @@ public class AdminController {
     private UserValidator userValidator;
 
     @RequestMapping("admin")
-    public ModelAndView admin(){
+    public ModelAndView admin() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("admin");
-        modelAndView.addObject("users",userService.findAll()); //userDao.findAll());
+        modelAndView.addObject("users", userService.findAll()); //userDao.findAll());
         modelAndView.addObject("cars", carsService.findAll());
         return modelAndView;
     }
 
     @RequestMapping(value = "/admin/addUser", method = RequestMethod.POST)
-    public ModelAndView  addUser(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model)  {
+    public ModelAndView addUser(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model) {
         ModelAndView modelAndView = new ModelAndView();
         userValidator.validate(userForm, bindingResult);
         modelAndView.setViewName("admin");
         if (bindingResult.hasErrors()) {
             modelAndView.addObject("cars", carsService.findAll());
-            modelAndView.addObject("users",userService.findAll() );
+            modelAndView.addObject("users", userService.findAll());
             return modelAndView;
         }
         userService.save(userForm);
         modelAndView.addObject("cars", carsService.findAll());
-        modelAndView.addObject("users",userService.findAll() );
+        modelAndView.addObject("users", userService.findAll());
         return modelAndView;
     }
 
     @RequestMapping(value = "/admin/addcar", method = RequestMethod.POST)
-    public ModelAndView addCar(@ModelAttribute("cars") Cars cars)  {
+    public ModelAndView addCar(@ModelAttribute("cars") Cars cars) {
         ModelAndView modelAndView = new ModelAndView();
         log.info("INFOCAR " + cars.toString());
         String img = "/resources/img/" + cars.getImg();
@@ -72,12 +69,12 @@ public class AdminController {
         carsService.saveAndFlush(cars);
         modelAndView.setViewName("admin");
         modelAndView.addObject("cars", carsService.findAll());
-        modelAndView.addObject("users",userService.findAll() );
+        modelAndView.addObject("users", userService.findAll());
         return modelAndView;
     }
 
     @RequestMapping(value = "/admin/addcar", method = RequestMethod.GET)
-    public String addCar(){
+    public String addCar() {
         return "addCar";
     }
 
@@ -92,78 +89,75 @@ public class AdminController {
         return "addUser";
     }
 
-    @RequestMapping(value ="admin/edituser/{id}", method = RequestMethod.GET)
-    public ModelAndView editUser(@PathVariable("id") long id, ModelAndView modelAndView){
+    @RequestMapping(value = "admin/edituser/{id}", method = RequestMethod.GET)
+    public ModelAndView editUser(@PathVariable("id") long id, ModelAndView modelAndView) {
         modelAndView.setViewName("editUser");
-        try {
-            modelAndView.addObject("userForm",userService.findUserById(id)); //userDao.findAll());
-        } catch (UserNotFoundException e) {
-            e.printStackTrace();
-            modelAndView.setViewName("errorPage");
-            modelAndView.addObject("message", e.getMessage());
-        }
+       // try {
+            modelAndView.addObject("userForm", userService.findUserById(id)); //userDao.findAll());
+//        } catch (UserNotFoundException e) {
+//            e.printStackTrace();
+//            modelAndView.setViewName("errorPage");
+//            modelAndView.addObject("message", e.getMessage());
+//        }
         return modelAndView;
     }
 
-    @RequestMapping(value ="admin/edituser", method = RequestMethod.POST)
-    public ModelAndView editUserPost(@ModelAttribute("userForm") User userForm, BindingResult bindingResult/*, Model model*/){
+    @RequestMapping(value = "admin/edituser", method = RequestMethod.POST)
+    public ModelAndView editUserPost(@ModelAttribute("userForm") User userForm, BindingResult bindingResult/*, Model model*/) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("admin");
         logger.info("НА АДМИН КОНТРОЛЛЕР ПРИШЛО ЗАДАНИЕ ОТРЕДАКТИРОВАТЬ ПОЛЬЗОВАТЕЛЯ С ИД" + userForm.getId());
 
         userValidator.validateFIO(userForm, bindingResult);
         if (bindingResult.hasErrors()) {
-            log.info("ВАЛИДАЦИЯ НЕ ПРОЙДЕНА!!!!!!!!!!"  );
+            log.info("ВАЛИДАЦИЯ НЕ ПРОЙДЕНА!!!!!!!!!!");
             log.info(bindingResult.toString());
             ModelAndView modelAndView2 = new ModelAndView();
             modelAndView2.setViewName("editUser");
             return modelAndView2;
-        }
-        else {
-            try {
+        } else {
+            //try {
                 hiberService.updateUser(userForm, bindingResult);
-            } catch (UserNotFoundException e) {
-                e.printStackTrace();
-                modelAndView.setViewName("errorPage");
-                modelAndView.addObject("message", e.getMessage());
-            }
+           // } catch (UserNotFoundException e) {
+//                e.printStackTrace();
+//                modelAndView.setViewName("errorPage");
+//                modelAndView.addObject("message", e.getMessage());
+//            }
         }
         modelAndView.addObject("cars", carsService.findAll());
-        modelAndView.addObject("users",userService.findAll() );
+        modelAndView.addObject("users", userService.findAll());
         return modelAndView;
 
     }
 
-    @RequestMapping(value ="admin/editcar/{id}", method = RequestMethod.GET)
-    public ModelAndView editCar(@PathVariable("id") long id, ModelAndView modelAndView){
+    @RequestMapping(value = "admin/editcar/{id}", method = RequestMethod.GET)
+    public ModelAndView editCar(@PathVariable("id") long id, ModelAndView modelAndView) {
         //ModelAndView modelAndView = new ModelAndView();
 
-        try {
-            modelAndView.setViewName("editCar");
-            modelAndView.addObject("cars", carsService.findCarsById(id));
-        } catch (CarNotFoundException e) {
-            e.printStackTrace();
-            modelAndView.setViewName("errorPage");
-            modelAndView.addObject("message", e.getMessage());
-        }
+        modelAndView.setViewName("editCar");
+        modelAndView.addObject("cars", carsService.findCarsById(id));
         return modelAndView;
     }
 
-    @RequestMapping(value ="admin/editcar", method = RequestMethod.POST)
-    public ModelAndView editCarPost(@ModelAttribute("cars") Cars cars){
+    @RequestMapping(value = "admin/editcar", method = RequestMethod.POST)
+    public ModelAndView editCarPost(@ModelAttribute("cars") Cars cars) {
         ModelAndView modelAndView = new ModelAndView();
         //Cars carsOld = carsService.findCarsById(cars.getId());
         //carsOld = cars;
-        try {
-            hiberService.updateCar(cars);
+        hiberService.updateCar(cars);
         modelAndView.setViewName("admin");
         modelAndView.addObject("cars", carsService.findAll());
-        modelAndView.addObject("users",userService.findAll() );
-        } catch (CarNotFoundException e) {
-            e.printStackTrace();
-            modelAndView.setViewName("errorPage");
-            modelAndView.addObject("message", e.getMessage());
-        }
+        modelAndView.addObject("users", userService.findAll());
         return modelAndView;
     }
+
+    @ExceptionHandler({CarNotFoundException.class, UserNotFoundException.class})
+    public ModelAndView notFound(Exception e) {
+        ModelAndView modelAndView = new ModelAndView();
+        e.printStackTrace();
+        modelAndView.setViewName("errorPage");
+        modelAndView.addObject("message", e.getMessage());
+        return modelAndView;
+    }
+
 }
