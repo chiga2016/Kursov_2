@@ -24,11 +24,11 @@
 </head>
 
 <body style="background-image: url('/resources/img/light2.jpg'); background-position: top">
-<h2><a href="/admin"> Страница администратора</a> </h2>
+<h2><a href="${contextPath}/admin"> Страница администратора</a> </h2>
 
 <div class="container">
 
-    <form:form method="POST" action="/admin/edituser" modelAttribute="userForm"  class="form-signin">
+    <form:form method="POST" action="${contextPath}/admin/edituser" modelAttribute="userForm"  class="form-signin">
         <h4 class="form-signin-heading">Редактирование данных пользователя</h4>
 
         <%--<style type="text/css">--%>

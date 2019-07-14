@@ -8,19 +8,19 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Контакты</title>
-    <link rel="stylesheet" href="././resources/css/style.css">
+    <title>База автомобилей</title>
+    <link rel="stylesheet" href="${contextPath}/resources/css/style.css">
 </head>
 <body class="fon" style="background-image: url('././resources/img/1.jpg');">
 <header>
     <nav>
         <ul>
-            <li><a href="/">Главная</a> </li>
-            <li> <a href="././/resources/bazaavto.html">База автомобилей</a> </li>
-            <li><a href="././/resources/Pravila.html">Правила</a></li>
-            <li><a href="././/resources/kontakt.html">Контакты</a> </li>
-            <li> <a href="/registration">Регистрация</a> </li>
-            <li> <a href="/login">Войти</a> </li>
+            <li><a href="${contextPath}/">Главная</a> </li>
+            <li> <a href="${contextPath}/bazaavto">База автомобилей</a> </li>
+            <li><a href="${contextPath}/resources/Pravila.html">Правила</a></li>
+            <li><a href="${contextPath}/resources/kontakt.html">Контакты</a> </li>
+            <li> <a href="${contextPath}/registration">Регистрация</a> </li>
+            <li> <a href="${contextPath}/login">Войти</a> </li>
         </ul>
     </nav>
 </header>

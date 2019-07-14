@@ -22,12 +22,12 @@
 </head>
 <body style="background-image: url('/resources/img/light2.jpg'); background-position: top">
 
-<h2><a href="/admin"> Страница администратора</a> </h2>
+<h2><a href="${contextPath}/admin"> Страница администратора</a> </h2>
 
 <div class="addCar">
     <h3>Добавление нового автомобиля</h3>
     <br>
-<form action="/admin/addcar" method="post">
+<form action="${contextPath}/admin/addcar" method="post">
     <h5>Name</h5><input title="name" type="text" name="name"><br>
     <h5>Marka</h5><input title="marka" type="text" name="marka"><br>
     <h5>Model</h5><input title="model" type="text" name="model"><br>

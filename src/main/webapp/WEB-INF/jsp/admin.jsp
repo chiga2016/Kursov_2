@@ -36,7 +36,7 @@
     <h2>Панель администрирования</h2>
 
     <div class="main">
-        <a href="/">Главная</a> | <a onclick="document.forms['logoutForm'].submit()">Logout</a>
+        <a href="${contextPath}/">Главная</a> | <a onclick="document.forms['logoutForm'].submit()">Logout</a>
     </div>
 
 
@@ -54,7 +54,7 @@
             <c:forEach var="x" items="${cars}">
 
                     <tr>
-                        <td><a href="/admin/editcar/${x.id}">${x.id}</a></td>
+                        <td><a href="${contextPath}/admin/editcar/${x.id}">${x.id}</a></td>
                         <td>${x.name}</td>
                         <td>${x.model}</td>
                         <td>${x.transmission}</td>
@@ -65,7 +65,7 @@
 
             </c:forEach>
 
-            <tr > <a href="/admin/addcar">Добавить машину </a> </tr>
+            <tr > <a href="${contextPath}/admin/addcar">Добавить машину </a> </tr>
         </table>
     </div>
 
@@ -88,7 +88,7 @@
 
                 <tr>
 
-                        <td><a href="/admin/edituser/${x.id}">${x.id}</a></td>
+                        <td><a href="${contextPath}/admin/edituser/${x.id}">${x.id}</a></td>
                         <td>${x.username}</td>
                         <%--<td>${x.fam}</td>--%>
                         <%--<td>${x.name}</td>--%>
@@ -103,7 +103,7 @@
 
             </c:forEach>
 
-            <tr > <a href="/admin/adduser">Добавить клиента </a> </tr>
+            <tr > <a href="${contextPath}/admin/adduser">Добавить клиента </a> </tr>
         </table>
     </div>
 

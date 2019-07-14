@@ -163,7 +163,7 @@
                         //var p = document.createElement("li")
                         // p.innerHTML = 'Hello' +(u.children.length+1);
                         // u.appendChild( p )
-                        fetch('http://localhost:8090/jurnal/'+${u.id})
+                        fetch(${contextPath}+'/jurnal/'+${u.id})
                             .then(function(response) {
                                 return response.json();
                             })

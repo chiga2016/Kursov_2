@@ -26,7 +26,7 @@
 <body style="/*background-image: url('/resources/img/light2.jpg'); background-position: top*/ background-color: #fff">
 <div class="exceptionParentDiv">
     <div class="exceptionDiv">
-        <h2><a href="/welcome"> Личный кабинет </a> </h2>
+        <h2><a href="${contextPath}/welcome"> Личный кабинет </a> </h2>
         <img src="${contextPath}/resources/img/stop.jpg">
         <br>
     <h1>${message}</h1>

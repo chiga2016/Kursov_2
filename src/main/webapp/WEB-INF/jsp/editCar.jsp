@@ -12,11 +12,11 @@
 </head>
 <body style="background-image: url('/resources/img/light2.jpg'); background-position: top">
 <div class="addCar">
-    <h2><a href="/admin"> Страница администратора</a> </h2>
+    <h2><a href="${contextPath}/admin"> Страница администратора</a> </h2>
 
     <h3> Редактирование автомобиля</h3>
     <br>
-<form action="/admin/editcar" method="post">
+<form action="${contextPath}/admin/editcar" method="post">
     <input name="id" value= ${cars.id} hidden />
     <h5>Name</h5><input title="name" type="text" name="name"  value=${cars.name}><br>
     <h5>Marka</h5><input title="marka" type="text" name="marka"  value=${cars.marka}><br>

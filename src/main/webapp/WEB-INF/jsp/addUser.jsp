@@ -30,7 +30,7 @@
 
     <h2 class="h2Create">Create new user</h2>
 <br>
-    <h2><a href="/admin"> Страница администратора</a> </h2>
+    <h2><a href="${contextPath}/admin"> Страница администратора</a> </h2>
 <%--<form action="/admin/addUser" method="post">--%>
        <%--<label>username</label> <input name="username" placeholder="username" type="text" /><br><br>--%>
         <%--<label>fam</label> <input name="fam" placeholder="fam"  type="text" /><br><br>--%>
@@ -46,7 +46,7 @@
 
     <%--</form>--%>
 
-    <form:form method="POST" action="/admin/addUser" modelAttribute="userForm"  class="form-signin">
+    <form:form method="POST" action="${contextPath}/admin/addUser" modelAttribute="userForm"  class="form-signin">
         <h2 class="form-signin-heading">Регистрация</h2>
 
         <%--<style type="text/css">--%>

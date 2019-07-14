@@ -9,31 +9,31 @@
 <head>
     <meta charset="UTF-8">
     <title>Прокат автомобилей</title>
-    <link rel="stylesheet" href="resources/css/style.css">
-    <script src="/resources/script.js"></script>
+    <link rel="stylesheet" href="${contextPath}/resources/css/style.css">
+    <script src="${contextPath}/resources/script.js"></script>
 </head>
 
 <body padding-top: 30px;>
 <header>
     <nav id="top_nav" style="top: 0px;">
         <ul>
-            <li><a href="/">Главная</a> </li>
-            <li> <a href="/bazaavto">База автомобилей</a> </li>
-            <li><a href="/resources/Pravila.html">Правила</a></li>
-            <li><a href="/resources/kontakt.html">Контакты</a> </li>
-            <li> <a href="/registration">Регистрация</a> </li>
+            <li><a href="${contextPath}/">Главная</a> </li>
+            <li> <a href="${contextPath}/bazaavto">База автомобилей</a> </li>
+            <li><a href="${contextPath}/resources/Pravila.html">Правила</a></li>
+            <li><a href="${contextPath}/resources/kontakt.html">Контакты</a> </li>
+            <li> <a href="${contextPath}/registration">Регистрация</a> </li>
 
             <c:if test="${pageContext.request.userPrincipal.name != null}">
                 <%--<form id="logoutForm"  method="POST" action="${contextPath}/logout">--%>
                     <%--<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />--%>
                 <%--</form>--%>
-                <li> <a href="welcome"> ${pageContext.request.userPrincipal.name}</a> </li>
+                <li> <a href="${contextPath}/welcome"> ${pageContext.request.userPrincipal.name}</a> </li>
                 <li> <a onclick="document.forms['logoutForm'].submit()">Выйти</a> </li>
 
             </c:if>
 
             <c:if test="${pageContext.request.userPrincipal.name == null}">
-                <li> <a href="/login">Войти</a> </li>
+                <li> <a href="${contextPath}/login">Войти</a> </li>
             </c:if>
 
 
@@ -52,7 +52,7 @@
 
         <!-- Slides -->
         <div class="fs-slides">
-            <div class="fs-slide" style="background-image: url('/resources/img/1.jpg');">
+            <div class="fs-slide" style="background-image: url('resources/img/1.jpg');">
                 <!-- Add content to images (sample) -->
                 <div style="position: absolute; top: 30%; left: 30%; transform: translate(-50%, -50%); color: white; font-family: sans-serif; text-align: center; text-shadow: 0 0 20px rgba(0,0,0,0.5);">
                     <h1 style="margin-top: 0; margin-bottom: vw; font-size: 4vw; font-weight: bold; text-align: left;">Прокат автомобилей <br>в Уфе</h1>
@@ -95,12 +95,12 @@
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
     </form>
     <h2>Добро пожаловать ${pageContext.request.userPrincipal.name} | <a onclick="document.forms['logoutForm'].submit()">Logout</a></h2>
-    <a href="welcome">Личный кабинет</a>
+    <a href="${contextPath}/welcome">Личный кабинет</a>
 </c:if>
 <br>
 <c:if test="${pageContext.request.userPrincipal.name == null}">
     <h2>Добро пожаловать </h2>
-    <a href="/registration" > Зарегистрируйтесь </a> или <a href="/login" > войдите </a>
+    <a href="${contextPath}/registration" > Зарегистрируйтесь </a> или <a href="${contextPath}/login" > войдите </a>
 </c:if>
 
 

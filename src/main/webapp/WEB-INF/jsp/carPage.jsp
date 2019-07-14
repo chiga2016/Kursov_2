@@ -12,9 +12,9 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>CarPage</title>
-    <link href="/resources/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/resources/css/common.css" rel="stylesheet">
-    <link href="/resources/css/carpage.css" rel="stylesheet">
+    <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${contextPath}/resources/css/common.css" rel="stylesheet">
+    <link href="${contextPath}/resources/css/carpage.css" rel="stylesheet">
 </head>
 <body style="background-image: url('/resources/img/light2.jpg'); background-position: top">
 <div class="container">
@@ -25,7 +25,7 @@
     <h2>Добро пожаловать ${pageContext.request.userPrincipal.name} | <a onclick="document.forms['logoutForm'].submit()">Logout</a>
     </h2>
 
-    <a href="/welcome"> <h3>Перейти в личный кабинет</h3> </a>
+    <a href="${contextPath}/welcome"> <h3>Перейти в личный кабинет</h3> </a>
 
     <h1>Профиль автомобиля</h1>
 
@@ -61,7 +61,7 @@
         </tr>
     </table>
     <%--TODO: relative link--%>
-    <form action="/addCarToUser" method="post">
+    <form action="${contextPath}/addCarToUser" method="post">
         <input name="idUser" hidden value=${user.id} >
         <input name="idCar" hidden value=${car.id} >
         <input type="submit" value="Арендовать">

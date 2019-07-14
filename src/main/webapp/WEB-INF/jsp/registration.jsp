@@ -23,8 +23,8 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 
-    <link rel="stylesheet" href="resources/css/style.css">
-    <script src="/resources/script.js"></script>
+    <link rel="stylesheet" href="${contextPath}/resources/css/style.css">
+    <script src="${contextPath}/resources/script.js"></script>
 </head>
 
 <body style="background-image: url('/resources/img/2.jpg'); background-position: top">
@@ -32,11 +32,11 @@
 <header>
     <nav id="top_nav" style="top: 0px;">
         <ul>
-            <li><a href="/">Главная</a> </li>
-            <li> <a href="/bazaavto">База автомобилей</a> </li>
-            <li><a href="/resources/Pravila.html">Правила</a></li>
-            <li><a href="/resources/kontakt.html">Контакты</a> </li>
-            <li> <a href="/registration">Регистрация</a> </li>
+            <li><a href="${contextPath}/">Главная</a> </li>
+            <li> <a href="${contextPath}/bazaavto">База автомобилей</a> </li>
+            <li><a href="${contextPath}/resources/Pravila.html">Правила</a></li>
+            <li><a href="${contextPath}/resources/kontakt.html">Контакты</a> </li>
+            <li> <a href="${contextPath}/registration">Регистрация</a> </li>
 
             <c:if test="${pageContext.request.userPrincipal.name != null}">
                 <li> <a href="welcome"> ${pageContext.request.userPrincipal.name}</a> </li>
@@ -44,7 +44,7 @@
             </c:if>
 
             <c:if test="${pageContext.request.userPrincipal.name == null}">
-                <li> <a href="/login">Войти</a> </li>
+                <li> <a href="${contextPath}/login">Войти</a> </li>
             </c:if>
         </ul>
     </nav>
